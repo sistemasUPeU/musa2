@@ -26,28 +26,28 @@ public class UsuariosDaoImp implements UsuariosDao {
 	@Override
 	public int create(Usuarios U) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CRUD_usuarios.PR_CREAR_USUARIOS(?,?,?,?);",U.getLogin(),U.getPassword(),
+		return jdbcTemplate.update("call PKG_CRUD_USUARIOS.PR_CREAR_USUARIOS(?,?,?,?)",U.getLogin(),U.getPassword(),
 				U.getIdpersona(),U.getUser_create());
 	}
 
 	@Override
 	public int update(Usuarios U) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CRUD_usuarios.PR_ACTUALIZAR_USUARIOS(?,?,?,?,?);",U.getIdusuario(),U.getLogin(),U.getPassword(),
+		return jdbcTemplate.update("call PKG_CRUD_USUARIOS.PR_ACTUALIZAR_USUARIOS(?,?,?,?,?)",U.getIdusuario(),U.getLogin(),U.getPassword(),
 				U.getIdpersona(),U.getUser_modify());
 	}
 
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CRUD_usuarios.PR_DESACTIVAR_USUARIOS(?)",id);
+		return jdbcTemplate.update("call PKG_CRUD_USUARIOS.PR_DESACTIVAR_USUARIOS(?)",id);
 	}
 
 	@Override
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("PR_LISTAR_USUARIOS_ID").withCatalogName("PKG_CRUD_usuarios")
+				.withProcedureName("PR_LISTAR_USUARIOS_ID").withCatalogName("PKG_CRUD_USUARIOS")
 				.declareParameters(new SqlOutParameter("usu",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_IDUSUARIO", Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("P_IDUSUARIO", id);
 		return simpleJdbcCall.execute(in);
@@ -57,7 +57,7 @@ public class UsuariosDaoImp implements UsuariosDao {
 	public Map<String, Object> readAll() {
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("PR_LISTAR_USUARIOS")
-				.withCatalogName("PKG_CRUD_usuarios")
+				.withCatalogName("PKG_CRUD_USUARIOS")
 				.declareParameters(new SqlOutParameter("usu", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
@@ -65,7 +65,7 @@ public class UsuariosDaoImp implements UsuariosDao {
 	@Override
 	public int validar_login(Usuarios U) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CRUD_usuarios.PR_VALIDAR_LOGIN(?,?);",U.getLogin(),U.getPassword()); 
+		return jdbcTemplate.update("call PKG_CRUD_USUARIOS.PR_VALIDAR_LOGIN(?,?);",U.getLogin(),U.getPassword()); 
 	}
 
 }
