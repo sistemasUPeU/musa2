@@ -44,7 +44,8 @@ public class ConductoresDaoImp implements ConductoresDao{
 	public Map<String, Object> read(int id) {
 		simp = new SimpleJdbcCall(jdbc)
 				.withCatalogName("PKG_CV_CONDUCTOR")
-				.withProcedureName("pa_mat_conductor_get").declareParameters(new SqlParameter("p_idconductor",Types.INTEGER),new SqlOutParameter("p_idconductor", OracleTypes
+				.withProcedureName("pa_mat_conductor_get")
+				.declareParameters(new SqlParameter("p_idconductor",Types.INTEGER),new SqlOutParameter("con", OracleTypes
 				.CURSOR,new ColumnMapRowMapper())
 				);
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idconductor",id);
@@ -53,7 +54,11 @@ public class ConductoresDaoImp implements ConductoresDao{
 
 	@Override
 	public Map<String, Object> readAll() {
-		simp = new SimpleJdbcCall(jdbc).withCatalogName("PKG_CV_CONDUCTOR").withProcedureName("pa_mat_conductor_list").declareParameters(new SqlOutParameter("p_idconductor", OracleTypes.CURSOR,new ColumnMapRowMapper()));
+		simp = new SimpleJdbcCall(jdbc)
+				.withCatalogName("PKG_CV_CONDUCTOR")
+				.withProcedureName("pa_mat_conductor_list")
+				.declareParameters(new SqlOutParameter("con", OracleTypes
+				.CURSOR,new ColumnMapRowMapper()));
 		return simp.execute();
 	}
 
