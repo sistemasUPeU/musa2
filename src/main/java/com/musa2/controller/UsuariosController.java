@@ -20,7 +20,8 @@ import com.musa2.service.UsuariosService;
 @RestController
 @RequestMapping("/usuarios")
 public class UsuariosController {
-	@Autowired
+
+@Autowired
 	private UsuariosService usuariosService;
 	
 	

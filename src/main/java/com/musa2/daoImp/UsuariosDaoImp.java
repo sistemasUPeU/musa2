@@ -64,8 +64,15 @@ public class UsuariosDaoImp implements UsuariosDao {
 
 	@Override
 	public int validar_login(Usuarios U) {
-		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CRUD_USUARIOS.PR_VALIDAR_LOGIN(?,?);",U.getLogin(),U.getPassword()); 
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_VALIDAR_LOGIN")
+				.withCatalogName("PKG_CRUD_USUARIOS")
+				.declareParameters(new SqlParameter("P_LOGIN", Types.VARCHAR), new SqlParameter("P_PASSWORD", Types.VARCHAR)
+						,new SqlOutParameter("RESULTADO", OracleTypes.NUMBER, new ColumnMapRowMapper()));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_LOGIN", U.getLogin()).addValue("P_PASSWORD", U.getPassword());
+		Map<String,Object> out = simpleJdbcCall.execute(in);
+		java.math.BigDecimal r = (java.math.BigDecimal) out.get("RESULTADO");
+		return r.intValue(); 
 	}
 
 }

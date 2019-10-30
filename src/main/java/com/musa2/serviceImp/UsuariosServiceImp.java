@@ -50,4 +50,5 @@ public class UsuariosServiceImp implements UsuariosService {
 		return usuariosDao.validar_login(U);
 	}
 
+
 }
