@@ -28,13 +28,13 @@ public class OpcionesDaolmp implements OpcionesDao {
 	@Override
 	public int create(Opciones O) {
 		// TODO Auto-generated method stub
-		return  jdbcTemplate.update("call PKG_SEG_CRUD_OPCIONES.pr_insertar_opciones(?,?,?,?,?,?,?);",O.getNombre(),O.getDescripcion(),O.getEnlace(),O.getIcono(),O.getTipo(),O.getOrden(),O.getIdpadre());
+		return  jdbcTemplate.update("call PKG_SEG_CRUD_OPCIONES.pr_insertar_opciones(?,?,?,?,?,?,?,?);",O.getIdpadre(),O.getNombre(),O.getDescripcion(),O.getEnlace(),O.getIcono(),O.getTipo(),O.getOrden(),O.getEstado());
 	}
 
 	@Override
 	public int update(Opciones O) {
 		// TODO Auto-generated method stub
-		return   jdbcTemplate.update("call PKG_SEG_CRUD_OPCIONES.pr_modificar_opciones(?,?,?,?,?,?,?,?,?);",O.getIdopciones(),O.getNombre(),O.getDescripcion(),O.getEnlace(),O.getIcono(),O.getTipo(),O.getOrden(),O.getEstado(),O.getIdpadre());
+		return   jdbcTemplate.update("call PKG_SEG_CRUD_OPCIONES.pr_modificar_opciones(?,?,?,?,?,?,?,?,?);",O.getIdopciones(),O.getIdpadre(),O.getNombre(),O.getDescripcion(),O.getEnlace(),O.getIcono(),O.getTipo(),O.getOrden(),O.getEstado());
 	}
 
 	@Override
@@ -47,17 +47,18 @@ public class OpcionesDaolmp implements OpcionesDao {
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("pa_mat_opciones_Get").withCatalogName("PK_OPCIONES")
-				.declareParameters(new SqlOutParameter("p_cur_opciones",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_idopcion ",Types.INTEGER));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idopcion ", id);
+				.withCatalogName("PKG_SEG_CRUD_OPCIONES")
+				.withProcedureName("pr_listar_opciones_id")
+				.declareParameters(new SqlOutParameter("hola1",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_OPCION_ID ",Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_OPCION_ID", id);
 		return simpleJdbcCall.execute(in);
 	}
 	
 	public Map<String, Object> readn(int nombre) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("pa_mat_opciones_Get").withCatalogName("PK_OPCIONES")
-				.declareParameters(new SqlOutParameter("p_cur_opciones",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_nombre ",Types.INTEGER));
+				.withProcedureName("pr_listar_opciones_nombre").withCatalogName("PKG_SEG_CRUD_OPCIONES")
+				.declareParameters(new SqlOutParameter("hola2",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_nombre ",Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_nombre ", nombre);
 		return simpleJdbcCall.execute(in);
 	}
@@ -65,8 +66,8 @@ public class OpcionesDaolmp implements OpcionesDao {
 	public Map<String, Object> reade(int estado) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("pa_mat_opciones_Get").withCatalogName("PK_OPCIONES")
-				.declareParameters(new SqlOutParameter("p_cur_opciones",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_estado ",Types.INTEGER));
+				.withProcedureName("pr_listar_opciones_estado").withCatalogName("PKG_SEG_CRUD_OPCIONES")
+				.declareParameters(new SqlOutParameter("hola3",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_estado ",Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_estado ", estado);
 		return simpleJdbcCall.execute(in);
 	}
@@ -74,8 +75,8 @@ public class OpcionesDaolmp implements OpcionesDao {
 	public Map<String, Object> readt(int tipo) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("pa_mat_opciones_Get").withCatalogName("PK_OPCIONES")
-				.declareParameters(new SqlOutParameter("p_cur_opciones",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_tipo ",Types.INTEGER));
+				.withProcedureName("pr_listar_opciones_tipo").withCatalogName("PKG_SEG_CRUD_OPCIONES")
+				.declareParameters(new SqlOutParameter("hola4",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_tipo ",Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipo ", tipo);
 		return simpleJdbcCall.execute(in);
 	}
@@ -83,8 +84,8 @@ public class OpcionesDaolmp implements OpcionesDao {
 	public Map<String, Object> readp(int idpadre) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("pa_mat_opciones_Get").withCatalogName("PK_OPCIONES")
-				.declareParameters(new SqlOutParameter("p_cur_opciones",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_idpadre ",Types.INTEGER));
+				.withProcedureName("pr_listar_opciones_padreid").withCatalogName("PKG_SEG_CRUD_OPCIONES")
+				.declareParameters(new SqlOutParameter("hola5",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_idpadre ",Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idpadre ", idpadre);
 		return simpleJdbcCall.execute(in);
 	}
@@ -93,8 +94,8 @@ public class OpcionesDaolmp implements OpcionesDao {
 	public Map<String, Object> readAll() {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("PA_MAT_OPCIONES_LIST")
-				.withCatalogName("PK_OPCIONES")
+				.withProcedureName("pr_listar_opciones")
+				.withCatalogName("PKG_SEG_CRUD_OPCIONES")
 				.declareParameters(new SqlOutParameter("p_cur_opciones", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
