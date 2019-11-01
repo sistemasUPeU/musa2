@@ -57,7 +57,7 @@ public class VehiculoDaoImp implements VehiculosDao{
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("PR_LISTAR_VEHICULOS")
-				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS")
+				.withCatalogName("PKG_CV_CRUD_VEHICULOS")
 				.declareParameters(new SqlOutParameter("vehi", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
