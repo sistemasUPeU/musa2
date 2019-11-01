@@ -26,7 +26,7 @@ private SimpleJdbcCall simpleJdbcCall;
 @Override
 public int create(Ubigeo ubi) {
 	// TODO Auto-generated method stub
-	return jdbcTemplate.update("call PKG_REP_CRUD_ubigeo.PR_CREAR_UBIGEO(?,?,?,?,?,?,?;?);",ubi.getCodubigeo(),ubi.getCoddepto(),
+	return jdbcTemplate.update("call PKG_REP_CRUD_ubigeo.PR_CREAR_UBIGEO(?,?,?,?,?,?,?,?)",ubi.getCodubigeo(),ubi.getCoddepto(),
 			ubi.getDepartamento(),ubi.getCodprov(),ubi.getProvincia(),ubi.getCoddist(),ubi.getDistrito(),ubi.getEstado());
 	// TODO Auto-generated method stub
 }

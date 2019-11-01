@@ -16,6 +16,7 @@ public class Vinculos {
 	private int idempleado;
 	private int idvehiculo;
 	
+	
 	public int getIdvinculo() {
 		return idvinculo;
 	}
@@ -200,6 +201,23 @@ public class Vinculos {
 		this.datecreate = datecreate;
 		this.usermodify = usermodify;
 		this.datemodify = datemodify;
+		this.idpropietario = idpropietario;
+		this.idempleado = idempleado;
+		this.idvehiculo = idvehiculo;
+	}
+
+
+	public Vinculos(int idvinculo, int tipovinculo, int estado, int idconductor, String descripcion, String fechainicio,
+			String fechafin, String usermodify, int idpropietario, int idempleado, int idvehiculo) {
+		super();
+		this.idvinculo = idvinculo;
+		this.tipovinculo = tipovinculo;
+		this.estado = estado;
+		this.idconductor = idconductor;
+		this.descripcion = descripcion;
+		this.fechainicio = fechainicio;
+		this.fechafin = fechafin;
+		this.usermodify = usermodify;
 		this.idpropietario = idpropietario;
 		this.idempleado = idempleado;
 		this.idvehiculo = idvehiculo;

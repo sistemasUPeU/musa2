@@ -1,13 +1,15 @@
-package com.musa2.dao;
+package com.musa2.service;
 
-import com.musa2.entity.Mant_Acciones;
 import java.util.List;
 import java.util.Map;
 
-public interface Mant_AccionesDao {
-	
+import com.musa2.entity.Mant_Acciones;
+
+public interface Mant_AccionesService {
+
 	public Map<String, Object> create(Mant_Acciones m);
     public Map<String, Object> update(Mant_Acciones m);
     public Map<String, Object> updateState(Mant_Acciones m);
     public Map<String, Object> readAllByType(int type);
+	
 }
