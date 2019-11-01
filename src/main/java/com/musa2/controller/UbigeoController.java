@@ -27,7 +27,7 @@ private UbigeoService ubigeoService;
 public Map<String, Object> readAll() {
 	return ubigeoService.readAll();
 }
-@PostMapping("/")
+@PostMapping("/add")
 public int save(@RequestBody Ubigeo ubi) {
 	return ubigeoService.create(ubi);
 }

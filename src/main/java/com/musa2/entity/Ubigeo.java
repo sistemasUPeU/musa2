@@ -11,7 +11,6 @@ private int coddist;
 private String distrito;
 private int estado;
 public Ubigeo() {
-	super();
 }
 public Ubigeo(int idubigeo, int codubigeo, int coddepto, String departamento, int codprov, String provincia,
 		int coddist, String distrito, int estado) {
