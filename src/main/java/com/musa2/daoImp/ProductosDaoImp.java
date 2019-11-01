@@ -25,15 +25,15 @@ public class ProductosDaoImp implements ProductosDao{
 	@Override
 	public int create(Productos P) {
 		// TODO Auto-generated method stub
-		return  jdbcTemplate.update("call PKG_ALM_CRUD_PRODUCTOS.pa_mat_productos_ins(?,?,?,?,?,?,?,?,?,?,?)",P.getDescripcion(),P.getStockactual(),P.getEstado(),P.getPrecioref(),
-				P.getStockmin(),P.getStockmaximo(),P.getUsercreate(),P.getDatecreate(),P.getIdprodcategoria(),P.getIdprodmarca(),P.getIdprodunidadmed());
+		return  jdbcTemplate.update("call PKG_ALM_CRUD_PRODUCTOS.pa_mat_productos_ins(?,?,?,?,?,?,?,?,?,?,?)",P.getNombre(),P.getDescripcion(),P.getStockactual(),P.getEstado(),P.getPrecioref(),
+				P.getStockmin(),P.getStockmaximo(),P.getUsercreate(),P.getIdprodcategoria(),P.getIdprodmarca(),P.getIdprodunidadmed());
 	}
 
 	@Override
 	public int update(Productos P) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_ALM_CRUD_PRODUCTOS.pa_mat_productos_upd(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",P.getIdproducto(),P.getDescripcion(),P.getStockactual(),P.getEstado(),P.getPrecioref(),
-				P.getStockmin(),P.getStockmaximo(),P.getUsercreate(),P.getDatecreate(),P.getUsermodify(),P.getDatemodify(),P.getIdprodcategoria(),P.getIdprodmarca(),P.getIdprodunidadmed());
+		return jdbcTemplate.update("call PKG_ALM_CRUD_PRODUCTOS.pa_mat_productos_upd(?,?,?,?,?,?,?,?,?,?,?,?,?)",P.getIdproducto(),P.getNombre(),P.getDescripcion(),P.getStockactual(),P.getEstado(),P.getPrecioref(),
+				P.getStockmin(),P.getStockmaximo(),P.getUsercreate(),P.getUsermodify(),P.getIdprodcategoria(),P.getIdprodmarca(),P.getIdprodunidadmed());
 	}
 
 	@Override

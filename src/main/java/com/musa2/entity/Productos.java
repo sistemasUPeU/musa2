@@ -3,6 +3,7 @@ package com.musa2.entity;
 public class Productos {
 	private int idproducto;
 	private String descripcion;
+	private String nombre;
 	private int stockactual;
 	private int estado;
 	private int precioref;
@@ -20,11 +21,12 @@ public class Productos {
 		
 	}
 
-	public Productos(int idproducto, String descripcion, int stockactual, int estado, int precioref, int stockmin,
+	public Productos(int idproducto,String nombre, String descripcion, int stockactual, int estado, int precioref, int stockmin,
 			int stockmaximo, String usercreate, String datecreate, String usermodify, String datemodify,
 			int idprodcategoria, int idprodmarca, int idprodunidadmed) {
 		super();
 		this.idproducto = idproducto;
+		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.stockactual = stockactual;
 		this.estado = estado;
@@ -46,6 +48,14 @@ public class Productos {
 
 	public void setIdproducto(int idproducto) {
 		this.idproducto = idproducto;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getDescripcion() {
