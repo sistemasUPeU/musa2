@@ -32,36 +32,66 @@ public class Mant_AccionesDaoImp implements Mant_AccionesDao {
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("pr_mat_crear_accion").withCatalogName("pkg_mant_crud_acciones")
 				.declareParameters(new SqlParameter("p_idaccionpadre",OracleTypes.INTEGER),
-						new SqlParameter("p_nombre",Types.VARCHAR),
-						new SqlParameter("p_tipo",Types.INTEGER),
-						new SqlParameter("p_estado",Types.INTEGER),
-						new SqlParameter("p_descripcion",Types.VARCHAR),
-						new SqlOutParameter("p_error",Types.INTEGER, new ColumnMapRowMapper()), 
-						new SqlOutParameter("p_masgerror",Types.VARCHAR, new ColumnMapRowMapper()));
+						new SqlParameter("p_nombre",OracleTypes.VARCHAR),
+						new SqlParameter("p_tipo",OracleTypes.INTEGER),
+						new SqlParameter("p_estado",OracleTypes.INTEGER),
+						new SqlParameter("p_descripcion",OracleTypes.VARCHAR),
+						new SqlOutParameter("p_error",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
+						new SqlOutParameter("p_msgerror",OracleTypes.VARCHAR, new ColumnMapRowMapper()));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idaccionpadre", m.getIdaccionpadre())
 															.addValue("p_nombre", m.getNombre())
 															.addValue("p_tipo", m.getTipo())
 															.addValue("p_estado", m.getEstado())
-															.addValue("p-descripcion", m.getDescripcion());
+															.addValue("p_descripcion", m.getDescripcion());
 		return simpleJdbcCall.execute(in);
 	}
 
 	@Override
 	public Map<String, Object> update(Mant_Acciones m) {
-		// TODO Auto-generated method stub
-		return null;
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("pkg_mant_crud_acciones").withProcedureName("pr_mat_actualizar_accion")
+				.declareParameters(new SqlParameter("p_idmantacciones",OracleTypes.INTEGER),
+								   new SqlParameter("p_idaccionpadre",OracleTypes.INTEGER),
+								   new SqlParameter("p_nombre",OracleTypes.VARCHAR),
+								   new SqlParameter("p_tipo",OracleTypes.INTEGER),
+								   new SqlParameter("p_estado",OracleTypes.INTEGER),
+								   new SqlParameter("p_descripcion",OracleTypes.VARCHAR),
+								   new SqlParameter("p_orden",OracleTypes.INTEGER),
+								   new SqlOutParameter("p_error",Types.INTEGER,new ColumnMapRowMapper()),
+								   new SqlOutParameter("msgerror",Types.VARCHAR,new ColumnMapRowMapper()));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idmantacciones", m.getIdmantacciones())
+														   .addValue("p_idaccionpadre", m.getIdaccionpadre())
+														   .addValue("p_nombre", m.getNombre())
+														   .addValue("p_tipo", m.getTipo())
+														   .addValue("p_estado", m.getEstado())
+														   .addValue("p_descripcion", m.getDescripcion())
+														   .addValue("p_orden", m.getOrden());
+		return simpleJdbcCall.execute(in);
 	}
 
 	@Override
-	public Map<String, Object> updateState(int id) {
+	public Map<String, Object> updateState(Mant_Acciones m) {
 		// TODO Auto-generated method stub
-		return null;
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("pr_mat_cambiar_estado").withCatalogName("pkg_mant_crud_acciones")
+				.declareParameters(new SqlParameter("p_idmantacciones",Types.INTEGER),
+								   new SqlParameter("p_estado",Types.INTEGER),
+								   new SqlOutParameter("p_error",OracleTypes.INTEGER,new ColumnMapRowMapper()),
+								   new SqlOutParameter("msgerror",OracleTypes.VARCHAR,new ColumnMapRowMapper()));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idmantacciones", m.getIdmantacciones())
+														   .addValue("p_estado", m.getEstado());
+		return simpleJdbcCall.execute(in);
 	}
 
 	@Override
-	public List<Map<String, Object>> readAllByType(int type) {
+	public Map<String, Object> readAllByType(int type) {
 		// TODO Auto-generated method stub
-		return null;
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("pr_mat_listar_por_tipo").withCatalogName("pkg_mant_crud_acciones")
+				.declareParameters(new SqlOutParameter("p_cursor",OracleTypes.CURSOR,new ColumnMapRowMapper()),
+								   new SqlParameter("p_tipo",Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipo", type);
+		return simpleJdbcCall.execute(in);
 	}
 
 }
