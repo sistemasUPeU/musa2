@@ -35,7 +35,7 @@ public class RequisitosDaoImp implements RequisitosDao{
 	@Override
 	public int edit(Requisitos requisito) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call pkg_requisitos.pa_mat_requisitos_upd(?,?,?)",requisito.getIdrequisito(),requisito.getNombre(),requisito.getEstado(),requisito.getTiporequisito());
+		return jdbcTemplate.update("call pkg_requisitos.pa_mat_requisitos_upd(?,?,?,?)",requisito.getIdrequisito(),requisito.getNombre(),requisito.getEstado(),requisito.getTiporequisito());
 	}
 
 	@Override
