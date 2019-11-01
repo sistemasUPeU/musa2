@@ -25,7 +25,6 @@ public class RequisitosDaoImp implements RequisitosDao{
 	private JdbcTemplate jdbcTemplate;
 	private SimpleJdbcCall simpleJdbcCall;
 	
-	
 	@Override
 	public int create(Requisitos requisito) {
 		// TODO Auto-generated method stub
@@ -42,7 +41,8 @@ public class RequisitosDaoImp implements RequisitosDao{
 	public int delete(int id) {
 		// TODO Auto-generated method stub
 		//return jdbcTemplate.update("call pkg_requisitos.pa_mat_requisitos_del(?)",id);
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_REQUISITOS")
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_REQUISITOS")
 				.withProcedureName("PA_MAT_REQUISITOS_DEL");
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_requisitoid", id);
 		Map<String, Object> out = simpleJdbcCall.execute(in);
