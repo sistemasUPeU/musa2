@@ -1,7 +1,6 @@
 package com.musa2.daoImp;
 
 import java.sql.Types;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
