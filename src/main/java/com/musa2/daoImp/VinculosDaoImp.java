@@ -26,27 +26,27 @@ public class VinculosDaoImp implements VinculosDao{
 	@Override
 	public int create(Vinculos vinculo) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call pkg_vincunlos.pa_mat_vinculos_ins(?,?,?,?,?,?,?,?,?)", vinculo.getTipovinculo(), vinculo.getIdconductor(), vinculo.getDescripcion(), vinculo.getFechainicio(), vinculo.getFechafin(), vinculo.getUsercreate(), vinculo.getIdpropietario(), vinculo.getIdempleado(), vinculo.getIdvehiculo());
+		return jdbcTemplate.update("call pkg_cv_crud_vincunlos.pa_mat_vinculos_ins(?,?,?,?,?,?,?,?,?)", vinculo.getTipovinculo(), vinculo.getIdconductor(), vinculo.getDescripcion(), vinculo.getFechainicio(), vinculo.getFechafin(), vinculo.getUsercreate(), vinculo.getIdpropietario(), vinculo.getIdempleado(), vinculo.getIdvehiculo());
 	}
 
 	@Override
 	public int update(Vinculos vinculo) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call pkg_vincunlos.pa_mat_vinculos_upd(?,?,?,?,?,?,?,?,?,?,?)", vinculo.getIdvinculo(), vinculo.getTipovinculo(), vinculo.getEstado(), vinculo.getIdconductor(), vinculo.getDescripcion(), vinculo.getFechainicio(), vinculo.getFechafin(), vinculo.getUsermodify(), vinculo.getIdpropietario(), vinculo.getIdempleado(), vinculo.getIdvehiculo());
+		return jdbcTemplate.update("call pkg_cv_crud_vincunlos.pa_mat_vinculos_upd(?,?,?,?,?,?,?,?,?,?,?)", vinculo.getIdvinculo(), vinculo.getTipovinculo(), vinculo.getEstado(), vinculo.getIdconductor(), vinculo.getDescripcion(), vinculo.getFechainicio(), vinculo.getFechafin(), vinculo.getUsermodify(), vinculo.getIdpropietario(), vinculo.getIdempleado(), vinculo.getIdvehiculo());
 	}
 
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call pkg_vincunlos.pa_mat_vinculos_Del(?)",id);
+		return jdbcTemplate.update("call pkg_cv_crud_vincunlos.pa_mat_vinculos_del(?)",id);
 	}
 
 	@Override
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withCatalogName("PKG_VINCUNLOS")
-				.withProcedureName("PA_MAT_VINCULOS_GET")
+				.withCatalogName("pkg_cv_crud_vincunlos")
+				.withProcedureName("pa_mat_vinculos_get")
 				.declareParameters(new SqlOutParameter("vin", OracleTypes
 				.CURSOR, new ColumnMapRowMapper()), new SqlParameter("p_idvinculo", Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idvinculo", id);
@@ -57,8 +57,8 @@ public class VinculosDaoImp implements VinculosDao{
 	public Map<String, Object> readAll(int id) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withCatalogName("PKG_VINCUNLOS")
-				.withProcedureName("PA_MAT_VINCULOS_LIS")
+				.withCatalogName("pkg_cv_crud_vincunlos")
+				.withProcedureName("pa_mat_vinculos_lis")
 				.declareParameters(new SqlOutParameter("vin", OracleTypes
 				.CURSOR, new ColumnMapRowMapper()), new SqlParameter("p_tipo_vinculo", Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipo_vinculo", id);
