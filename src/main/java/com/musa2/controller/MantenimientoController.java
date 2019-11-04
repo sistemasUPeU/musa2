@@ -20,7 +20,7 @@ public class MantenimientoController {
 	@Autowired
 	private MantenimientoService mantenimientoService;
 	
-	@PostMapping("/")
+	@GetMapping("/")
 	public Map<String, Object> create(@RequestBody Mantenimiento m){
 		return mantenimientoService.create(m);
 	}
