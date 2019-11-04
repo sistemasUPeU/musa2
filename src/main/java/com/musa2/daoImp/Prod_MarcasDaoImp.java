@@ -51,6 +51,16 @@ public class Prod_MarcasDaoImp implements Prod_MarcasDao{
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idprodmarca", id);
 		return simpleJdbcCall.execute(in);
 	}
+	
+	@Override
+	public Map<String, Object> read(String nombre) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("pa_mat_prodmarcas_GetNom").withCatalogName("PKG_ALM_CRUD_PRODMARCAS")
+				.declareParameters(new SqlOutParameter("marc",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_nombre", Types.VARCHAR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_nombre", nombre);
+		return simpleJdbcCall.execute(in);
+	}
 
 	@Override
 	public Map<String, Object> readAll() {

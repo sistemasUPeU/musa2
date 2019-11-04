@@ -37,6 +37,10 @@ public class Prod_CategoriasController {
 	public Map<String,Object> read1(@PathVariable int id) {		
 		return prod_CategoriasService.read(id);
 	}
+	@GetMapping("/get/{nombre}")
+	public Map<String,Object> read2(@PathVariable String nombre) {		
+		return prod_CategoriasService.read(nombre);
+	}
 	@PutMapping("/{id}")
 	public int update1(@RequestBody Prod_Categorias cat, @PathVariable int id) {
 		cat.setIdprodcategoria(id);

@@ -5,18 +5,9 @@ public class Requisitos {
 	private String nombre;
 	private int estado;
 	private int tiporequisito;
-	
 	public Requisitos() {
-		
-	}
-	
-	public Requisitos(String nombre, int estado, int tiporequisito) {
 		super();
-		this.nombre = nombre;
-		this.estado = estado;
-		this.tiporequisito = tiporequisito;
 	}
-
 	public Requisitos(int idrequisito, String nombre, int estado, int tiporequisito) {
 		super();
 		this.idrequisito = idrequisito;
@@ -24,7 +15,6 @@ public class Requisitos {
 		this.estado = estado;
 		this.tiporequisito = tiporequisito;
 	}
-	
 	public int getIdrequisito() {
 		return idrequisito;
 	}
@@ -49,6 +39,10 @@ public class Requisitos {
 	public void setTiporequisito(int tiporequisito) {
 		this.tiporequisito = tiporequisito;
 	}
+	
+	
+	
+	
 	
 	
 }

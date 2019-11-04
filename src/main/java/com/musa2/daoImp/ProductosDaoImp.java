@@ -51,7 +51,18 @@ public class ProductosDaoImp implements ProductosDao{
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idproducto", id);
 		return simpleJdbcCall.execute(in);
 	}
+	
 
+	@Override
+	public Map<String, Object> read(String nombre) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("pa_mat_productos_GetNom").withCatalogName("PKG_ALM_CRUD_PRODUCTOS")
+				.declareParameters(new SqlOutParameter("prod",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_nombre", Types.VARCHAR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_nombre", nombre);
+		return simpleJdbcCall.execute(in);
+	}
+	
 	@Override
 	public Map<String, Object> readAll() {
 		// TODO Auto-generated method stub

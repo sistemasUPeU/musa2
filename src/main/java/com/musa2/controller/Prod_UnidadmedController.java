@@ -36,6 +36,10 @@ public class Prod_UnidadmedController {
 	public Map<String,Object> read1(@PathVariable int id) {		
 		return prod_UnidadmedService.read(id);
 	}
+	@GetMapping("/get/{nombrec}")
+	public Map<String,Object> read2(@PathVariable String nombrec) {		
+		return prod_UnidadmedService.read(nombrec);
+	}
 	@PutMapping("/{id}")
 	public int update1(@RequestBody Prod_Unidadmed uni, @PathVariable int id) {
 		uni.setIdprodunidadmed(id);

@@ -38,6 +38,12 @@ public class Prod_MarcasServiceImp implements Prod_MarcasService{
 		// TODO Auto-generated method stub
 		return prod_MarcasDao.read(id);
 	}
+	
+	@Override
+	public Map<String, Object> read(String nombre) {
+		// TODO Auto-generated method stub
+		return prod_MarcasDao.read(nombre);
+	}
 
 	@Override
 	public Map<String, Object> readAll() {
