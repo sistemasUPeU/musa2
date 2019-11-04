@@ -30,7 +30,7 @@ public class MantenimientoDaoImp implements Mantenimientodao {
 	public Map<String, Object> create(Mantenimiento m) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("pr_mat_crear_mantenimiento").withCatalogName("pkg_mant_crud_acciones")
+				.withProcedureName("pr_mat_crear_mantenimiento").withCatalogName("pkg_mant_crud_mant")
 				.declareParameters(new SqlParameter("p_idvehiculo",Types.INTEGER),
 						new SqlParameter("p_idempleado",Types.VARCHAR),
 						new SqlParameter("p_tipo_mantenimiento",Types.INTEGER),
@@ -38,6 +38,7 @@ public class MantenimientoDaoImp implements Mantenimientodao {
 						new SqlParameter("p_fechainicio",Types.VARCHAR),
 						new SqlParameter("p_usercreate",Types.VARCHAR),
 						new SqlOutParameter("p_error",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
+						new SqlOutParameter("p_idmantenimiento",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
 						new SqlOutParameter("p_masgerror",OracleTypes.VARCHAR, new ColumnMapRowMapper()));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idvehiculo",m.getIdVehiculo())
 															.addValue("p_idempleado", m.getIdEmpleado())
@@ -51,7 +52,24 @@ public class MantenimientoDaoImp implements Mantenimientodao {
 	@Override
 	public Map<String, Object> update(Mantenimiento m) {
 		// TODO Auto-generated method stub
-		return null;
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("pr_mat_actualizar_mant").withCatalogName("pkg_mant_crud_mant")
+				.declareParameters(new SqlParameter("p_idvehiculo",Types.INTEGER),
+						new SqlParameter("p_idempleado",Types.VARCHAR),
+						new SqlParameter("p_tipo_mantenimiento",Types.INTEGER),
+						new SqlParameter("p_detalle",Types.INTEGER),
+						new SqlParameter("p_fechainicio",Types.VARCHAR),
+						new SqlParameter("p_usercreate",Types.VARCHAR),
+						new SqlOutParameter("p_error",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
+						new SqlOutParameter("p_idmantenimiento",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
+						new SqlOutParameter("p_masgerror",OracleTypes.VARCHAR, new ColumnMapRowMapper()));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idvehiculo",m.getIdVehiculo())
+															.addValue("p_idempleado", m.getIdEmpleado())
+															.addValue("p_tipo_mantenimiento", m.getTipoMantenimiento())
+															.addValue("p_detalle", m.getDetalle())
+															.addValue("p_fechainicio", m.getFechaInicio())
+															.addValue("p_usercreate", m.getUserCreate());
+		return simpleJdbcCall.execute(in);
 	}
 
 	@Override
