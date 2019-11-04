@@ -33,6 +33,7 @@ public class MantenimientoDaoImp implements MantenimientoDao {
 				.withProcedureName("pr_mat_crear_mantenimiento").withCatalogName("pkg_mant_crud_mant")
 				.declareParameters(new SqlParameter("p_idvehiculo",Types.INTEGER),
 						new SqlParameter("p_idempleado",Types.VARCHAR),
+						new SqlParameter("p_idconductor",Types.VARCHAR),
 						new SqlParameter("p_tipo_mantenimiento",Types.INTEGER),
 						new SqlParameter("p_detalle",Types.INTEGER),
 						new SqlParameter("p_fechainicio",Types.VARCHAR),
@@ -42,6 +43,7 @@ public class MantenimientoDaoImp implements MantenimientoDao {
 						new SqlOutParameter("p_masgerror",OracleTypes.VARCHAR, new ColumnMapRowMapper()));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idvehiculo",m.getIdVehiculo())
 															.addValue("p_idempleado", m.getIdEmpleado())
+															.addValue("p_idconductor", m.getIdConductor())
 															.addValue("p_tipo_mantenimiento", m.getTipoMantenimiento())
 															.addValue("p_detalle", m.getDetalle())
 															.addValue("p_fechainicio", m.getFechaInicio())
