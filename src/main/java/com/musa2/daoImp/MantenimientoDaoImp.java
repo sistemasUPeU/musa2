@@ -32,11 +32,11 @@ public class MantenimientoDaoImp implements MantenimientoDao {
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("pr_mat_crear_mantenimiento").withCatalogName("pkg_mant_crud_mant")
 				.declareParameters(new SqlParameter("p_idvehiculo",Types.INTEGER),
-						new SqlParameter("p_idempleado",Types.VARCHAR),
-						new SqlParameter("p_idconductor",Types.VARCHAR),
+						new SqlParameter("p_idempleado",Types.INTEGER),
+						new SqlParameter("p_idconductor",Types.INTEGER),
 						new SqlParameter("p_tipo_mantenimiento",Types.INTEGER),
-						new SqlParameter("p_detalle",Types.INTEGER),
-						new SqlParameter("p_fechainicio",Types.VARCHAR),
+						new SqlParameter("p_detalle",Types.VARCHAR),
+						new SqlParameter("p_fechainicio",Types.DATE),
 						new SqlParameter("p_usercreate",Types.VARCHAR),
 						new SqlOutParameter("p_error",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
 						new SqlOutParameter("p_idmantenimiento",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
@@ -57,10 +57,10 @@ public class MantenimientoDaoImp implements MantenimientoDao {
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("pr_mat_actualizar_mant").withCatalogName("pkg_mant_crud_mant")
 				.declareParameters(new SqlParameter("p_idvehiculo",Types.INTEGER),
-						new SqlParameter("p_idempleado",Types.VARCHAR),
+						new SqlParameter("p_idempleado",Types.INTEGER),
 						new SqlParameter("p_tipo_mantenimiento",Types.INTEGER),
-						new SqlParameter("p_detalle",Types.INTEGER),
-						new SqlParameter("p_fechainicio",Types.VARCHAR),
+						new SqlParameter("p_detalle",Types.VARCHAR),
+						new SqlParameter("p_fechainicio",Types.DATE),
 						new SqlParameter("p_usercreate",Types.VARCHAR),
 						new SqlOutParameter("p_error",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
 						new SqlOutParameter("p_idmantenimiento",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
