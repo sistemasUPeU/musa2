@@ -44,4 +44,10 @@ public class PersonasServiceImp implements PersonasService {
 		return personasDao.readAll();
 	}
 
+	@Override
+	public Map<String, Object> findPersonasByDocumento(int nrodoc) {
+		// TODO Auto-generated method stub
+		return personasDao.findPersonasByDocumento(nrodoc);
+	}
+
 }
