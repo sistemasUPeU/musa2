@@ -28,13 +28,13 @@ public class RequisitosDaoImp implements RequisitosDao{
 	@Override
 	public int create(Requisitos requisito) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call pkg_requisitos.pa_mat_requisitos_ins(?,?,?)",requisito.getNombre(), requisito.getEstado(), requisito.getTiporequisito());
+		return jdbcTemplate.update("call pkg_cv_crud_requisitos.pa_mat_requisitos_ins(?,?)",requisito.getNombre(), requisito.getTiporequisito());
 	}
 
 	@Override
 	public int edit(Requisitos requisito) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call pkg_requisitos.pa_mat_requisitos_upd(?,?,?,?)",requisito.getIdrequisito(),requisito.getNombre(),requisito.getEstado(),requisito.getTiporequisito());
+		return jdbcTemplate.update("call pkg_cv_crud_requisitos.pa_mat_requisitos_upd(?,?,?,?)",requisito.getIdrequisito(),requisito.getNombre(),requisito.getEstado(),requisito.getTiporequisito());
 	}
 
 	@Override
@@ -42,8 +42,8 @@ public class RequisitosDaoImp implements RequisitosDao{
 		// TODO Auto-generated method stub
 		//return jdbcTemplate.update("call pkg_requisitos.pa_mat_requisitos_del(?)",id);
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withCatalogName("PKG_REQUISITOS")
-				.withProcedureName("PA_MAT_REQUISITOS_DEL");
+				.withCatalogName("pkg_cv_crud_requisitos")
+				.withProcedureName("pa_mat_requisitos_del");
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_requisitoid", id);
 		Map<String, Object> out = simpleJdbcCall.execute(in);
 		System.out.println("p_error: " + out.get("p_error"));
@@ -55,8 +55,8 @@ public class RequisitosDaoImp implements RequisitosDao{
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withCatalogName("PKG_REQUISITOS")
-				.withProcedureName("PA_MAT_REQUISITOS_GET")
+				.withCatalogName("pkg_cv_crud_requisitos")
+				.withProcedureName("pa_mat_requisitos_get")
 				.declareParameters(new SqlOutParameter("req", OracleTypes
 				.CURSOR, new ColumnMapRowMapper()), new SqlParameter("p_requisitoid", Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_requisitoid", id);
@@ -67,8 +67,8 @@ public class RequisitosDaoImp implements RequisitosDao{
 	public Map<String, Object> lista() {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withCatalogName("PKG_REQUISITOS")
-				.withProcedureName("PA_MAT_REQUISITOS_LIS")
+				.withCatalogName("pkg_cv_crud_requisitos")
+				.withProcedureName("pa_mat_requisitos_lis")
 				.declareParameters(new SqlOutParameter("req", OracleTypes
 				.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();

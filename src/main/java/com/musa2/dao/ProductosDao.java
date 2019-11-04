@@ -9,5 +9,6 @@ public interface ProductosDao {
 	public int update(Productos P);
 	public int delete(int id);
 	public Map<String,Object> read(int id);
+	public Map<String,Object> read(String nombre);
 	public Map<String, Object> readAll();
 }

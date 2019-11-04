@@ -38,9 +38,13 @@ public class ProductosController {
 	public Map<String,Object> read1(@PathVariable int id) {		
 		return productosService.read(id);
 	}
+	@GetMapping("/get/{nombre}")
+	public Map<String,Object> read2(@PathVariable String nombre) {		
+		return productosService.read(nombre);
+	}
 	@PutMapping("/{id}")
 	public int update1(@RequestBody Productos pro, @PathVariable int id) {
 		pro.setIdproducto(id);
 		return productosService.update(pro);
-	}	
+	}
 }

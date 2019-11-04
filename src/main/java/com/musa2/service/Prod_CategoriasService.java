@@ -11,5 +11,6 @@ public interface Prod_CategoriasService {
 	public int update(Prod_Categorias P);
 	public int delete(int id);
 	public Map<String,Object> read(int id);
+	public Map<String,Object> read(String nombre);
 	public Map<String,Object> readAll();
 }

@@ -50,6 +50,15 @@ public class Prod_CategoriasDaoImp implements Prod_CategoriasDao{
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idprodcategoria", id);
 		return simpleJdbcCall.execute(in);
 	}
+	
+	public Map<String, Object> read(String nombre) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("pa_mat_prodcategorias_GetNom").withCatalogName("PKG_ALM_CRUD_PRODCATEGORIAS")
+				.declareParameters(new SqlOutParameter("cat",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_nombre", Types.VARCHAR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_nombre", nombre);
+		return simpleJdbcCall.execute(in);
+	}
 
 	@Override
 	public Map<String, Object> readAll() {

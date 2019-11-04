@@ -35,6 +35,13 @@ public class ProductosServiceImp implements ProductosService{
 		// TODO Auto-generated method stub
 		return productosDao.read(id);
 	}
+	
+
+	@Override
+	public Map<String, Object> read(String nombre) {
+		// TODO Auto-generated method stub
+		return productosDao.read(nombre);
+	}
 
 	@Override
 	public Map<String, Object> readAll() {

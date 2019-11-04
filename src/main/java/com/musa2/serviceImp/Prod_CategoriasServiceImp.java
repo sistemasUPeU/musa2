@@ -37,6 +37,12 @@ public class Prod_CategoriasServiceImp implements Prod_CategoriasService{
 		// TODO Auto-generated method stub
 		return prod_CategoriasDao.read(id);
 	}
+	
+	@Override
+	public Map<String, Object> read(String nombre) {
+		// TODO Auto-generated method stub
+		return prod_CategoriasDao.read(nombre);
+	}
 
 	@Override
 	public Map<String, Object> readAll() {

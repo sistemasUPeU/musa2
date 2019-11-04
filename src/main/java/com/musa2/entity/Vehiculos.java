@@ -15,6 +15,7 @@ public class Vehiculos {
     private int idvehcategoria;
     private String uso;
     private String usercreate;
+    private String datecreate;
     private String usermodify;
     private String datemodify;
 	public Vehiculos() {
@@ -22,7 +23,8 @@ public class Vehiculos {
 	}
 	public Vehiculos(int idvehiculo, int nropadron, int estado, String placa, String motor, int serie,
 			String anhofabricacion, int pasajerossentados, int pasajerospie, int idvehmodelo, int idvehmarca,
-			int idvehcategoria, String uso, String usercreate, String usermodify, String datemodify) {
+			int idvehcategoria, String uso, String usercreate, String datecreate, String usermodify,
+			String datemodify) {
 		super();
 		this.idvehiculo = idvehiculo;
 		this.nropadron = nropadron;
@@ -38,6 +40,7 @@ public class Vehiculos {
 		this.idvehcategoria = idvehcategoria;
 		this.uso = uso;
 		this.usercreate = usercreate;
+		this.datecreate = datecreate;
 		this.usermodify = usermodify;
 		this.datemodify = datemodify;
 	}
@@ -125,6 +128,12 @@ public class Vehiculos {
 	public void setUsercreate(String usercreate) {
 		this.usercreate = usercreate;
 	}
+	public String getDatecreate() {
+		return datecreate;
+	}
+	public void setDatecreate(String datecreate) {
+		this.datecreate = datecreate;
+	}
 	public String getUsermodify() {
 		return usermodify;
 	}
@@ -137,6 +146,7 @@ public class Vehiculos {
 	public void setDatemodify(String datemodify) {
 		this.datemodify = datemodify;
 	}
+    
     
     
 }

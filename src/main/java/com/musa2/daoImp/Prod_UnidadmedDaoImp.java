@@ -50,6 +50,16 @@ public class Prod_UnidadmedDaoImp implements Prod_UnidadmedDao{
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idprodunidadmed", id);
 		return simpleJdbcCall.execute(in);
 	}
+	
+	@Override
+	public Map<String, Object> read(String nombrec) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("pa_mat_produnidadmed_GetNomc").withCatalogName("PKG_ALM_CRUD_PRODUNIDADMED")
+				.declareParameters(new SqlOutParameter("uni",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_nombrecorto", Types.VARCHAR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_nombrecorto", nombrec);
+		return simpleJdbcCall.execute(in);
+	}
 
 	@Override
 	public Map<String, Object> readAll() {
