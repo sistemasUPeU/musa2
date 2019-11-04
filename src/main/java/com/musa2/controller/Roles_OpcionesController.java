@@ -7,44 +7,38 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.musa2.entity.Productos;
-import com.musa2.service.ProductosService;
+import com.musa2.entity.Roles_Opciones;
+import com.musa2.service.Roles_OpcionesService;
 
 
 
 @RestController
-@RequestMapping("/productos")
-public class ProductosController {
+@RequestMapping("/rolesopciones")
+public class Roles_OpcionesController {
 	@Autowired
-    private ProductosService productosService;
+    private Roles_OpcionesService roles_OpcionesService;
 	@GetMapping("/")
 	public Map<String,Object> get(){
-		return productosService.readAll();
+		return roles_OpcionesService.readAll();
 	}
 	@PostMapping("/add")
-	public int save(@RequestBody Productos producto) {		
-		return productosService.create(producto);		
+	public int save(@RequestBody Roles_Opciones roles_Opciones) {		
+		return roles_OpcionesService.create(roles_Opciones);		
 	}
 	@DeleteMapping("/{id}")
-	public int delete1(@PathVariable int id) {		
-		return productosService.delete(id);
+	public int delete1(@PathVariable int idrol) {		
+		return roles_OpcionesService.delete(idrol);
 	}
-	@GetMapping("/{id}")
-	public Map<String,Object> read1(@PathVariable int id) {		
-		return productosService.read(id);
+	@DeleteMapping("/{idrol}/{idopcion}")
+	public int delete1(@PathVariable int idrol, int idopcion) {		
+		return roles_OpcionesService.delete(idrol, idopcion);
 	}
 	@GetMapping("/get/{nombre}")
 	public Map<String,Object> read2(@PathVariable String nombre) {		
-		return productosService.read(nombre);
-	}
-	@PutMapping("/{id}")
-	public int update1(@RequestBody Productos pro, @PathVariable int id) {
-		pro.setIdproducto(id);
-		return productosService.update(pro);
+		return roles_OpcionesService.read(nombre);
 	}
 }
