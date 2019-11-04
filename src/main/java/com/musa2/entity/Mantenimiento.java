@@ -13,6 +13,7 @@ public class Mantenimiento {
 	private Date fecValidacionMant;
 	private Date fecValidacionOper;
 	private int idEmpleado;
+	private int idConductor;
 	private int idJefeOperaciones;
 	private int idJefeMantenimiento;
 	private String userCreate;
@@ -116,8 +117,14 @@ public class Mantenimiento {
 	public void setDateModify(Date dateModify) {
 		this.dateModify = dateModify;
 	}
+	public int getIdConductor() {
+		return idConductor;
+	}
+	public void setIdConductor(int idConductor) {
+		this.idConductor = idConductor;
+	}
 	public Mantenimiento(int idMantenimiento, int idVehiculo, int tipoMantenimiento, String detalle, Date fechaInicio,
-			Date fechaFin, int estado, Date fecValidacionMant, Date fecValidacionOper, int idEmpleado,
+			Date fechaFin, int estado, Date fecValidacionMant, Date fecValidacionOper, int idEmpleado, int idConductor,
 			int idJefeOperaciones, int idJefeMantenimiento, String userCreate, Date dateCreate, String userModify,
 			Date dateModify) {
 		super();
@@ -131,6 +138,7 @@ public class Mantenimiento {
 		this.fecValidacionMant = fecValidacionMant;
 		this.fecValidacionOper = fecValidacionOper;
 		this.idEmpleado = idEmpleado;
+		this.idConductor = idConductor;
 		this.idJefeOperaciones = idJefeOperaciones;
 		this.idJefeMantenimiento = idJefeMantenimiento;
 		this.userCreate = userCreate;

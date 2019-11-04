@@ -60,4 +60,15 @@ public class PersonasDaoImp implements PersonasDao {
 		return simpleJdbcCall.execute();
 	}
 
+	@Override
+	public Map<String, Object> findPersonasByDocumento(int nrodoc) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_BUSCAR_PERSONAS")
+				.withCatalogName("PKG_CRUD_personas")
+				.declareParameters(new SqlOutParameter("pers", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NRODOC",nrodoc );		
+		return simpleJdbcCall.execute(in);
+	}
+
 }

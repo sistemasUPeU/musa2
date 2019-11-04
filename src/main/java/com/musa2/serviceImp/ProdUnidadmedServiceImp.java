@@ -37,6 +37,12 @@ public class ProdUnidadmedServiceImp implements Prod_UnidadmedService{
 		// TODO Auto-generated method stub
 		return prod_UnidadmedDao.read(id);
 	}
+	
+	@Override
+	public Map<String, Object> read(String nombrec) {
+		// TODO Auto-generated method stub
+		return prod_UnidadmedDao.read(nombrec);
+	}
 
 	@Override
 	public Map<String, Object> readAll() {

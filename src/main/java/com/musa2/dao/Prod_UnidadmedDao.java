@@ -11,5 +11,6 @@ public interface Prod_UnidadmedDao {
 	public int update(Prod_Unidadmed P);
 	public int delete(int id);
 	public Map<String,Object> read(int id);
+	public Map<String,Object> read(String nombrec);
 	public Map<String, Object> readAll();
 }

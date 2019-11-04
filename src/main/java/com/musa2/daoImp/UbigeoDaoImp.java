@@ -58,4 +58,15 @@ public Map<String, Object> readAll() {
 			.declareParameters(new SqlOutParameter("ubig", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 	return simpleJdbcCall.execute();
 }
+@Override
+public Map<String, Object> findUbigeoByCodigo(int codUbigeo) {
+	// TODO Auto-generated method stub
+	simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+			.withProcedureName("PR_BUSCAR_UBIGEO")
+			.withCatalogName("PKG_REP_CRUD_ubigeo")
+			.declareParameters(new SqlOutParameter("ubig", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+	SqlParameterSource in = new MapSqlParameterSource().addValue("P_CODUBIGEO",codUbigeo );		
+	return simpleJdbcCall.execute(in);
+}
+
 }

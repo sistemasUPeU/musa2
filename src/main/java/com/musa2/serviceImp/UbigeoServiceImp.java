@@ -44,4 +44,10 @@ private UbigeoDao ubigeoDao;
 		return ubigeoDao.readAll();
 	}
 
+	@Override
+	public Map<String, Object> findUbigeoByCodigo(int codUbigeo) {
+		// TODO Auto-generated method stub
+		return ubigeoDao.findUbigeoByCodigo(codUbigeo);
+	}
+
 }

@@ -38,6 +38,10 @@ public class Prod_MarcaController {
 	public Map<String,Object> read1(@PathVariable int id) {		
 		return prod_MarcasSrvice.read(id);
 	}
+	@GetMapping("/get/{nombre}")
+	public Map<String,Object> read2(@PathVariable String nombre) {		
+		return prod_MarcasSrvice.read(nombre);
+	}
 	@PutMapping("/{id}")
 	public int update1(@RequestBody Prod_Marcas marc, @PathVariable int id) {
 		marc.setIdprodmarca(id);

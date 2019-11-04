@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.musa2.entity.Ubigeo;
@@ -31,12 +30,12 @@ public Map<String, Object> readAll() {
 public int save(@RequestBody Ubigeo ubi) {
 	return ubigeoService.create(ubi);
 }
-@DeleteMapping("/{id}")
+@DeleteMapping("/ubi/{id}")
 public int delete1(@PathVariable int id) {
 	return ubigeoService.delete(id); 
 }
 
-@GetMapping("{id}")
+@GetMapping("/{id}")
 public Map<String,Object> read1(@PathVariable int id) {
 	return ubigeoService.read(id);
 }
@@ -45,5 +44,10 @@ public int update(@RequestBody Ubigeo ub, @PathVariable int id ) {
 	ub.setIdubigeo(id);
 	return ubigeoService.update(ub);
 	
+}
+@GetMapping("/ubi/{cod}")
+public Map<String, Object> search(@PathVariable("cod") int codigo) {
+	
+	return ubigeoService.findUbigeoByCodigo(codigo);
 }
 }
