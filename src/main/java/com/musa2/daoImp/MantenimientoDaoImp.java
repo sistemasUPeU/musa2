@@ -14,13 +14,13 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
-import com.musa2.dao.Mantenimientodao;
+import com.musa2.dao.MantenimientoDao;
 import com.musa2.entity.Mantenimiento;
 
 import oracle.jdbc.OracleTypes;
 
 @Repository
-public class MantenimientoDaoImp implements Mantenimientodao {
+public class MantenimientoDaoImp implements MantenimientoDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -73,9 +73,13 @@ public class MantenimientoDaoImp implements Mantenimientodao {
 	}
 
 	@Override
-	public List<Map<String, Object>> readAllByMantId(int type) {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, Object> readAllByMantId(int id) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("pr_mat_get_mant").withCatalogName("pkg_mant_crud_mant")
+				.declareParameters(new SqlParameter("p_idmantenimiento",Types.INTEGER),
+								   new SqlOutParameter("p_cursor",OracleTypes.CURSOR,new ColumnMapRowMapper()));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idmantenimiento", id);
+		return simpleJdbcCall.execute(in);
 	}
 
 }
