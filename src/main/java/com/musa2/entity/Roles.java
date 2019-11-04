@@ -6,6 +6,7 @@ public class Roles {
 	private int estado;
 	
 	public Roles() {
+		super();
 		
 	}
 
