@@ -26,15 +26,15 @@ public class RequisitosDaoImp implements RequisitosDao{
 	private SimpleJdbcCall simpleJdbcCall;
 	
 	@Override
-	public int create(Requisitos requisito) {
+	public Map<String, Object> create(Requisitos r){
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call pkg_cv_crud_requisitos.pa_mat_requisitos_ins(?,?)",requisito.getNombre(), requisito.getTiporequisito());
+		return null;
 	}
 
 	@Override
-	public int edit(Requisitos requisito) {
+	public  Map<String, Object> update(Requisitos r){
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call pkg_cv_crud_requisitos.pa_mat_requisitos_upd(?,?,?,?)",requisito.getIdrequisito(),requisito.getNombre(),requisito.getEstado(),requisito.getTiporequisito());
+	 return null;
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class RequisitosDaoImp implements RequisitosDao{
 	}
 
 	@Override
-	public Map<String, Object> lista() {
+	public Map<String, Object> readAll() {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withCatalogName("pkg_cv_crud_requisitos")
