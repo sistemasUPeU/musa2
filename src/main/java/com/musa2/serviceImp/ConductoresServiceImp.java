@@ -16,7 +16,7 @@ public class ConductoresServiceImp implements ConductoresService {
 	private ConductoresDao conductoresDao;
 
 	@Override
-	public int create(Conductores c) {
+	public Map<String, Object> create(Conductores c) {
 		return conductoresDao.create(c);
 	}
 
@@ -38,11 +38,5 @@ public class ConductoresServiceImp implements ConductoresService {
 	@Override
 	public Map<String, Object> readAll() {
 		return conductoresDao.readAll();
-	}
-
-	@Override
-	public Map<String, Object> readnom() {
-		// TODO Auto-generated method stub
-		return conductoresDao.readnom();
 	}
 }

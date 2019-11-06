@@ -16,7 +16,6 @@ import com.musa2.service.OpcionesService;
 
 
 
-
 @RestController
 @RequestMapping("/opciones")
 public class OpcionesController {
@@ -27,7 +26,7 @@ public class OpcionesController {
 		return opcionesService.readAll();
 	}
 	@PostMapping("/add")
-	public int save(@RequestBody Opciones opcion) {		
+	public Map<String, Object> save(@RequestBody Opciones opcion) {		
 		return opcionesService.create(opcion);		
 	}
 	@DeleteMapping("/{id}")
@@ -39,7 +38,7 @@ public class OpcionesController {
 		return opcionesService.read(id);
 	}
 	@PutMapping("/{id}")
-	public int update1(@RequestBody Opciones pro, @PathVariable int id) {
+	public Map<String, Object> update1(@RequestBody Opciones pro, @PathVariable int id) {
 		pro.setIdopciones(id);
 		return opcionesService.update(pro);
 	}
