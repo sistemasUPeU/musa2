@@ -55,12 +55,14 @@ public class VinculosDaoImp implements VinculosDao{
 
 	@Override
 	public Map<String, Object> readAll(int id) {
+		System.out.println("si entre johan-sama"+ id);
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withCatalogName("pkg_cv_crud_vincunlos")
 				.withProcedureName("pa_mat_vinculos_lis")
 				.declareParameters(new SqlOutParameter("vin", OracleTypes
 				.CURSOR, new ColumnMapRowMapper()), new SqlParameter("p_tipo_vinculo", Types.INTEGER));
+		
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipo_vinculo", id);
 		return simpleJdbcCall.execute(in);
 	}
