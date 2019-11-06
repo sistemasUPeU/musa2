@@ -39,4 +39,10 @@ public class ConductoresServiceImp implements ConductoresService {
 	public Map<String, Object> readAll() {
 		return conductoresDao.readAll();
 	}
+
+	@Override
+	public Map<String, Object> readnom() {
+		// TODO Auto-generated method stub
+		return conductoresDao.readnom();
+	}
 }

@@ -39,9 +39,9 @@ public class VinculosServiceImp implements VinculosService{
 	}
 
 	@Override
-	public Map<String, Object> readAll(int id) {
+	public Map<String, Object> readAll(int tipo) {
 		// TODO Auto-generated method stub
-		return vinculosDao.readAll(id);
+		return vinculosDao.readAll(tipo);
 	}
 	
 }

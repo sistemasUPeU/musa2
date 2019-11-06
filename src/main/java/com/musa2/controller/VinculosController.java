@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.musa2.entity.Vinculos;
 import com.musa2.service.VinculosService;
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+
+
+
+@CrossOrigin(origins = "*")
 
 @RestController
 @RequestMapping("/vinculos")
@@ -35,12 +38,12 @@ public class VinculosController {
 		return vinculoService.delete(id);
 	}
 	@GetMapping("/{id}")
-	public Map<String,Object> read(@PathVariable int id) {		
+	public Map<String,Object> read(@PathVariable int id) {
 		return vinculoService.read(id);
 	}
 	@PutMapping("/{id}")
 	public int update(@RequestBody Vinculos vin, @PathVariable int id) {
-		vin.setIdvinculo(id);
+		vin.setIdvinculo(id) ;
 		return vinculoService.update(vin);
 	}
 }
