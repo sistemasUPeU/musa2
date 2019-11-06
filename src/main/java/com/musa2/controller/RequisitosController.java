@@ -22,10 +22,10 @@ public class RequisitosController {
 	private RequisitosService requisitosService;
 	@GetMapping("/")
 	public Map<String,Object> get(){
-		return requisitosService.lista();
+		return requisitosService.readAll();
 	}
 	@PostMapping("/add")
-	public int save(@RequestBody Requisitos requisito) {		
+	public Map<String, Object> save(@RequestBody Requisitos requisito) {		
 		return requisitosService.create(requisito);		
 	}
 	@DeleteMapping("/{id}")
@@ -37,8 +37,8 @@ public class RequisitosController {
 		return requisitosService.read(id);
 	}
 	@PutMapping("/{id}")
-	public int update1(@RequestBody Requisitos req, @PathVariable int id) {
-		req.setIdrequisito(id);;
-		return requisitosService.edit(req);
+	public Map<String, Object> updateRequisitos(@RequestBody Requisitos r, @PathVariable int id) {
+		r.setIdrequisito(id);;
+		return requisitosService.update(r);
 	}
 }

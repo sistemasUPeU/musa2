@@ -14,13 +14,13 @@ public class VehiculosServiceImp implements VehiculosService{
     @Autowired
     private VehiculosDao vehiculosDao;
 	@Override
-	public int create(Vehiculos ve) {
+	public Map<String, Object> create(Vehiculos ve) {
 		// TODO Auto-generated method stub
 		return vehiculosDao.create(ve);
 	}
 
 	@Override
-	public int update(Vehiculos ve) {
+	public Map<String, Object> update(Vehiculos ve) {
 		// TODO Auto-generated method stub
 		return vehiculosDao.update(ve);
 	}
