@@ -19,25 +19,19 @@ import com.musa2.entity.Vehiculos;
 import oracle.jdbc.internal.OracleTypes;
 
 @Repository
-public class VehiculoDaoImp implements VehiculosDao{
+public class VehiculosDaoImp implements VehiculosDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
   	private SimpleJdbcCall simpleJdbcCall;
 	@Override
-	public int create(Vehiculos ve) {
+	public Map<String, Object> create(Vehiculos ve){
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CV_CRUD_VEHICULOS.PR_CREAR_VEHICULOS(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-				ve.getNropadron(), ve.getEstado(), ve.getPlaca(), ve.getMotor(), ve.getSerie(), ve.getAnhofabricacion(),
-				ve.getPasajerossentados(), ve.getPasajerospie(), ve.getIdvehmodelo(), ve.getIdvehmarca(), ve.getIdvehcategoria(),
-				ve.getUso(), ve.getUsercreate(), ve.getDatecreate(), ve.getUsermodify(), ve.getDatemodify());
+		return null;
 	}
 	@Override
-	public int update(Vehiculos ve) {
+	public Map<String, Object> update(Vehiculos ve){
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CV_CRUD_VEHICULOS.PR_ACTUALIZAR_VEHICULOS(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-				ve.getIdvehiculo(), ve.getNropadron(), ve.getEstado(), ve.getPlaca(), ve.getMotor(), ve.getSerie(), ve.getAnhofabricacion(),
-				ve.getPasajerossentados(), ve.getPasajerospie(), ve.getIdvehmodelo(), ve.getIdvehmarca(), ve.getIdvehcategoria(),
-				ve.getUso(), ve.getUsercreate(), ve.getDatemodify(), ve.getUsermodify(), ve.getDatemodify());
+		return null;
 	}
 	@Override
 	public int delete(int id) {

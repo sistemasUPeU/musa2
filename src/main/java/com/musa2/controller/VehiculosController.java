@@ -28,7 +28,7 @@ public class VehiculosController {
        		return vehiculosService.readAll();
        	}
        	@PostMapping("/add")
-       	public int saveVehiculos(@RequestBody Vehiculos vehiculos) {		
+       	public Map<String, Object> saveVehiculos(@RequestBody Vehiculos vehiculos) {		
        		return vehiculosService.create(vehiculos);			
        	}
        	@DeleteMapping("/{id}")
@@ -40,7 +40,7 @@ public class VehiculosController {
        		return vehiculosService.read(id);
        	}
        	@PutMapping("/{id}")
-       	public int updatePropietarios(@RequestBody Vehiculos ve, @PathVariable int id) {
+       	public Map<String, Object> updatePropietarios(@RequestBody Vehiculos ve, @PathVariable int id) {
        		ve.setIdvehiculo(id);
        		return vehiculosService.update(ve);
        	} 

@@ -26,8 +26,8 @@ public class PropietariosController {
   		return propietariosService.readAll();
   	}
   	@PostMapping("/add")
-  	public int save(@RequestBody Propietarios propietarios) {		
-  		return propietariosService.create(propietarios);		
+  	public Map<String, Object> save(@RequestBody Propietarios p) {		
+  		return propietariosService.create(p);		
   	}
   	@DeleteMapping("/{id}")
   	public int deletePropietarios(@PathVariable int id) {		
@@ -37,9 +37,8 @@ public class PropietariosController {
   	public Map<String,Object> readPropietarios(@PathVariable int id) {		
   		return propietariosService.read(id);
   	}
-  	@PutMapping("/{id}")
-  	public int updatePropietarios(@RequestBody Propietarios pro, @PathVariable int id) {
-  		pro.setIdpropietario(id);
+  	@PutMapping("/")
+  	public Map<String, Object> updatePropietarios(@RequestBody Propietarios pro) {
   		return propietariosService.update(pro);
   	}
 }

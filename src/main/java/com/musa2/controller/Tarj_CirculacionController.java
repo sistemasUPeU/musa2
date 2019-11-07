@@ -17,7 +17,7 @@ import com.musa2.entity.Tarj_Circulacion;
 import com.musa2.service.Tarj_CirculacionService;
 
 @RestController
-@RequestMapping("/tarjc")
+@RequestMapping("/tarjetac")
 public class Tarj_CirculacionController {
           @Autowired
           private Tarj_CirculacionService tarj_CirculacionService;
