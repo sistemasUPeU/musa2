@@ -21,13 +21,13 @@ public class ConductoresServiceImp implements ConductoresService {
 	}
 
 	@Override
-	public int update(Conductores c) {
+	public Map<String, Object> update(Conductores c) {
 		return conductoresDao.update(c);
 	}
 
 	@Override
-	public int delete(int id) {
-		return conductoresDao.delete(id);
+	public Map<String, Object> delete(Conductores c) {
+		return conductoresDao.delete(c);
 	}
 
 	@Override

@@ -21,24 +21,13 @@ public class Musa2ApplicationTests {
 	@Test
 	public void contextLoads() {
 		Conductores co = new Conductores();
-		co.setTipooperador(1);
-		co.setCodigo(23);
-		co.setEstado(2);
-		co.setNrolicencia(12);
-		co.setCursovial(1);
-		co.setUsercreate("William");
-		co.setIdpersona(10);
-		co.setLinc_fechainicio("2019-11-12");
-		co.setLinc_fechafin("2019-11-12");
-		co.setClase("a");
-		co.setCategoria(1);
+		co.setIdconductor(42);
 		
-		assertTrue(conD.create(co)!=null);
+		co.setEstado(0);
 		
 		
-	}
-	@Test
-	public void Testop() {
+		assertTrue(conD.delete(co)!=null);
+		
 		
 	}
 	

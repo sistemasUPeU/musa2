@@ -30,8 +30,8 @@ public class ConductoresController {
 		
 	}
 	@DeleteMapping("/{id}")
-	public int delete(@PathVariable int id) {		
-	 return conductoresService.delete(id);
+	public Map<String, Object> delete(@RequestBody Conductores c) {		
+	 return conductoresService.delete(c);
 	}
 	@GetMapping("/{id}")
 	public Map<String,Object> read(@PathVariable int id) {		
@@ -39,7 +39,7 @@ public class ConductoresController {
 		
 	}
 	@PutMapping("/{id}")
-	public int update(@RequestBody Conductores c, @PathVariable int id) {
+	public Map<String, Object> update(@RequestBody Conductores c, @PathVariable int id) {
 		return conductoresService.update(c);
 		
 		
