@@ -26,7 +26,7 @@ public class VinculosDaoImp implements VinculosDao{
 	@Override
 	public Map<String, Object> create(Vinculos vinculo) {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
+
 		// TODO Auto-generated method stub
 				simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 						.withCatalogName("pkg_cv_crud_vinculos")
@@ -53,12 +53,13 @@ public class VinculosDaoImp implements VinculosDao{
 														.addValue("p_idempleado", vinculo.getIdempleado())
 														.addValue("p_idvehiculo", vinculo.getIdvehiculo());
 				return simpleJdbcCall.execute(in);
-=======
-		return jdbcTemplate.update("call pkg_cv_crud_vincunlos.pa_mat_vinculos_ins(?,?,?,?,?,?,?,?,?)", 
+
+				
+				/*return jdbcTemplate.update("call pkg_cv_crud_vincunlos.pa_mat_vinculos_ins(?,?,?,?,?,?,?,?,?)", 
 				vinculo.getTipovinculo(), vinculo.getIdconductor(), vinculo.getDescripcion(), vinculo.getFechainicio(), 
 				vinculo.getFechafin(), vinculo.getUsercreate(), vinculo.getIdpropietario(), vinculo.getIdempleado(), 
-				vinculo.getIdvehiculo());
->>>>>>> 1519d914544540df7911c7f1f46a1021479d1d90
+				vinculo.getIdvehiculo());*/
+
 	}
 	@Override
 	public Map<String, Object> update(Vinculos vinculo) {

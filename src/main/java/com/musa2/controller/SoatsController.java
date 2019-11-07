@@ -25,20 +25,19 @@ public class SoatsController {
           		return soatsService.readAll();
           	}
           	@PostMapping("/add")
-          	public int saveSoats(@RequestBody Soats soats) {		
+          	public Map<String, Object> saveSoats(@RequestBody Soats soats) {		
           		return soatsService.create(soats);			
           	}
           	@DeleteMapping("/{id}")
-          	public int deleteSoats(@PathVariable int id) {		
-          		return soatsService.delete(id);
+          	public Map<String, Object> deleteSoats(@RequestBody Soats soats) {		
+          		return soatsService.delete(soats);
           	}
           	@GetMapping("/{id}")
           	public Map<String,Object> readSoats(@PathVariable int id) {		
           		return soatsService.read(id);
           	}
           	@PutMapping("/{id}")
-          	public int updatePropietarios(@RequestBody Soats so , @PathVariable int id) {
-          		so.setIdsoat(id);
+          	public Map<String,Object> updatePropietarios(@RequestBody Soats so) {
           		return soatsService.update(so);
           	} 
 }
