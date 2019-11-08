@@ -18,6 +18,7 @@ import com.musa2.dao.RequisitosDao;
 import com.musa2.entity.Requisitos;
 
 import oracle.jdbc.OracleTypes;
+import oracle.net.aso.e;
 
 @Repository
 public class RequisitosDaoImp implements RequisitosDao{
@@ -28,27 +29,37 @@ public class RequisitosDaoImp implements RequisitosDao{
 	@Override
 	public Map<String, Object> create(Requisitos r){
 		// TODO Auto-generated method stub
-		return null;
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_CV_CRUD_REQUISITOS").withProcedureName("pa_mat_requisitos_ins")
+				.declareParameters(new SqlParameter("p_nombre", Types.VARCHAR),
+				                   new SqlParameter("p_tiporequisito", Types.VARCHAR));
+                SqlParameterSource in = new MapSqlParameterSource().addValue("p_nombre", r.getNombre())
+		                                           .addValue("1", r.getEstado())
+		                                           .addValue("p_tiporequisito", r.getTiporequisito());
+        return simpleJdbcCall.execute(in);
 	}
 
 	@Override
 	public  Map<String, Object> update(Requisitos r){
 		// TODO Auto-generated method stub
-	 return null;
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_CV_CRUD_REQUISITOS").withProcedureName("pa_mat_requisitos_upd")
+				.declareParameters(new SqlParameter("p_requisitoid", Types.INTEGER),
+				                   new SqlParameter("p_nombre", Types.VARCHAR),
+				                   new SqlParameter("p_estado", Types.INTEGER),
+				                   new SqlParameter("p_tiporequisito", Types.INTEGER	 ));
+                SqlParameterSource in = new MapSqlParameterSource().addValue("p_requisitoid", r.getIdrequisito())
+		                                           .addValue("p_nombre", r.getNombre())
+		                                           .addValue("p_estado", r.getEstado())
+		                                           .addValue("p_tiporequisito", r.getTiporequisito());
+        return simpleJdbcCall.execute(in);
 	}
 
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
 		//return jdbcTemplate.update("call pkg_requisitos.pa_mat_requisitos_del(?)",id);
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withCatalogName("pkg_cv_crud_requisitos")
-				.withProcedureName("pa_mat_requisitos_del");
-		SqlParameterSource in = new MapSqlParameterSource().addValue("p_requisitoid", id);
-		Map<String, Object> out = simpleJdbcCall.execute(in);
-		System.out.println("p_error: " + out.get("p_error"));
-		System.out.println("p_msgerror: " + out.get("p_msgerror"));
-		return 1;
+		return jdbcTemplate.update("call PKG_CV_CRUD_REQUISITOS.pa_mat_requisitos_del(?)", id);
 	}
 
 	@Override
