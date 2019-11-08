@@ -15,21 +15,21 @@ public class VinculosServiceImp implements VinculosService{
 	private VinculosDao vinculosDao;
 
 	@Override
-	public int create(Vinculos vinculo) {
+	public Map<String, Object> create(Vinculos vinculo) {
 		// TODO Auto-generated method stub
 		return vinculosDao.create(vinculo);
 	}
 
 	@Override
-	public int update(Vinculos vinculo) {
+	public Map<String, Object> update(Vinculos vinculo) {
 		// TODO Auto-generated method stub
 		return vinculosDao.update(vinculo);
 	}
 
 	@Override
-	public int delete(int id) {
+	public Map<String, Object> updateState(Vinculos vinculo) {
 		// TODO Auto-generated method stub
-		return vinculosDao.delete(id);
+		return vinculosDao.updateState(vinculo);
 	}
 
 	@Override
@@ -39,9 +39,10 @@ public class VinculosServiceImp implements VinculosService{
 	}
 
 	@Override
-	public Map<String, Object> readAll(int tipo) {
+	public Map<String, Object> readAll(int id) {
 		// TODO Auto-generated method stub
-		return vinculosDao.readAll(tipo);
+		return vinculosDao.readAll(id);
 	}
+
 	
 }
