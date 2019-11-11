@@ -44,4 +44,8 @@ public class VehiculosController {
        		ve.setIdvehiculo(id);
        		return vehiculosService.update(ve);
        	} 
+       	@GetMapping("/lis/")
+    	public Map<String,Object> getn(){
+    		return vehiculosService.readplaca();
+    	}
 }

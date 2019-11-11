@@ -54,6 +54,7 @@ public class RequisitosDaoImp implements RequisitosDao{
 	@Override
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub
+		System.out.println("No debr¿eria entrar : " + id);
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withCatalogName("pkg_cv_crud_requisitos")
 				.withProcedureName("pa_mat_requisitos_get")
@@ -72,6 +73,21 @@ public class RequisitosDaoImp implements RequisitosDao{
 				.declareParameters(new SqlOutParameter("req", OracleTypes
 				.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
+	}
+
+	@Override
+	public Map<String, Object> list(int tipo) {
+		System.out.println("tipo: " + tipo);
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("pkg_cv_crud_requisitos")
+				.withProcedureName("pa_mat_requisitos_lis_por_tipo")
+				.declareParameters(new SqlOutParameter("req", OracleTypes
+				.CURSOR, new ColumnMapRowMapper()), 
+						new SqlParameter("p_tiporequisito", Types.INTEGER),
+						new SqlOutParameter("p_error",OracleTypes.INTEGER,new ColumnMapRowMapper()),
+						new SqlOutParameter("msgerror",OracleTypes.VARCHAR,new ColumnMapRowMapper()));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tiporequisito", tipo);
+		return simpleJdbcCall.execute(in);
 	}
 
 
