@@ -1,5 +1,6 @@
 package com.musa2.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,10 @@ public class VinculosController {
 	@GetMapping("/lis/{id}")
 	public Map<String,Object> listarportipo(@PathVariable int id){
 		return vinculoService.readAll(id);
+	}
+	@GetMapping("/conta")
+	public List<Map<String,Object>> contar(){
+		return vinculoService.contar();
 	}
 	@GetMapping("/{id}")
 	public Map<String,Object> listarid(@PathVariable int id) {

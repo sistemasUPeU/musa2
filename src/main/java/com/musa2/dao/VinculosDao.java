@@ -11,7 +11,7 @@ public interface VinculosDao {
     public Map<String, Object> updateState(Vinculos vinculo);
 	public Map<String, Object> read(int id);
 	public Map<String, Object> readAll(int id);
-	
+	public List<Map<String, Object>> contar();
 	
    
 }

@@ -1,6 +1,7 @@
 package com.musa2.daoImp;
 
 import java.sql.Types;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,8 +115,6 @@ public class VinculosDaoImp implements VinculosDao{
 	@Override
 	public Map<String, Object> readAll(int id) {
 		// TODO Auto-generated method stub
-		System.out.println("si entre johan-sama"+ id);
-		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withCatalogName("pkg_cv_crud_vinculos")
 				.withProcedureName("pa_mat_vinculos_lis")
@@ -126,5 +125,10 @@ public class VinculosDaoImp implements VinculosDao{
 						new SqlOutParameter("msgerror",OracleTypes.VARCHAR,new ColumnMapRowMapper()));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipo_vinculo", id);
 		return simpleJdbcCall.execute(in);
+	}
+	@Override
+	public List<Map<String, Object>> contar() {
+		String SQL="select count(*) contador from vinculos";
+		return jdbcTemplate.queryForList(SQL);
 	}
 }

@@ -1,5 +1,6 @@
 package com.musa2.serviceImp;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,12 @@ public class VinculosServiceImp implements VinculosService{
 	public Map<String, Object> readAll(int id) {
 		// TODO Auto-generated method stub
 		return vinculosDao.readAll(id);
+	}
+
+	@Override
+	public List<Map<String, Object>> contar() {
+		// TODO Auto-generated method stub
+		return vinculosDao.contar();
 	}
 
 	
