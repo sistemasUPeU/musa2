@@ -51,6 +51,7 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/soats/**").permitAll()
 		.antMatchers("/tarjetac/**").permitAll()
 		.antMatchers("/vehiculos/**").permitAll()
+		.antMatchers("/requisitos/**"). permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()

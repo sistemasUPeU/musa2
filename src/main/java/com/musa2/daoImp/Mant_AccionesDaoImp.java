@@ -90,6 +90,7 @@ public class Mant_AccionesDaoImp implements Mant_AccionesDao {
 				.declareParameters(new SqlOutParameter("p_cursor",OracleTypes.CURSOR,new ColumnMapRowMapper()),
 								   new SqlParameter("p_tipo",Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipo", type);
+		System.out.println(type);
 		return simpleJdbcCall.execute(in);
 	}
 
