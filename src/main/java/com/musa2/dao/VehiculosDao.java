@@ -11,4 +11,5 @@ public interface VehiculosDao {
 	public int delete(int id);
 	public Map<String, Object> read(int id);
 	public Map<String, Object> readAll();
+	Map<String, Object> readplaca();
 }

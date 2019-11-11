@@ -114,8 +114,6 @@ public class VinculosDaoImp implements VinculosDao{
 	@Override
 	public Map<String, Object> readAll(int id) {
 		// TODO Auto-generated method stub
-		System.out.println("si entre johan-sama"+ id);
-		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withCatalogName("pkg_cv_crud_vinculos")
 				.withProcedureName("pa_mat_vinculos_lis")

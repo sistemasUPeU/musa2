@@ -3,6 +3,7 @@ package com.musa2.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.musa2.entity.Requisitos;
 import com.musa2.service.RequisitosService;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/requisitos")
 public class RequisitosController {
@@ -40,5 +41,10 @@ public class RequisitosController {
 	public int update1(@RequestBody Requisitos req, @PathVariable int id) {
 		req.setIdrequisito(id);;
 		return requisitosService.edit(req);
+	}
+	@GetMapping("/lis/{tipo}")
+	public Map<String,Object> lis(@PathVariable int tipo) {
+		System.out.println("tipo : " + tipo);
+		return requisitosService.list(tipo);
 	}
 }
