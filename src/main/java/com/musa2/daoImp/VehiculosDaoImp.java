@@ -55,6 +55,15 @@ public class VehiculosDaoImp implements VehiculosDao{
 				.declareParameters(new SqlOutParameter("vehi", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
+	@Override
+	public Map<String, Object> readplaca() {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_CV_CRUD_VEHICULOS")
+				.withProcedureName("PR_LISTAR_NOMBRE")
+				.declareParameters(new SqlOutParameter("con", OracleTypes
+				.CURSOR,new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
+	}
   	
   	
 }

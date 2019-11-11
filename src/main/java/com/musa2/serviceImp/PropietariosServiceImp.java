@@ -41,4 +41,10 @@ public class PropietariosServiceImp implements PropietariosService{
 		return propietariosDao.readAll();
 	}
 
+	@Override
+	public Map<String, Object> readnom() {
+		// TODO Auto-generated method stub
+		return propietariosDao.readnom();
+	}
+
 }
