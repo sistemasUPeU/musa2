@@ -11,4 +11,5 @@ public interface PropietariosDao {
 	public Map<String, Object> read(int id);
 	public Map<String, Object> readAll();
 	Map<String, Object> readnom();
+	public Map<String, Object> search(String nombre);
 }

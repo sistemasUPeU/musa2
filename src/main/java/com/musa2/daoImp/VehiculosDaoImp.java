@@ -137,6 +137,14 @@ public class VehiculosDaoImp implements VehiculosDao{
 				.CURSOR,new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
+	public Map<String, Object> search(int nropadron) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_CV_CRUD_VEHICULOS").withProcedureName("PR_BUSCAR_VEHICULO")
+				.declareParameters(new SqlOutParameter("P_CURSOR",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_NROPADRON", Types.VARCHAR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NROPADRON", nropadron);
+		return simpleJdbcCall.execute(in);
+	}
   	
   	
 }

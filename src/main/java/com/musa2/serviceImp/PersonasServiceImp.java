@@ -1,6 +1,5 @@
 package com.musa2.serviceImp;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,21 +8,21 @@ import org.springframework.stereotype.Service;
 import com.musa2.dao.PersonasDao;
 import com.musa2.entity.Personas;
 import com.musa2.service.PersonasService;
+
 @Service
-public class PersonasServiceImp implements PersonasService {
-	@Autowired
-	private PersonasDao personasDao;
-	
+public class PersonasServiceImp implements PersonasService{
+@Autowired
+private PersonasDao personasDao;
 	@Override
-	public int create(Personas P) {
+	public int create(Personas per) {
 		// TODO Auto-generated method stub
-		return personasDao.create(P);
+		return personasDao.create(per);
 	}
 
 	@Override
-	public int update(Personas P) {
+	public int update(Personas per) {
 		// TODO Auto-generated method stub
-		return personasDao.update(P);
+		return personasDao.update(per);
 	}
 
 	@Override
@@ -45,9 +44,10 @@ public class PersonasServiceImp implements PersonasService {
 	}
 
 	@Override
-	public Map<String, Object> findPersonasByDocumento(int nrodoc) {
+	public Map<String, Object> findUbigeoByDocumento(int nrodoc) {
 		// TODO Auto-generated method stub
-		return personasDao.findPersonasByDocumento(nrodoc);
+		return personasDao.findUbigeoByDocumento(nrodoc);
 	}
 
+	
 }
