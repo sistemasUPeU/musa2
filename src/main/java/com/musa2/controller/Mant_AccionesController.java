@@ -29,9 +29,9 @@ public class Mant_AccionesController {
 		return mant_accionesService.create(m);
 	}
 	
-	@PutMapping("/")
-	public Map<String, Object> update(@RequestBody Mant_Acciones m){
-		return mant_accionesService.update(m);
+	@PutMapping("/{id}")
+	public Map<String, Object> update(@PathVariable int id, @RequestBody Mant_Acciones m){
+		return mant_accionesService.update(id, m);
 	}
 	
 	@GetMapping("/{type}")
@@ -39,9 +39,14 @@ public class Mant_AccionesController {
 		return mant_accionesService.readAllByType(type);
 	}
 	
-	@GetMapping("/state")
+	@GetMapping("/state/{id}")
 	public Map<String, Object> updateState(@PathVariable int id){
 		return mant_accionesService.updateState(id);
+	}
+	
+	@GetMapping("/edit/{id}")
+	public Map<String, Object> readById(@PathVariable int id){
+		return mant_accionesService.readById(id);
 	}
 	
 }

@@ -23,9 +23,9 @@ public class Mant_AccionesServiceImp implements Mant_AccionesService{
 	}
 
 	@Override
-	public Map<String, Object> update(Mant_Acciones m) {
+	public Map<String, Object> update(int id, Mant_Acciones m) {
 		// TODO Auto-generated method stub
-		return mant_accionesDao.update(m);
+		return mant_accionesDao.update(id, m);
 	}
 
 	@Override
@@ -38,6 +38,10 @@ public class Mant_AccionesServiceImp implements Mant_AccionesService{
 	public Map<String, Object> readAllByType(int type) {
 		// TODO Auto-generated method stub
 		return mant_accionesDao.readAllByType(type);
+	}
+	
+	public Map<String, Object> readById(int id){
+		return mant_accionesDao.readById(id);
 	}
 
 }
