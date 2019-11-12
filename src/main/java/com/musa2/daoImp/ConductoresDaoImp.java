@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.musa2.dao.ConductoresDao;
 import com.musa2.entity.Conductores;
 
+import aj.org.objectweb.asm.Type;
 import oracle.jdbc.OracleTypes;
 
 @Repository
@@ -25,18 +26,78 @@ public class ConductoresDaoImp implements ConductoresDao{
 	private SimpleJdbcCall simp;
 
 	@Override
-	public int create(Conductores c) {
-		return jdbc.update("call PKG_CV_CONDUCTOR.pa_mat_conductor_ins(?,?,?,?,?,?,?,?,?,?,?)",c.getTipooperador(),c.getCodigo(),c.getEstado(),c.getIdpersona(),c.getNrolicencia(),c.getCursovial(),c.getUsercreate(),c.getLinc_fechainicio(),c.getLinc_fechafin(),c.getClase(),c.getCategoria());
-	}
+	public Map<String, Object> create(Conductores c) {
+		System.out.println(c);
+		simp = new SimpleJdbcCall(jdbc).withCatalogName("PKG_CV_CONDUCTOR").withProcedureName("pa_mat_conductor_ins")
+				.declareParameters(
+						new SqlParameter("p_tipooperador",Types.INTEGER),
+						new SqlParameter("p_codigo",Types.INTEGER),
+						new SqlParameter("p_estado",Types.INTEGER),
+						new SqlParameter("p_idpersona",Types.INTEGER),
+						new SqlParameter("p_nrolicencia",Types.INTEGER),
+						new SqlParameter("p_cursovial",Types.INTEGER),
+						new SqlParameter("p_usercreate",Types.VARCHAR),
+						new SqlParameter("p_lincfechainicio",Types.VARCHAR), 
+						new SqlParameter("p_lincfechafin",Types.VARCHAR), 
+						new SqlParameter("p_clase",Types.CHAR),
+						new SqlParameter("p_categoria",Types.INTEGER)
+						);
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipooperador",c.getTipooperador())
+															.addValue("p_codigo", c.getCodigo())
+															.addValue("p_estado", c.getEstado())
+															.addValue("p_idpersona", c.getIdpersona())
+															.addValue("p_nrolicencia", c.getNrolicencia())
+															.addValue("p_cursovial", c.getCursovial())
+															.addValue("p_usercreate", c.getUsercreate())
+															.addValue("p_lincfechainicio",c.getLinc_fechainicio())
+															.addValue("p_lincfechafin", c.getLinc_fechafin())
+		                                                    .addValue("p_clase", c.getClase())
+		                                                    .addValue("p_categoria", c.getCategoria());
+		return simp.execute(in);
+		}
 
 	@Override
-	public int update(Conductores c) {
-		return jdbc.update("call PKG_CV_CONDUCTOR.pa_mat_conductor_upd(?,?,?,?,?,?,?,?,?,?,?,?)",c.getIdconductor(),c.getTipooperador(),c.getCodigo(),c.getEstado(),c.getIdpersona(),c.getNrolicencia(),c.getCursovial(),c.getUsermodify(),c.getLinc_fechainicio(),c.getLinc_fechafin(),c.getClase(),c.getCategoria());
-	}
+	public Map<String, Object> update(Conductores c) {
+		System.out.println(c);
+		simp = new SimpleJdbcCall(jdbc).withCatalogName("PKG_CV_CONDUCTOR").withProcedureName("pa_mat_conductor_upd")
+				.declareParameters(
+						new SqlParameter("p_idconductor",Types.INTEGER),
+						new SqlParameter("p_tipooperador",Types.INTEGER),
+						new SqlParameter("p_codigo",Types.INTEGER),
+						new SqlParameter("p_estado",Types.INTEGER),
+						new SqlParameter("p_idpersona",Types.INTEGER),
+						new SqlParameter("p_nrolicencia",Types.INTEGER),
+						new SqlParameter("p_cursovial",Types.INTEGER),
+						new SqlParameter("p_usermodify",Types.VARCHAR),
+						new SqlParameter("p_lincfechainicio",Types.VARCHAR), 
+						new SqlParameter("p_lincfechafin",Types.VARCHAR), 
+						new SqlParameter("p_clase",Types.CHAR),
+						new SqlParameter("p_categoria",Types.INTEGER)
+						);
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idconductor",c.getIdconductor())
+				                                            .addValue("p_tipooperador",c.getTipooperador())
+															.addValue("p_codigo", c.getCodigo())
+															.addValue("p_estado", c.getEstado())
+															.addValue("p_idpersona", c.getIdpersona())
+															.addValue("p_nrolicencia", c.getNrolicencia())
+															.addValue("p_cursovial", c.getCursovial())
+															.addValue("p_usermodify", c.getUsermodify())
+															.addValue("p_lincfechainicio",c.getLinc_fechainicio())
+															.addValue("p_lincfechafin", c.getLinc_fechafin())
+		                                                    .addValue("p_clase", c.getClase())
+		                                                    .addValue("p_categoria", c.getCategoria());
+		return simp.execute(in);	}
 
 	@Override
-	public int delete(int id) {
-		return jdbc.update("call PKG_CV_CONDUCTOR.pa_mat_conductor_del(?)",id);
+	public Map<String, Object> delete(Conductores c) {
+		simp = new SimpleJdbcCall(jdbc).withCatalogName("PKG_CV_CONDUCTOR").withProcedureName("pa_mat_conductor_del")
+				.declareParameters(
+						new SqlParameter("p_idconductor",Types.INTEGER),
+						new SqlParameter("p_estado",Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idconductor",c.getIdconductor())
+                                                            .addValue("p_estado",c.getEstado());
+		
+		return simp.execute(in);
 	}
 
 
@@ -58,6 +119,16 @@ public class ConductoresDaoImp implements ConductoresDao{
 				.withCatalogName("PKG_CV_CONDUCTOR")
 				.withProcedureName("pa_mat_conductor_list")
 				.declareParameters(new SqlOutParameter("con", OracleTypes
+				.CURSOR,new ColumnMapRowMapper()));
+		return simp.execute();
+	}
+
+	@Override
+	public Map<String, Object> lis() {
+		simp = new SimpleJdbcCall(jdbc)
+				.withCatalogName("PKG_CV_CONDUCTOR")
+				.withProcedureName("pa_mat_conductor_listnombre")
+				.declareParameters(new SqlOutParameter("p_conductor", OracleTypes
 				.CURSOR,new ColumnMapRowMapper()));
 		return simp.execute();
 	}

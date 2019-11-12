@@ -14,21 +14,21 @@ public class SoatsServiceImp implements SoatsService{
      @Autowired
      private SoatsDao soatsDao;
 	@Override
-	public int create(Soats so) {
+	public Map<String, Object> create(Soats so) {
 		// TODO Auto-generated method stub
 		return soatsDao.create(so);
 	}
 
 	@Override
-	public int update(Soats so) {
+	public Map<String, Object> update(Soats so) {
 		// TODO Auto-generated method stub
 		return soatsDao.update(so);
 	}
 
 	@Override
-	public int delete(int id) {
+	public  Map<String, Object> delete(Soats so) {
 		// TODO Auto-generated method stub
-		return soatsDao.delete(id);
+		return soatsDao.delete(so);
 	}
 
 	@Override

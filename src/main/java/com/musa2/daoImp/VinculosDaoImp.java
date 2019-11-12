@@ -1,6 +1,7 @@
 package com.musa2.daoImp;
 
 import java.sql.Types;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,45 +25,118 @@ public class VinculosDaoImp implements VinculosDao{
 	private JdbcTemplate jdbcTemplate;
 	private SimpleJdbcCall simpleJdbcCall;
 	@Override
-	public int create(Vinculos vinculo) {
+	public Map<String, Object> create(Vinculos vinculo) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call pkg_cv_crud_vincunlos.pa_mat_vinculos_ins(?,?,?,?,?,?,?,?,?)", vinculo.getTipovinculo(), vinculo.getIdconductor(), vinculo.getDescripcion(), vinculo.getFechainicio(), vinculo.getFechafin(), vinculo.getUsercreate(), vinculo.getIdpropietario(), vinculo.getIdempleado(), vinculo.getIdvehiculo());
-	}
 
+		// TODO Auto-generated method stub
+				simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+						.withCatalogName("pkg_cv_crud_vinculos")
+						.withProcedureName("pa_mat_vinculos_ins")
+						.declareParameters(
+							new SqlParameter("p_tipovinculo", Types.INTEGER),
+							new SqlParameter("p_idconductor", Types.INTEGER),
+							new SqlParameter("p_descripcion",Types.VARCHAR),
+							new SqlParameter("p_fechainicio",Types.DATE),
+							new SqlParameter("p_fechafin",Types.DATE),
+							new SqlParameter("p_usercreate",Types.VARCHAR),
+							new SqlParameter("p_idpropietario",Types.INTEGER),
+							new SqlParameter("p_idempleado",Types.INTEGER),
+							new SqlParameter("p_idvehiculo",Types.INTEGER),
+							new SqlOutParameter("p_error",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
+							new SqlOutParameter("p_msgerror",OracleTypes.VARCHAR, new ColumnMapRowMapper()));
+				SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipovinculo", vinculo.getTipovinculo())
+														.addValue("p_idconductor", vinculo.getIdconductor())
+														.addValue("p_descripcion", vinculo.getDescripcion())
+														.addValue("p_fechainicio", vinculo.getFechainicio())
+														.addValue("p_fechafin", vinculo.getFechafin())
+														.addValue("p_usercreate", vinculo.getUsercreate())
+														.addValue("p_idpropietario", vinculo.getIdpropietario())
+														.addValue("p_idempleado", vinculo.getIdempleado())
+														.addValue("p_idvehiculo", vinculo.getIdvehiculo());
+				return simpleJdbcCall.execute(in);
+
+				
+				/*return jdbcTemplate.update("call pkg_cv_crud_vincunlos.pa_mat_vinculos_ins(?,?,?,?,?,?,?,?,?)", 
+				vinculo.getTipovinculo(), vinculo.getIdconductor(), vinculo.getDescripcion(), vinculo.getFechainicio(), 
+				vinculo.getFechafin(), vinculo.getUsercreate(), vinculo.getIdpropietario(), vinculo.getIdempleado(), 
+				vinculo.getIdvehiculo());*/
+
+	}
 	@Override
-	public int update(Vinculos vinculo) {
+	public Map<String, Object> update(Vinculos vinculo) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call pkg_cv_crud_vincunlos.pa_mat_vinculos_upd(?,?,?,?,?,?,?,?,?,?,?)", vinculo.getIdvinculo(), vinculo.getTipovinculo(), vinculo.getEstado(), vinculo.getIdconductor(), vinculo.getDescripcion(), vinculo.getFechainicio(), vinculo.getFechafin(), vinculo.getUsermodify(), vinculo.getIdpropietario(), vinculo.getIdempleado(), vinculo.getIdvehiculo());
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("pkg_cv_crud_vinculos")
+				.withProcedureName("pa_mat_vinculos_upd")
+				.declareParameters(
+					new SqlParameter("p_idvinculo", Types.INTEGER),	
+					new SqlParameter("p_tipovinculo", Types.INTEGER),
+					new SqlParameter("p_idconductor", Types.INTEGER),
+					new SqlParameter("p_descripcion",Types.VARCHAR),
+					new SqlParameter("p_fechainicio",Types.DATE),
+					new SqlParameter("p_fechafin",Types.DATE),
+					new SqlParameter("p_usermodify",Types.VARCHAR),
+					new SqlParameter("p_idpropietario",Types.INTEGER),
+					new SqlParameter("p_idempleado",Types.INTEGER),
+					new SqlParameter("p_idvehiculo",Types.INTEGER),
+					new SqlOutParameter("p_error",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
+					new SqlOutParameter("p_msgerror",OracleTypes.VARCHAR, new ColumnMapRowMapper()));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idvinculo", vinculo.getIdvinculo())
+												.addValue("p_tipovinculo", vinculo.getTipovinculo())
+												.addValue("p_idconductor", vinculo.getIdconductor())
+												.addValue("p_descripcion", vinculo.getDescripcion())
+												.addValue("p_fechainicio", vinculo.getFechainicio())
+												.addValue("p_fechafin", vinculo.getFechafin())
+												.addValue("p_usermodify", vinculo.getUsercreate())
+												.addValue("p_idpropietario", vinculo.getIdpropietario())
+												.addValue("p_idempleado", vinculo.getIdempleado())
+												.addValue("p_idvehiculo", vinculo.getIdvehiculo());
+		return simpleJdbcCall.execute(in);
 	}
-
 	@Override
-	public int delete(int id) {
-		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call pkg_cv_crud_vincunlos.pa_mat_vinculos_del(?)",id);
+	public Map<String, Object> updateState(Vinculos vinculo) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("pkg_cv_crud_vinculos")
+				.withProcedureName("pa_mat_vinculos_del")
+				.declareParameters(new SqlParameter("p_idvinculo",Types.INTEGER),
+								   new SqlParameter("p_estado",Types.INTEGER),
+								   new SqlOutParameter("p_error",OracleTypes.INTEGER,new ColumnMapRowMapper()),
+								   new SqlOutParameter("msgerror",OracleTypes.VARCHAR,new ColumnMapRowMapper()));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idvinculo", vinculo.getIdvinculo())
+														   .addValue("p_estado", vinculo.getEstado());
+		return simpleJdbcCall.execute(in);
 	}
-
 	@Override
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withCatalogName("pkg_cv_crud_vincunlos")
-				.withProcedureName("pa_mat_vinculos_get")
-				.declareParameters(new SqlOutParameter("vin", OracleTypes
-				.CURSOR, new ColumnMapRowMapper()), new SqlParameter("p_idvinculo", Types.INTEGER));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idvinculo", id);
-		return simpleJdbcCall.execute(in);
+				simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+						.withCatalogName("pkg_cv_crud_vinculos")
+						.withProcedureName("pa_mat_vinculos_get")
+						.declareParameters(new SqlOutParameter("vin", OracleTypes
+						.CURSOR, new ColumnMapRowMapper()),
+								new SqlParameter("p_idvinculo", Types.INTEGER),
+								new SqlOutParameter("p_error",OracleTypes.INTEGER,new ColumnMapRowMapper()),
+								new SqlOutParameter("msgerror",OracleTypes.VARCHAR,new ColumnMapRowMapper()));
+				SqlParameterSource in = new MapSqlParameterSource().addValue("p_idvinculo", id);
+				return simpleJdbcCall.execute(in);
 	}
-
 	@Override
 	public Map<String, Object> readAll(int id) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withCatalogName("pkg_cv_crud_vincunlos")
+				.withCatalogName("pkg_cv_crud_vinculos")
 				.withProcedureName("pa_mat_vinculos_lis")
 				.declareParameters(new SqlOutParameter("vin", OracleTypes
-				.CURSOR, new ColumnMapRowMapper()), new SqlParameter("p_tipo_vinculo", Types.INTEGER));
+				.CURSOR, new ColumnMapRowMapper()), 
+						new SqlParameter("p_tipo_vinculo", Types.INTEGER),
+						new SqlOutParameter("p_error",OracleTypes.INTEGER,new ColumnMapRowMapper()),
+						new SqlOutParameter("msgerror",OracleTypes.VARCHAR,new ColumnMapRowMapper()));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipo_vinculo", id);
 		return simpleJdbcCall.execute(in);
 	}
-
+	@Override
+	public List<Map<String, Object>> contar() {
+		String SQL="select count(*) contador from vinculos";
+		return jdbcTemplate.queryForList(SQL);
+	}
 }
