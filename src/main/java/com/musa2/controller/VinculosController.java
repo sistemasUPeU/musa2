@@ -48,6 +48,7 @@ public class VinculosController {
 	}
 	@PutMapping("/upd")
 	public Map<String, Object> update(@RequestBody Vinculos vinculo){
+		System.out.println("albert");
 		return vinculoService.update(vinculo);
 	}
 }
