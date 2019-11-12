@@ -31,9 +31,9 @@ public class PropietariosController {
   	public Map<String, Object> save(@RequestBody Propietarios p) {		
   		return propietariosService.create(p);		
   	}
-  	@DeleteMapping("/{id}")
-  	public int deletePropietarios(@PathVariable int id) {		
-  		return propietariosService.delete(id);
+  	@PutMapping("/modif/")
+  	public int deletePropietarios(@RequestBody Propietarios p) {		
+  		return propietariosService.delete(p.getIdpropietario());
   	}
   	@GetMapping("/{id}")
   	public Map<String,Object> readPropietarios(@PathVariable int id) {		
