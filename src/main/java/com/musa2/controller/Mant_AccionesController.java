@@ -40,8 +40,8 @@ public class Mant_AccionesController {
 	}
 	
 	@GetMapping("/state")
-	public Map<String, Object> updateState(@RequestBody Mant_Acciones m){
-		return mant_accionesService.updateState(m);
+	public Map<String, Object> updateState(@PathVariable int id){
+		return mant_accionesService.updateState(id);
 	}
 	
 }

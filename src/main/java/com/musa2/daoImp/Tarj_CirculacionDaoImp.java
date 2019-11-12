@@ -37,10 +37,10 @@ public class Tarj_CirculacionDaoImp implements Tarj_CirculacionDao{
 		
 		SqlParameterSource in = new MapSqlParameterSource()
 				.addValue("p_nrodocumento", tar.getNrodocumento())
-				.addValue("p_fechaemision", tar.getNrodocumento())
-				.addValue("p_fechavencimiento", tar.getNrodocumento())
-				.addValue("p_estado", tar.getNrodocumento())
-				.addValue("p_idvehiculo", tar.getNrodocumento())
+				.addValue("p_fechaemision", tar.getFechaemision())
+				.addValue("p_fechavencimiento", tar.getFechavencimiento())
+				.addValue("p_estado", tar.getEstado())
+				.addValue("p_idvehiculo", tar.getIdvehiculo())
 				;
 		return simpleJdbcCall.execute(in);
 		}
@@ -61,22 +61,20 @@ public class Tarj_CirculacionDaoImp implements Tarj_CirculacionDao{
 		SqlParameterSource in = new MapSqlParameterSource()
 				.addValue("p_idtarjetac", tar.getIdtarjetac())
 				.addValue("p_nrodocumento", tar.getNrodocumento())
-				.addValue("p_fechaemision", tar.getNrodocumento())
-				.addValue("p_fechavencimiento", tar.getNrodocumento())
-				.addValue("p_estado", tar.getNrodocumento())
-				.addValue("p_idvehiculo", tar.getNrodocumento())
+				.addValue("p_fechaemision", tar.getFechaemision())
+				.addValue("p_fechavencimiento", tar.getFechavencimiento())
+				.addValue("p_estado", tar.getEstado())
+				.addValue("p_idvehiculo", tar.getIdvehiculo())
 				;
 		return simpleJdbcCall.execute(in);
 		}
 	@Override
-	public Map<String, Object> delete(Tarj_Circulacion tar) {
+	public Map<String, Object> delete(int id) {
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_TARJETAc")
 				.withProcedureName("pa_mat_tarjetac_del")
-				.declareParameters(new SqlParameter("p_idtarjetac",Types.INTEGER)
-						, new SqlParameter("p_estado", Types.INTEGER));
+				.declareParameters(new SqlParameter("p_idtarjetac",Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource()
-				.addValue("P_IDTARJETAC", tar.getIdtarjetac())
-		.addValue("p_estado", tar.getIdtarjetac());
+				.addValue("p_idtarjetac",id);
 		return simpleJdbcCall.execute(in);	
 	}
 	@Override
@@ -84,7 +82,7 @@ public class Tarj_CirculacionDaoImp implements Tarj_CirculacionDao{
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_TARJETAC")
 				.withProcedureName("pa_mat_tarjetac_get")
-				.declareParameters(new SqlOutParameter("tarjetas",OracleTypes.CURSOR,new ColumnMapRowMapper
+				.declareParameters(new SqlOutParameter("p_tarjetac",OracleTypes.CURSOR,new ColumnMapRowMapper
 						()), new SqlParameter("P_IDTARJETAC", Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("P_IDTARJETAC", id);
 		return simpleJdbcCall.execute(in);
@@ -95,8 +93,26 @@ public class Tarj_CirculacionDaoImp implements Tarj_CirculacionDao{
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withCatalogName("PKG_CV_TARJETAC")
 				.withProcedureName("pa_mat_tarjetac_list")
-				.declareParameters(new SqlOutParameter("tarjetas", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+				.declareParameters(new SqlOutParameter("p_tarjetac", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
+	}
+	@Override
+	public Map<String, Object> buscar(int nro) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_TARJETAC")
+				.withProcedureName("pa_mat_tarjetac_nro")
+				.declareParameters(new SqlOutParameter("p_tarj",OracleTypes.CURSOR,new ColumnMapRowMapper
+						()), new SqlParameter("p_nrodocumento", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_nrodocumento", nro);
+		return simpleJdbcCall.execute(in);
+	}
+	@Override
+	public Map<String, Object> listest(int estado) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_TARJETAC")
+				.withProcedureName("pa_mat_tarjetac_est")
+				.declareParameters(new SqlOutParameter("p_tarjetac",OracleTypes.CURSOR,new ColumnMapRowMapper
+						()), new SqlParameter("p_estado", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_estado", estado);
+		return simpleJdbcCall.execute(in);
 	}
   	
   	

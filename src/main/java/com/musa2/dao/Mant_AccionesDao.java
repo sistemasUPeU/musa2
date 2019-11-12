@@ -8,6 +8,6 @@ public interface Mant_AccionesDao {
 	
 	public Map<String, Object> create(Mant_Acciones m);
     public Map<String, Object> update(Mant_Acciones m);
-    public Map<String, Object> updateState(Mant_Acciones m);
+    public Map<String, Object> updateState(int id);
     public Map<String, Object> readAllByType(int type);
 }

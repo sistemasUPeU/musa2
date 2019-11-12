@@ -14,6 +14,6 @@ public interface ConductoresService {
 	Map<String, Object> delete(Conductores c) ;
     Map<String, Object> read(int id);
 	Map<String, Object> readAll();
-	
+	Map<String, Object> lis();
 
 }
