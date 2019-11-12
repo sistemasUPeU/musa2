@@ -39,9 +39,9 @@ public class Roles_OpcionesDaoImp implements Roles_OpcionesDao{
 	@Override
 	public int delete(int idrol, int idopcion) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_SEG_ASIGNAR_ROLES_OPCIONES.pr_eliminar_roles_opciones(?,?)",idrol, idopcion);
+		return jdbcTemplate.update("call PKG_SEG_ASIGNAR_ROLES_OPCIONES.pr_eliminar_rol_opcion_id(?,?)",idrol, idopcion);
 	}
-
+ 
 	@Override
 	public Map<String, Object> read(String nombre) {
 		// TODO Auto-generated method stub
@@ -62,5 +62,4 @@ public class Roles_OpcionesDaoImp implements Roles_OpcionesDao{
 				.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
-
 }

@@ -1,25 +1,24 @@
 package com.musa2.entity;
 
-import java.util.Date;
 
 public class Mantenimiento {
 	private int idMantenimiento;
 	private int idVehiculo;
 	private int tipoMantenimiento;
 	private String Detalle;
-	private Date fechaInicio;
-	private Date fechaFin;
+	private String fechaInicio;
+	private String fechaFin;
 	private int estado;
-	private Date fecValidacionMant;
-	private Date fecValidacionOper;
+	private String fecValidacionMant;
+	private String fecValidacionOper;
 	private int idEmpleado;
 	private int idConductor;
 	private int idJefeOperaciones;
 	private int idJefeMantenimiento;
 	private String userCreate;
-	private Date dateCreate;
+	private String dateCreate;
 	private String userModify;
-	private Date dateModify;
+	private String dateModify;
 	
 	public int getIdMantenimiento() {
 		return idMantenimiento;
@@ -45,16 +44,16 @@ public class Mantenimiento {
 	public void setDetalle(String detalle) {
 		Detalle = detalle;
 	}
-	public Date getFechaInicio() {
+	public String getFechaInicio() {
 		return fechaInicio;
 	}
-	public void setFechaInicio(Date fechaInicio) {
+	public void setFechaInicio(String fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
-	public Date getFechaFin() {
+	public String getFechaFin() {
 		return fechaFin;
 	}
-	public void setFechaFin(Date fechaFin) {
+	public void setFechaFin(String fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 	public int getEstado() {
@@ -63,16 +62,16 @@ public class Mantenimiento {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-	public Date getFecValidacionMant() {
+	public String getFecValidacionMant() {
 		return fecValidacionMant;
 	}
-	public void setFecValidacionMant(Date fecValidacionMant) {
+	public void setFecValidacionMant(String fecValidacionMant) {
 		this.fecValidacionMant = fecValidacionMant;
 	}
-	public Date getFecValidacionOper() {
+	public String getFecValidacionOper() {
 		return fecValidacionOper;
 	}
-	public void setFecValidacionOper(Date fecValidacionOper) {
+	public void setFecValidacionOper(String fecValidacionOper) {
 		this.fecValidacionOper = fecValidacionOper;
 	}
 	public int getIdEmpleado() {
@@ -99,10 +98,10 @@ public class Mantenimiento {
 	public void setUserCreate(String userCreate) {
 		this.userCreate = userCreate;
 	}
-	public Date getDateCreate() {
+	public String getDateCreate() {
 		return dateCreate;
 	}
-	public void setDateCreate(Date dateCreate) {
+	public void setDateCreate(String dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 	public String getUserModify() {
@@ -111,10 +110,10 @@ public class Mantenimiento {
 	public void setUserModify(String userModify) {
 		this.userModify = userModify;
 	}
-	public Date getDateModify() {
+	public String getDateModify() {
 		return dateModify;
 	}
-	public void setDateModify(Date dateModify) {
+	public void setDateModify(String dateModify) {
 		this.dateModify = dateModify;
 	}
 	public int getIdConductor() {
@@ -123,10 +122,10 @@ public class Mantenimiento {
 	public void setIdConductor(int idConductor) {
 		this.idConductor = idConductor;
 	}
-	public Mantenimiento(int idMantenimiento, int idVehiculo, int tipoMantenimiento, String detalle, Date fechaInicio,
-			Date fechaFin, int estado, Date fecValidacionMant, Date fecValidacionOper, int idEmpleado, int idConductor,
-			int idJefeOperaciones, int idJefeMantenimiento, String userCreate, Date dateCreate, String userModify,
-			Date dateModify) {
+	public Mantenimiento(int idMantenimiento, int idVehiculo, int tipoMantenimiento, String detalle, String fechaInicio,
+			String fechaFin, int estado, String fecValidacionMant, String fecValidacionOper, int idEmpleado, int idConductor,
+			int idJefeOperaciones, int idJefeMantenimiento, String userCreate, String dateCreate, String userModify,
+			String dateModify) {
 		super();
 		this.idMantenimiento = idMantenimiento;
 		this.idVehiculo = idVehiculo;

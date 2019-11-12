@@ -29,12 +29,12 @@ public class Roles_OpcionesController {
 	public int save(@RequestBody Roles_Opciones roles_Opciones) {		
 		return roles_OpcionesService.create(roles_Opciones);		
 	}
-	@DeleteMapping("/{id}")
-	public int delete1(@PathVariable int idrol) {		
+	@DeleteMapping("/{idrol}")
+	public int delete1(@PathVariable int idrol) {
 		return roles_OpcionesService.delete(idrol);
 	}
-	@DeleteMapping("/{idrol}/{idopcion}")
-	public int delete1(@PathVariable int idrol, int idopcion) {		
+	@DeleteMapping("/del/{idrol},{idopcion}")
+	public int delete2(@PathVariable int idrol,@PathVariable int idopcion) {		
 		return roles_OpcionesService.delete(idrol, idopcion);
 	}
 	@GetMapping("/get/{nombre}")

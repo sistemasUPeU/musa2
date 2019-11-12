@@ -7,10 +7,13 @@ import java.util.Map;
 import com.musa2.entity.Requisitos;
 
 public interface RequisitosDao {
-	public int create(Requisitos requisito);
-	public int edit(Requisitos requisito);
+	public  Map<String, Object> create(Requisitos r);
+	public  Map<String, Object> update(Requisitos r);
 	public int delete(int id);
 	public Map<String,Object> read(int id);
-	public Map<String,Object> lista();
+	public Map<String,Object> readAll();
+	
+	// Esto es para vinculo no borrar //
+	public Map<String,Object> list(int tipo);
 	
 }

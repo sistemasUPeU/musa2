@@ -40,7 +40,7 @@ public class MantenimientoDaoImp implements MantenimientoDao {
 						new SqlParameter("p_usercreate",Types.VARCHAR),
 						new SqlOutParameter("p_error",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
 						new SqlOutParameter("p_idmantenimiento",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
-						new SqlOutParameter("p_masgerror",OracleTypes.VARCHAR, new ColumnMapRowMapper()));
+						new SqlOutParameter("p_msgerror",OracleTypes.VARCHAR, new ColumnMapRowMapper()));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idvehiculo",m.getIdVehiculo())
 															.addValue("p_idempleado", m.getIdEmpleado())
 															.addValue("p_idconductor", m.getIdConductor())
@@ -64,7 +64,7 @@ public class MantenimientoDaoImp implements MantenimientoDao {
 						new SqlParameter("p_usercreate",Types.VARCHAR),
 						new SqlOutParameter("p_error",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
 						new SqlOutParameter("p_idmantenimiento",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
-						new SqlOutParameter("p_masgerror",OracleTypes.VARCHAR, new ColumnMapRowMapper()));
+						new SqlOutParameter("p_msgerror",OracleTypes.VARCHAR, new ColumnMapRowMapper()));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idvehiculo",m.getIdVehiculo())
 															.addValue("p_idempleado", m.getIdEmpleado())
 															.addValue("p_tipo_mantenimiento", m.getTipoMantenimiento())

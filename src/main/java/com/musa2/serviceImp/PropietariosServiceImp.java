@@ -1,5 +1,4 @@
 package com.musa2.serviceImp;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +12,13 @@ public class PropietariosServiceImp implements PropietariosService{
      @Autowired
      private PropietariosDao propietariosDao;
 	@Override
-	public int create(Propietarios p) {
+	public Map<String, Object> create(Propietarios p) {
 		// TODO Auto-generated method stub
 		return propietariosDao.create(p);
 	}
 
 	@Override
-	public int update(Propietarios p) {
+	public Map<String, Object> update(Propietarios p) {
 		// TODO Auto-generated method stub
 		return propietariosDao.update(p);
 	}
@@ -40,6 +39,16 @@ public class PropietariosServiceImp implements PropietariosService{
 	public Map<String, Object> readAll() {
 		// TODO Auto-generated method stub
 		return propietariosDao.readAll();
+	}
+
+	@Override
+	public Map<String, Object> readnom() {
+		// TODO Auto-generated method stub
+		return propietariosDao.readnom();
+	}
+	public Map<String, Object> search(String nombre) {
+		// TODO Auto-generated method stub
+		return propietariosDao.search(nombre);
 	}
 
 }

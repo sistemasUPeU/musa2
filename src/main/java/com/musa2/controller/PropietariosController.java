@@ -3,6 +3,7 @@ package com.musa2.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.musa2.entity.Propietarios;
 import com.musa2.service.PropietariosService;
+@CrossOrigin("*")
 
 @RestController
 @RequestMapping("/propietarios")
@@ -26,8 +28,8 @@ public class PropietariosController {
   		return propietariosService.readAll();
   	}
   	@PostMapping("/add")
-  	public int save(@RequestBody Propietarios propietarios) {		
-  		return propietariosService.create(propietarios);		
+  	public Map<String, Object> save(@RequestBody Propietarios p) {		
+  		return propietariosService.create(p);		
   	}
   	@DeleteMapping("/{id}")
   	public int deletePropietarios(@PathVariable int id) {		
@@ -37,9 +39,16 @@ public class PropietariosController {
   	public Map<String,Object> readPropietarios(@PathVariable int id) {		
   		return propietariosService.read(id);
   	}
-  	@PutMapping("/{id}")
-  	public int updatePropietarios(@RequestBody Propietarios pro, @PathVariable int id) {
-  		pro.setIdpropietario(id);
+  	@PutMapping("/")
+  	public Map<String, Object> updatePropietarios(@RequestBody Propietarios pro) {
   		return propietariosService.update(pro);
+  	}
+  	@GetMapping("/lis/")
+	public Map<String,Object> getn(){
+		return propietariosService.readnom();
+	}
+  	@GetMapping("/nombre/{nombre}")
+  	public Map<String,Object> search(@PathVariable String nombre) {		
+  		return propietariosService.search(nombre);
   	}
 }

@@ -14,20 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.musa2.entity.Roles;
 import com.musa2.service.RolesService;
+import com.musa2.service.VinculosService;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+@CrossOrigin(origins = "*")
 
 @RestController
 @RequestMapping("/roles")
 public class RolesController {
 	@Autowired
 	private RolesService rolesService;
-	
 	@GetMapping("/")
 	public Map<String,Object> readAll(){
 		return rolesService.readAll();
 	}
 	@PostMapping("/add")
-	public int create(@RequestBody Roles roles) {		
-		return rolesService.create(roles);		
+	public int create(@RequestBody String nombre ) {		
+		return rolesService.create(new Roles(nombre));		
 	}
 	@DeleteMapping("/{id}")
 	public int delete(@PathVariable int id) {		
@@ -36,6 +39,14 @@ public class RolesController {
 	@GetMapping("/{id}")
 	public Map<String,Object> read(@PathVariable int id) {		
 		return rolesService.read(id);
+	}
+	@GetMapping("/nombre/{nombre}")
+	public Map<String,Object> readN(@PathVariable String nombre) {		
+		return rolesService.readN(nombre);
+	}
+	@GetMapping("/estado/{estado}")
+	public Map<String,Object> readE(@PathVariable int estado) {		
+		return rolesService.readE(estado);
 	}
 	@PutMapping("/{id}")
 	public int update(@RequestBody Roles rol, @PathVariable int id) {

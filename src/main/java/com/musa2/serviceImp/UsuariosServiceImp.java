@@ -45,7 +45,7 @@ public class UsuariosServiceImp implements UsuariosService {
 	}
 
 	@Override
-	public int validar_login(Usuarios U) {
+	public Map<String, Object> validar_login(Usuarios U) {
 		// TODO Auto-generated method stub
 		return usuariosDao.validar_login(U);
 	}
