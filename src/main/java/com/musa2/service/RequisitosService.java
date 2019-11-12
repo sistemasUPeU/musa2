@@ -10,10 +10,6 @@ public interface RequisitosService {
 	public int delete(int id);
 	public Map<String,Object> read(int id);
 	public Map<String,Object> readAll();
-<<<<<<< HEAD
-=======
-	
->>>>>>> 31af6eb2e0a3118e670441dc6fabee546577f2f9
 	// Esto es para vinculo no borrar //
 	public Map<String,Object> list(int tipo);
 }
