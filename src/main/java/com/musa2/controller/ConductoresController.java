@@ -25,6 +25,10 @@ public class ConductoresController {
 	public Map<String,Object> get(){
 		return conductoresService.readAll();
 	}
+	@GetMapping("/lis/")
+	public Map<String,Object> lis(){
+		return conductoresService.lis();
+	}
 	@PostMapping("/add")
 	public Map<String, Object> save(@RequestBody Conductores c) {		
 		return conductoresService.create(c);
