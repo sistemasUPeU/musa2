@@ -52,5 +52,11 @@ public class RequisitosServiceImp implements RequisitosService{
 		return requisitosDao.list(tipo);
 	}
 
+	@Override
+	public Map<String, Object> lista() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

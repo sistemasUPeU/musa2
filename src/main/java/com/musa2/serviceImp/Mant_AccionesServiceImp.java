@@ -29,9 +29,9 @@ public class Mant_AccionesServiceImp implements Mant_AccionesService{
 	}
 
 	@Override
-	public Map<String, Object> updateState(Mant_Acciones m) {
+	public Map<String, Object> updateState(int id) {
 		// TODO Auto-generated method stub
-		return mant_accionesDao.updateState(m);
+		return mant_accionesDao.updateState(id);
 	}
 
 	@Override
