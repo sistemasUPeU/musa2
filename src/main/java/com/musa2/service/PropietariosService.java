@@ -11,5 +11,9 @@ public interface PropietariosService {
 	public int delete(int id);
 	public Map<String, Object> read(int id);
 	public Map<String, Object> readAll();
+<<<<<<< HEAD
 	Map<String, Object> readnom();
+=======
+	public Map<String, Object> search(String nombre);
+>>>>>>> alejo
 }
