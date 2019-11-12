@@ -15,12 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.musa2.entity.Propietarios;
 import com.musa2.service.PropietariosService;
-<<<<<<< HEAD
 @CrossOrigin("*")
-=======
-@CrossOrigin(origins = "*")
 
->>>>>>> alejo
 @RestController
 @RequestMapping("/propietarios")
 public class PropietariosController {
@@ -47,15 +43,12 @@ public class PropietariosController {
   	public Map<String, Object> updatePropietarios(@RequestBody Propietarios pro) {
   		return propietariosService.update(pro);
   	}
-<<<<<<< HEAD
   	@GetMapping("/lis/")
 	public Map<String,Object> getn(){
 		return propietariosService.readnom();
 	}
-=======
   	@GetMapping("/nombre/{nombre}")
   	public Map<String,Object> search(@PathVariable String nombre) {		
   		return propietariosService.search(nombre);
   	}
->>>>>>> alejo
 }

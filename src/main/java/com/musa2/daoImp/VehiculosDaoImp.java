@@ -129,7 +129,6 @@ public class VehiculosDaoImp implements VehiculosDao{
 		return simpleJdbcCall.execute();
 	}
 	@Override
-<<<<<<< HEAD
 	public Map<String, Object> readplaca() {
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withCatalogName("PKG_CV_CRUD_VEHICULOS")
@@ -137,7 +136,7 @@ public class VehiculosDaoImp implements VehiculosDao{
 				.declareParameters(new SqlOutParameter("con", OracleTypes
 				.CURSOR,new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
-=======
+	}
 	public Map<String, Object> search(int nropadron) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
@@ -145,8 +144,6 @@ public class VehiculosDaoImp implements VehiculosDao{
 				.declareParameters(new SqlOutParameter("P_CURSOR",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_NROPADRON", Types.VARCHAR));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NROPADRON", nropadron);
 		return simpleJdbcCall.execute(in);
-
->>>>>>> alejo
 	}
   	
   	

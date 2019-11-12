@@ -44,15 +44,12 @@ public class VehiculosController {
        		ve.setIdvehiculo(id);
        		return vehiculosService.update(ve);
        	} 
-<<<<<<< HEAD
        	@GetMapping("/lis/")
     	public Map<String,Object> getn(){
     		return vehiculosService.readplaca();
     	}
-=======
        	@GetMapping("/nropadron/{nropadron}")
        	public Map<String,Object> searchVehiculos(@PathVariable int nropadron) {		
        		return vehiculosService.search(nropadron);
        	}
->>>>>>> alejo
 }

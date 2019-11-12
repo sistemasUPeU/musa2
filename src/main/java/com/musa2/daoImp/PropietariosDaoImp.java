@@ -75,7 +75,6 @@ public class PropietariosDaoImp implements PropietariosDao{
 		return simpleJdbcCall.execute();
 	}
 	@Override
-<<<<<<< HEAD
 	public Map<String, Object> readnom() {
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS")
@@ -83,7 +82,7 @@ public class PropietariosDaoImp implements PropietariosDao{
 				.declareParameters(new SqlOutParameter("con", OracleTypes
 				.CURSOR,new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
-=======
+	}
 	public Map<String, Object> search(String nombre) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
@@ -91,7 +90,6 @@ public class PropietariosDaoImp implements PropietariosDao{
 				.declareParameters(new SqlOutParameter("P_CURSOR",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_NOMBRE", Types.VARCHAR));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NOMBRE", nombre);  
 		return  simpleJdbcCall.execute(in);
->>>>>>> alejo
 	}
 	
 	

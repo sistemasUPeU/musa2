@@ -42,15 +42,13 @@ public class PropietariosServiceImp implements PropietariosService{
 	}
 
 	@Override
-<<<<<<< HEAD
 	public Map<String, Object> readnom() {
 		// TODO Auto-generated method stub
 		return propietariosDao.readnom();
-=======
+	}
 	public Map<String, Object> search(String nombre) {
 		// TODO Auto-generated method stub
 		return propietariosDao.search(nombre);
->>>>>>> alejo
 	}
 
 }

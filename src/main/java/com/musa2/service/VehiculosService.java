@@ -10,9 +10,6 @@ public interface VehiculosService {
 	public int delete(int id);
 	public Map<String, Object> read(int id);
 	public Map<String, Object> readAll();
-<<<<<<< HEAD
 	Map<String, Object> readplaca();
-=======
 	public Map<String, Object> search(int nropadron);
->>>>>>> alejo
 }
