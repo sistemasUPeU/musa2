@@ -11,4 +11,5 @@ public interface VehiculosService {
 	public Map<String, Object> read(int id);
 	public Map<String, Object> readAll();
 	Map<String, Object> readplaca();
+	public Map<String, Object> search(int nropadron);
 }

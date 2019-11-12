@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.musa2.entity.Conductores;
 import com.musa2.service.ConductoresService;
+<<<<<<< HEAD
 
 @CrossOrigin ("*")
+=======
+@CrossOrigin("*")
+>>>>>>> 9485c9dff05dd3a546aa00b757fb4ee48256f3cb
 @RestController
 @RequestMapping("/conductores")
 public class ConductoresController {
@@ -25,6 +29,10 @@ public class ConductoresController {
 	@GetMapping("/")
 	public Map<String,Object> get(){
 		return conductoresService.readAll();
+	}
+	@GetMapping("/lis/")
+	public Map<String,Object> lis(){
+		return conductoresService.lis();
 	}
 	@PostMapping("/add")
 	public Map<String, Object> save(@RequestBody Conductores c) {		
