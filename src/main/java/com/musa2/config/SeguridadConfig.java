@@ -51,6 +51,7 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/tarjetac/**").permitAll()
 		.antMatchers("/vehiculos/**").permitAll()
 		.antMatchers("/requisitos/**"). permitAll()
+		.antMatchers("/personas/**").permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()

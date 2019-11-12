@@ -44,4 +44,8 @@ public class VehiculosController {
        		ve.setIdvehiculo(id);
        		return vehiculosService.update(ve);
        	} 
+       	@GetMapping("/nropadron/{nropadron}")
+       	public Map<String,Object> searchVehiculos(@PathVariable int nropadron) {		
+       		return vehiculosService.search(nropadron);
+       	}
 }

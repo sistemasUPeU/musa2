@@ -74,6 +74,15 @@ public class PropietariosDaoImp implements PropietariosDao{
 				.declareParameters(new SqlOutParameter("pro", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
+	@Override
+	public Map<String, Object> search(String nombre) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS").withProcedureName("PR_LISTAR_BUSCAR_PROPIETARIOS")
+				.declareParameters(new SqlOutParameter("P_CURSOR",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_NOMBRE", Types.VARCHAR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NOMBRE", nombre);  
+		return  simpleJdbcCall.execute(in);
+	}
 	
 	
 }
