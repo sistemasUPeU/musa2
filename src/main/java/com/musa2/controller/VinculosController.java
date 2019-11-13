@@ -30,7 +30,7 @@ public class VinculosController {
 	public Map<String,Object> listarportipo(@PathVariable int tipo , @PathVariable int estado){
 		return vinculoService.readAll(tipo , estado);
 	}
-	@GetMapping("/conta")
+	@GetMapping("/conta/")
 	public List<Map<String,Object>> contar(){
 		return vinculoService.contar();
 	}

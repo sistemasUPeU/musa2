@@ -139,7 +139,6 @@ public class VinculosDaoImp implements VinculosDao{
 	}
 	@Override
 	public List<Map<String, Object>> contar() {
-		String SQL="select count(*) contador from vinculos";
-		return jdbcTemplate.queryForList(SQL);
+		return jdbcTemplate.queryForList("SELECT MAX(idvinculo) contador FROM vinculos");
 	}
 }
