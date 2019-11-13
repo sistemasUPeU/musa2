@@ -10,6 +10,6 @@ public interface VinculosService {
     public Map<String, Object> update(Vinculos vinculo);
     public Map<String, Object> updateState(Vinculos vinculo);
 	public Map<String, Object> read(int id);
-	public Map<String, Object> readAll(int id);
+	public Map<String, Object> readAll(int tipo, int estado);
 	public List<Map<String, Object>> contar();
 }

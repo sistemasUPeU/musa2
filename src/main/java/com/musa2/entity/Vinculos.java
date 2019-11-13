@@ -135,35 +135,6 @@ public class Vinculos {
 		super();
 	}
 	
-	
-	public Vinculos(int idvinculo, int tipovinculo, String descripcion, Date fechainicio, Date fechafin,
-			int idpropietario, int idempleado, int idvehiculo) {
-		super();
-		this.idvinculo = idvinculo;
-		this.tipovinculo = tipovinculo;
-		this.descripcion = descripcion;
-		this.fechainicio = fechainicio;
-		this.fechafin = fechafin;
-		this.idpropietario = idpropietario;
-		this.idempleado = idempleado;
-		this.idvehiculo = idvehiculo;
-	}
-
-	public Vinculos(int idvinculo, int tipovinculo, int idconductor, String descripcion, Date fechainicio,
-			Date fechafin, String usermodify, Date datemodify, int idempleado) {
-		super();
-		this.idvinculo = idvinculo;
-		this.tipovinculo = tipovinculo;
-		this.idconductor = idconductor;
-		this.descripcion = descripcion;
-		this.fechainicio = fechainicio;
-		this.fechafin = fechafin;
-		this.usermodify = usermodify;
-		this.datemodify = datemodify;
-		this.idempleado = idempleado;
-	}
-	
-	
 
 	public Vinculos(int idvinculo, int estado) {
 		super();

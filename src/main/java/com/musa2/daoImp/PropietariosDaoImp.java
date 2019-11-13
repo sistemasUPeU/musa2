@@ -27,13 +27,13 @@ public class PropietariosDaoImp implements PropietariosDao{
 	public Map<String, Object> create(Propietarios pro) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS").withProcedureName("PR_CREAR_PROPIETARIOS")
-				.declareParameters(new SqlParameter("P_TIPOPROPIETARIO",Types.INTEGER),
-						           new SqlParameter("P_ESTADO", Types.INTEGER),
-						           new SqlParameter("P_IDPERSONA", Types.INTEGER));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("P_TIPOPROPIETARIO", pro.getTipopropietario())
-				                                           .addValue("P_ESTADO", pro.getEstado())
-				                                           .addValue("P_IDPERSONA", pro.getIdpersona());
+				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS").withProcedureName("pr_crear_propietario")
+				.declareParameters(new SqlParameter("p_tipopropietario",Types.INTEGER),
+						           new SqlParameter("p_estado", Types.INTEGER),
+						           new SqlParameter("p_idpersona", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipopropietario", pro.getTipopropietario())
+				                                           .addValue("p_estado", pro.getEstado())
+				                                           .addValue("p_idpersona", pro.getIdpersona());
 		return simpleJdbcCall.execute(in);
 	}
 	@Override
