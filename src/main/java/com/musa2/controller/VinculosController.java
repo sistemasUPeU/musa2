@@ -36,7 +36,7 @@ public class VinculosController {
 	}
 	@GetMapping("/{id}")
 	public Map<String,Object> listarid(@PathVariable int id) {
-		return vinculoService.read(id);
+		return vinculoService.read(id); 
 	}
 	@PostMapping("/add")
 	public Map<String, Object> create(@RequestBody Vinculos vinculo) {		
