@@ -11,4 +11,5 @@ public interface Mant_AccionesDao {
     public Map<String, Object> updateState(int id);
     public Map<String, Object> readAllByType(int type);
     public Map<String, Object> readById(int id);
+    public Map<String, Object> readByCat();
 }

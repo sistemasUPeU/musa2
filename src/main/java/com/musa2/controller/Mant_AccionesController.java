@@ -49,4 +49,9 @@ public class Mant_AccionesController {
 		return mant_accionesService.readById(id);
 	}
 	
+	@GetMapping("/cat")
+	public Map<String, Object> readByCat(){
+		return mant_accionesService.readByCat();
+	}
+	
 }
