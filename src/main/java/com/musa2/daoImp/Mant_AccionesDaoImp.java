@@ -102,5 +102,12 @@ public class Mant_AccionesDaoImp implements Mant_AccionesDao {
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idmantacciones", id);
 		return simpleJdbcCall.execute(in);
 	}
+	
+	public Map<String, Object> readByCat(){
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+						 .withProcedureName("pr_mat_listar_categorias").withCatalogName("pkg_mant_crud_acciones")
+						 .declareParameters(new SqlOutParameter("p_cursor", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
+	}
 
 }

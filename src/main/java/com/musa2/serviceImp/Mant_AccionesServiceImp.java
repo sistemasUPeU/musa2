@@ -43,5 +43,9 @@ public class Mant_AccionesServiceImp implements Mant_AccionesService{
 	public Map<String, Object> readById(int id){
 		return mant_accionesDao.readById(id);
 	}
+	
+	public Map<String, Object> readByCat(){
+		return mant_accionesDao.readByCat();
+	}
 
 }
