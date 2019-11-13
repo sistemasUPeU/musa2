@@ -49,5 +49,11 @@ private PersonasDao personasDao;
 		return personasDao.findUbigeoByDocumento(nrodoc);
 	}
 
+	@Override
+	public Map<String, Object> readAllId() {
+		// TODO Auto-generated method stub
+		return personasDao.readAllId();
+	}
+
 	
 }

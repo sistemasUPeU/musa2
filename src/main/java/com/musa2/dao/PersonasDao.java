@@ -13,4 +13,7 @@ public interface PersonasDao {
 	 public Map<String,Object> read(int id);
 	 public Map<String, Object> readAll();
 	 public Map<String, Object> findUbigeoByDocumento(int nrodoc);
+
+		/*NO BORRAR ESTE METODO*/
+		public Map<String, Object> readAllId();
 }
