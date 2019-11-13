@@ -28,8 +28,8 @@ public class PropietariosController {
   		return propietariosService.readAll();
   	}
   	@PostMapping("/add")
-  	public Map<String, Object> save(@RequestBody Propietarios p) {		
-  		return propietariosService.create(p);		
+  	public Map<String, Object> save(@RequestBody Propietarios pro) {		
+  		return propietariosService.create(pro);		
   	}
   	@PutMapping("/modif/")
   	public int deletePropietarios(@RequestBody Propietarios p) {		
