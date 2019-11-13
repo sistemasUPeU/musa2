@@ -49,4 +49,10 @@ public class VinculosRequisitosDaoImp implements VinculosRequisitosDao{
 		return simpleJdbcCall.execute(in);
 	}
 
+	@Override
+	public int delete(int id) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.update("call PKG_CV_CRUD_VINCULO_REQUISITO.pa_mat_vinculosrequisitos_del(?)", id);
+	}
+
 }

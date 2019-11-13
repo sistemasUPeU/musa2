@@ -9,21 +9,13 @@ public interface RequisitosService {
 	public  Map<String, Object> update(Requisitos r);
 	public int delete(int id);
 	public Map<String,Object> read(int id);
-<<<<<<< HEAD
-=======
-
->>>>>>> albert
 	public Map<String,Object> readAll();
 	public Map<String,Object> lista();
-<<<<<<< HEAD
-	// Esto es para vinculo no borrar //
-	public Map<String,Object> list(int tipo);
-=======
+
 	
 	// Esto es para vinculo no borrar //
 	public Map<String,Object> list(int tipo);
 
 
 
->>>>>>> albert
 }

@@ -16,11 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.musa2.entity.Conductores;
 import com.musa2.service.ConductoresService;
 
-<<<<<<< HEAD
+
 @CrossOrigin ("*")
-=======
-@CrossOrigin("*")
->>>>>>> albert
 @RestController
 @RequestMapping("/conductores")
 public class ConductoresController {

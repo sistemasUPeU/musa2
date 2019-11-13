@@ -121,7 +121,7 @@ public class VinculosDaoImp implements VinculosDao{
 				return simpleJdbcCall.execute(in);
 	}
 	@Override
-	public Map<String, Object> readAll(int id) {
+	public Map<String, Object> readAll(int tipo, int estado) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withCatalogName("pkg_cv_crud_vinculos")
@@ -129,9 +129,12 @@ public class VinculosDaoImp implements VinculosDao{
 				.declareParameters(new SqlOutParameter("vin", OracleTypes
 				.CURSOR, new ColumnMapRowMapper()), 
 						new SqlParameter("p_tipo_vinculo", Types.INTEGER),
+						new SqlParameter("p_estado_vinculo", Types.INTEGER),
 						new SqlOutParameter("p_error",OracleTypes.INTEGER,new ColumnMapRowMapper()),
 						new SqlOutParameter("msgerror",OracleTypes.VARCHAR,new ColumnMapRowMapper()));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipo_vinculo", id);
+		SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("p_tipo_vinculo", tipo)
+				.addValue("p_estado_vinculo", estado);
 		return simpleJdbcCall.execute(in);
 	}
 	@Override

@@ -37,5 +37,13 @@ public class VinculosRequisitosServiceImp implements VinculosRequisitosService{
 		// TODO Auto-generated method stub
 		return vinculosrequisitos.read(id);
 	}
+
+
+
+	@Override
+	public int delete(int id) {
+		// TODO Auto-generated method stub
+		return vinculosrequisitos.delete(id);
+	}
 	
 }

@@ -26,9 +26,9 @@ import com.musa2.service.VinculosService;
 public class VinculosController {
 	@Autowired
 	private VinculosService vinculoService;
-	@GetMapping("/lis/{id}")
-	public Map<String,Object> listarportipo(@PathVariable int id){
-		return vinculoService.readAll(id);
+	@GetMapping("/lis/{tipo}/{estado}")
+	public Map<String,Object> listarportipo(@PathVariable int tipo , @PathVariable int estado){
+		return vinculoService.readAll(tipo , estado);
 	}
 	@GetMapping("/conta")
 	public List<Map<String,Object>> contar(){
@@ -48,7 +48,6 @@ public class VinculosController {
 	}
 	@PutMapping("/upd")
 	public Map<String, Object> update(@RequestBody Vinculos vinculo){
-		System.out.println("albert");
 		return vinculoService.update(vinculo);
 	}
 }
