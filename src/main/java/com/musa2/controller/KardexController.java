@@ -13,45 +13,48 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.musa2.entity.Personas;
-import com.musa2.service.PersonasService;
+import com.musa2.entity.Kardex;
+import com.musa2.service.KardexService;
+
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
-@RequestMapping("/personas")
-public class PersonasController {
+@RequestMapping("/kardes")
+public class KardexController {
 @Autowired
-private PersonasService personasService;
+private KardexService kardexService;
+
 @GetMapping("/")
 public Map<String, Object> readAll() {
-	return personasService.readAll();
+	return kardexService.readAll();
 }
 @PostMapping("/add")
-public int save(@RequestBody Personas per) {
-	return personasService.create(per);
+public int save(@RequestBody Kardex kar) {
+	return kardexService.create(kar);
 }
-@DeleteMapping("/per/{id}")
+@DeleteMapping("/kar/{id}")
 public int delete1(@PathVariable int id) {
-	return personasService.delete(id);
+return kardexService.delete(id);
 }
 @GetMapping("/{id}")
 public Map<String,Object> read1(@PathVariable int id) {
-	return personasService.read(id);
+	return kardexService.read(id);
 }
-@PutMapping("pe/{id}")
-public int update(@RequestBody Personas per, @PathVariable int id ) {
-	per.setIdpersonas(id);
-	return personasService.update(per);
+@PutMapping("ka/{id}")
+public int update(@RequestBody Kardex kar, @PathVariable int id ) {
+	kar.setIdkardex(id);
+	return kardexService.update(kar);
 }
-@GetMapping("/per/{docu}")
-public Map<String, Object> search(@PathVariable("docu") int documento) {
-return personasService.findUbigeoByDocumento(documento);
+@GetMapping("/kar/{comp}")
+public Map<String, Object> search(@PathVariable("comp") int nrocomprobante){
+	return kardexService.findKardexByComprobante(nrocomprobante);
 }
-<<<<<<< HEAD
-=======
-@GetMapping("/id")
-public Map<String, Object> readAllId() {
-	return personasService.readAllId();
+
+@GetMapping("/listandope/{idkardex}")
+public Map<String, Object> buscarKardexByIdKardexProducto(@PathVariable("idkardex") int idkardex){
+	System.out.println("baiscoasjdoasjdoasjdosaj");
+	return kardexService.buscarKardexByIdKardexProducto(idkardex);
 }
->>>>>>> 543777c207557e7f0333038c3ee2fecdece52641
+
+
 }

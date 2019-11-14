@@ -15,8 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.musa2.entity.Opciones;
 import com.musa2.service.OpcionesService;
 
+<<<<<<< HEAD
 
 @CrossOrigin("*")
+=======
+@CrossOrigin("*")
+
+>>>>>>> 84f51a6fc4c98d1e44bd4996f3360cc26e23a63e
 @RestController
 @RequestMapping("/opciones")
 public class OpcionesController {

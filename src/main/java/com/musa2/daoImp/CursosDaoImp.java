@@ -35,7 +35,7 @@ public class CursosDaoImp implements CursosDao {
 	@Override
 	public int update(Cursos cursos) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call pkg_cv_crud_cursos.pr_actualizar_cursos(?,?,?,?,?,?,?);",cursos.getIdcursos(),cursos.getNombrecurso(),cursos.getNombreinstitucion(),cursos.getLugar(),
+		return jdbcTemplate.update("call pkg_cv_crud_cursos.pr_actualizar_cursos(?,?,?,?,?,?,?)",cursos.getIdcursos(),cursos.getNombrecurso(),cursos.getNombreinstitucion(),cursos.getLugar(),
 				cursos.getFechainicio(),cursos.getFechafin(),cursos.getEstado());
 	
 	
