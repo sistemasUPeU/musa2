@@ -51,6 +51,7 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/roles/**").permitAll()
 		.antMatchers("/ru/**").permitAll()
 		.antMatchers("/usop/**").permitAll()
+		.antMatchers("/opciones/**").permitAll()
 		.antMatchers("/vinculos/**").permitAll()
 		.antMatchers("/vinrequi/**").permitAll()
 		.antMatchers("/acciones/**").permitAll()
