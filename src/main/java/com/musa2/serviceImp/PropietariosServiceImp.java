@@ -46,5 +46,12 @@ public class PropietariosServiceImp implements PropietariosService{
 		// TODO Auto-generated method stub
 		return propietariosDao.readnom();
 	}
+<<<<<<< HEAD
+=======
+	public Map<String, Object> search(String nombre) {
+		// TODO Auto-generated method stub
+		return propietariosDao.search(nombre);
+	}
+>>>>>>> 13551fd04dd5048e5e6a574dda893675f8575b84
 
 }

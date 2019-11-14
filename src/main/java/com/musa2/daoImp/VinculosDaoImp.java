@@ -1,6 +1,7 @@
 package com.musa2.daoImp;
 
 import java.sql.Types;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,11 @@ public class VinculosDaoImp implements VinculosDao{
 	@Override
 	public Map<String, Object> create(Vinculos vinculo) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
+=======
+
+		// TODO Auto-generated method stub
+>>>>>>> 13551fd04dd5048e5e6a574dda893675f8575b84
 				simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 						.withCatalogName("pkg_cv_crud_vinculos")
 						.withProcedureName("pa_mat_vinculos_ins")
@@ -51,6 +57,16 @@ public class VinculosDaoImp implements VinculosDao{
 														.addValue("p_idempleado", vinculo.getIdempleado())
 														.addValue("p_idvehiculo", vinculo.getIdvehiculo());
 				return simpleJdbcCall.execute(in);
+<<<<<<< HEAD
+=======
+
+				
+				/*return jdbcTemplate.update("call pkg_cv_crud_vincunlos.pa_mat_vinculos_ins(?,?,?,?,?,?,?,?,?)", 
+				vinculo.getTipovinculo(), vinculo.getIdconductor(), vinculo.getDescripcion(), vinculo.getFechainicio(), 
+				vinculo.getFechafin(), vinculo.getUsercreate(), vinculo.getIdpropietario(), vinculo.getIdempleado(), 
+				vinculo.getIdvehiculo());*/
+
+>>>>>>> 13551fd04dd5048e5e6a574dda893675f8575b84
 	}
 	@Override
 	public Map<String, Object> update(Vinculos vinculo) {
@@ -111,7 +127,11 @@ public class VinculosDaoImp implements VinculosDao{
 				return simpleJdbcCall.execute(in);
 	}
 	@Override
+<<<<<<< HEAD
 	public Map<String, Object> readAll(int id) {
+=======
+	public Map<String, Object> readAll(int tipo, int estado) {
+>>>>>>> 13551fd04dd5048e5e6a574dda893675f8575b84
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withCatalogName("pkg_cv_crud_vinculos")
@@ -119,9 +139,16 @@ public class VinculosDaoImp implements VinculosDao{
 				.declareParameters(new SqlOutParameter("vin", OracleTypes
 				.CURSOR, new ColumnMapRowMapper()), 
 						new SqlParameter("p_tipo_vinculo", Types.INTEGER),
+						new SqlParameter("p_estado_vinculo", Types.INTEGER),
 						new SqlOutParameter("p_error",OracleTypes.INTEGER,new ColumnMapRowMapper()),
 						new SqlOutParameter("msgerror",OracleTypes.VARCHAR,new ColumnMapRowMapper()));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipo_vinculo", id);
+		SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("p_tipo_vinculo", tipo)
+				.addValue("p_estado_vinculo", estado);
 		return simpleJdbcCall.execute(in);
+	}
+	@Override
+	public List<Map<String, Object>> contar() {
+		return jdbcTemplate.queryForList("SELECT MAX(idvinculo) contador FROM vinculos");
 	}
 }

@@ -48,4 +48,11 @@ public class VehiculosController {
     	public Map<String,Object> getn(){
     		return vehiculosService.readplaca();
     	}
+<<<<<<< HEAD
+=======
+       	@GetMapping("/nropadron/{nropadron}")
+       	public Map<String,Object> searchVehiculos(@PathVariable int nropadron) {		
+       		return vehiculosService.search(nropadron);
+       	}
+>>>>>>> 13551fd04dd5048e5e6a574dda893675f8575b84
 }

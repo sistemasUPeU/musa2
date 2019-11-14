@@ -38,8 +38,7 @@ public class RequisitosController {
 		return requisitosService.read(id);
 	}
 	@PutMapping("/{id}")
-	public Map<String, Object> updateRequisitos(@RequestBody Requisitos r, @PathVariable int id) {
-		r.setIdrequisito(id);;
+	public Map<String, Object> updateRequisitos(@RequestBody Requisitos r) {
 		return requisitosService.update(r);
 	}
 	@GetMapping("/lis/{tipo}")

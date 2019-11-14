@@ -27,13 +27,13 @@ public class PropietariosDaoImp implements PropietariosDao{
 	public Map<String, Object> create(Propietarios pro) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS").withProcedureName("PR_CREAR_PROPIETARIOS")
-				.declareParameters(new SqlParameter("P_TIPOPROPIETARIO",Types.INTEGER),
-						           new SqlParameter("P_ESTADO", Types.INTEGER),
-						           new SqlParameter("P_IDPERSONA", Types.INTEGER));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("P_TIPOPROPIETARIO", pro.getTipopropietario())
-				                                           .addValue("P_ESTADO", pro.getEstado())
-				                                           .addValue("P_IDPERSONA", pro.getIdpersona());
+				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS").withProcedureName("pr_crear_propietario")
+				.declareParameters(new SqlParameter("p_tipopropietario",Types.INTEGER),
+						           new SqlParameter("p_estado", Types.INTEGER),
+						           new SqlParameter("p_idpersona", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipopropietario", pro.getTipopropietario())
+				                                           .addValue("p_estado", pro.getEstado())
+				                                           .addValue("p_idpersona", pro.getIdpersona());
 		return simpleJdbcCall.execute(in);
 	}
 	@Override
@@ -83,6 +83,17 @@ public class PropietariosDaoImp implements PropietariosDao{
 				.CURSOR,new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
+<<<<<<< HEAD
+=======
+	public Map<String, Object> search(String nombre) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS").withProcedureName("PR_LISTAR_BUSCAR_PROPIETARIOS")
+				.declareParameters(new SqlOutParameter("P_CURSOR",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_NOMBRE", Types.VARCHAR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NOMBRE", nombre);  
+		return  simpleJdbcCall.execute(in);
+	}
+>>>>>>> 13551fd04dd5048e5e6a574dda893675f8575b84
 	
 	
 }

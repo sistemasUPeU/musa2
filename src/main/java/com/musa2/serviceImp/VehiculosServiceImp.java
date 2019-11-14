@@ -48,4 +48,11 @@ public class VehiculosServiceImp implements VehiculosService{
 		// TODO Auto-generated method stub
 		return vehiculosDao.readplaca();
 	}
+<<<<<<< HEAD
+=======
+	public Map<String, Object> search(int nropadron) {
+		// TODO Auto-generated method stub
+		return vehiculosDao.search(nropadron);
+	}
+>>>>>>> 13551fd04dd5048e5e6a574dda893675f8575b84
 } 
