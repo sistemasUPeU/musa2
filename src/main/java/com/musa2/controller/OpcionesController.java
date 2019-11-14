@@ -2,6 +2,7 @@ package com.musa2.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.musa2.entity.Opciones;
 import com.musa2.service.OpcionesService;
 
-
+@CrossOrigin("*")
 
 @RestController
 @RequestMapping("/opciones")
@@ -30,8 +31,8 @@ public class OpcionesController {
 		return opcionesService.create(opcion);		
 	}
 	@DeleteMapping("/{id}")
-	public int delete1(@PathVariable int id) {		
-		return opcionesService.delete(id);
+	public Map<String,Object> delete1(@PathVariable Opciones o) {		
+		return opcionesService.delete(o);
 	}
 	@GetMapping("/{id}")
 	public Map<String,Object> read1(@PathVariable int id) {		

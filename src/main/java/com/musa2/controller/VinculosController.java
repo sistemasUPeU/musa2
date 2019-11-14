@@ -36,10 +36,11 @@ public class VinculosController {
 	}
 	@GetMapping("/{id}")
 	public Map<String,Object> listarid(@PathVariable int id) {
-		return vinculoService.read(id);
+		return vinculoService.read(id); 
 	}
 	@PostMapping("/add")
-	public Map<String, Object> create(@RequestBody Vinculos vinculo) {		
+	public Map<String, Object> create(@RequestBody Vinculos vinculo) {	
+		System.out.println("formato de fecha"+vinculo.getFechafin());
 		return vinculoService.create(vinculo);		
 	}
 	@PutMapping("/stado/")
@@ -48,6 +49,7 @@ public class VinculosController {
 	}
 	@PutMapping("/upd")
 	public Map<String, Object> update(@RequestBody Vinculos vinculo){
+		
 		return vinculoService.update(vinculo);
 	}
 }

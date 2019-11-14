@@ -45,4 +45,16 @@ public class ConductoresServiceImp implements ConductoresService {
 		// TODO Auto-generated method stub
 		return conductoresDao.lis();
 	}
+
+	@Override
+	public Map<String, Object> est(int est) {
+		// TODO Auto-generated method stub
+		return conductoresDao.est(est);
+	}
+
+	@Override
+	public Map<String, Object> code(int code) {
+		// TODO Auto-generated method stub
+		return conductoresDao.code(code);
+	}
 }

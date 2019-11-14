@@ -86,14 +86,13 @@ public class SoatsDaoImp implements SoatsDao{
 		return simpleJdbcCall.execute(in);
 	}
 	@Override
-	public Map<String, Object> delete(Soats so) {
+	public Map<String, Object> delete(int id) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_CRUD_SOAT")
 				.withProcedureName("PR_ELIMINAR_SOAT")
-				.declareParameters(new SqlParameter("p_idsoat",Types.INTEGER), 
-						           new SqlParameter("p_estado", Types.INTEGER));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idsoat", so.getIdsoat())
-				.addValue("p_estado",so.getEstado());
+				.declareParameters(new SqlParameter("p_idsoat",Types.INTEGER));
+						       
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idsoat", id);
 		return simpleJdbcCall.execute(in);
 	}
 	@Override
@@ -101,7 +100,8 @@ public class SoatsDaoImp implements SoatsDao{
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("PR_LISTAR_SOATS_ID").withCatalogName("PKG_CV_CRUD_SOAT")
-				.declareParameters(new SqlOutParameter("soat",OracleTypes.CURSOR,new ColumnMapRowMapper()), 
+				.declareParameters(
+						new SqlOutParameter("soat",OracleTypes.CURSOR,new ColumnMapRowMapper()), 
 						new SqlParameter("P_IDSOAT", Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("P_IDSOAT", id);
 		return simpleJdbcCall.execute(in);
@@ -114,6 +114,26 @@ public class SoatsDaoImp implements SoatsDao{
 				.withCatalogName("PKG_CV_CRUD_SOAT")
 				.declareParameters(new SqlOutParameter("soat", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
+	}
+	@Override
+	public Map<String, Object> buscar(int id) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_BUSCAR_SOATS").withCatalogName("PKG_CV_CRUD_SOAT")
+				.declareParameters(
+						new SqlOutParameter("P_CURSOR",OracleTypes.CURSOR,new ColumnMapRowMapper()), 
+						new SqlParameter("P_NRODOCUMENTO", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NRODOCUMENTO", id);
+		return simpleJdbcCall.execute(in);
+	}
+	@Override
+	public Map<String, Object> estado(int id) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_BUSCAR_ESTADO").withCatalogName("PKG_CV_CRUD_SOAT")
+				.declareParameters(
+						new SqlOutParameter("P_CURSOR",OracleTypes.CURSOR,new ColumnMapRowMapper()), 
+						new SqlParameter("P_ESTADO", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_ESTADO", id);
+		return simpleJdbcCall.execute(in);
 	}
     
 }

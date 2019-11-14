@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import com.musa2.dao.OpcionesDao;
 import com.musa2.entity.Opciones;
+import com.musa2.entity.Tarj_Circulacion;
 
 import oracle.jdbc.OracleTypes;
 
@@ -52,7 +53,7 @@ public class OpcionesDaolmp implements OpcionesDao {
 	}
 	@Override
 	public Map<String, Object> update(Opciones o) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generate d method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_SEG_CRUD_OPCIONES").withProcedureName("pr_modificar_opciones")
 				.declareParameters(new SqlParameter("p_idpadre",Types.INTEGER),
 						new SqlParameter("p_nombre",Types.VARCHAR),
@@ -76,10 +77,15 @@ public class OpcionesDaolmp implements OpcionesDao {
 		return simpleJdbcCall.execute(in);
 	}
 
-	@Override
-	public int delete(int id) {
-		// TODO Auto-generated method stub
-		return  jdbcTemplate.update("call PKG_SEG_CRUD_OPCIONES.pr_desactivar_opciones(?)",id);
+	public Map<String, Object> delete(Opciones o) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_SEG_CRUD_OPCIONES")
+				.withProcedureName("pr_desactivar_opciones")
+				.declareParameters(new SqlParameter("p_opcion_id",Types.INTEGER)
+						, new SqlParameter("p_estado", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("P_IDTARJETAC", o.getIdopciones())
+		.addValue("p_estado", o.getEstado());
+		return simpleJdbcCall.execute(in);	
 	}
 
 	@Override
@@ -138,5 +144,7 @@ public class OpcionesDaolmp implements OpcionesDao {
 				.declareParameters(new SqlOutParameter("p_cur_opciones", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
+
+	
 
 }

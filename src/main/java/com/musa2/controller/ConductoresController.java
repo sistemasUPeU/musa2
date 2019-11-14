@@ -36,7 +36,7 @@ public class ConductoresController {
 		return conductoresService.create(c);
 		
 	}
-	@DeleteMapping("/{id}")
+	@PutMapping("/D")
 	public Map<String, Object> delete(@RequestBody Conductores c) {		
 	 return conductoresService.delete(c);
 	}
@@ -47,8 +47,19 @@ public class ConductoresController {
 	}
 	@PutMapping("/{id}")
 	public Map<String, Object> update(@RequestBody Conductores c, @PathVariable int id) {
+		c.setIdconductor(id);
 		return conductoresService.update(c);
 		
+		
+	}
+	@GetMapping("/P/{code}")
+	public Map<String,Object> code(@PathVariable int code) {		
+		return conductoresService.code(code);
+		
+	}
+	@GetMapping("/Po/{est}")
+	public Map<String,Object> est(@PathVariable int est) {		
+		return conductoresService.est(est);
 		
 	}
 }

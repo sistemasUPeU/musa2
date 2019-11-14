@@ -37,8 +37,8 @@ public class ConductoresDaoImp implements ConductoresDao{
 						new SqlParameter("p_nrolicencia",Types.INTEGER),
 						new SqlParameter("p_cursovial",Types.INTEGER),
 						new SqlParameter("p_usercreate",Types.VARCHAR),
-						new SqlParameter("p_lincfechainicio",Types.VARCHAR), 
-						new SqlParameter("p_lincfechafin",Types.VARCHAR), 
+						new SqlParameter("p_lincfechainicio",Types.DATE), 
+						new SqlParameter("p_lincfechafin",Types.DATE), 
 						new SqlParameter("p_clase",Types.CHAR),
 						new SqlParameter("p_categoria",Types.INTEGER)
 						);
@@ -69,8 +69,8 @@ public class ConductoresDaoImp implements ConductoresDao{
 						new SqlParameter("p_nrolicencia",Types.INTEGER),
 						new SqlParameter("p_cursovial",Types.INTEGER),
 						new SqlParameter("p_usermodify",Types.VARCHAR),
-						new SqlParameter("p_lincfechainicio",Types.VARCHAR), 
-						new SqlParameter("p_lincfechafin",Types.VARCHAR), 
+						new SqlParameter("p_lincfechainicio",Types.DATE), 
+						new SqlParameter("p_lincfechafin",Types.DATE), 
 						new SqlParameter("p_clase",Types.CHAR),
 						new SqlParameter("p_categoria",Types.INTEGER)
 						);
@@ -95,7 +95,8 @@ public class ConductoresDaoImp implements ConductoresDao{
 						new SqlParameter("p_idconductor",Types.INTEGER),
 						new SqlParameter("p_estado",Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idconductor",c.getIdconductor())
-                                                            .addValue("p_estado",c.getEstado());
+				.addValue("p_estado",c.getEstado());
+		
 		
 		return simp.execute(in);
 	}
@@ -118,7 +119,7 @@ public class ConductoresDaoImp implements ConductoresDao{
 		simp = new SimpleJdbcCall(jdbc)
 				.withCatalogName("PKG_CV_CONDUCTOR")
 				.withProcedureName("pa_mat_conductor_list")
-				.declareParameters(new SqlOutParameter("con", OracleTypes
+				.declareParameters(new SqlOutParameter("p_conductor", OracleTypes
 				.CURSOR,new ColumnMapRowMapper()));
 		return simp.execute();
 	}
@@ -131,6 +132,30 @@ public class ConductoresDaoImp implements ConductoresDao{
 				.declareParameters(new SqlOutParameter("p_conductor", OracleTypes
 				.CURSOR,new ColumnMapRowMapper()));
 		return simp.execute();
+	}
+
+	@Override
+	public Map<String, Object> est(int est) {
+		simp = new SimpleJdbcCall(jdbc)
+				.withCatalogName("PKG_CV_CONDUCTOR")
+				.withProcedureName("pa_mat_conductor_est")
+				.declareParameters(new SqlParameter("p_estado",Types.INTEGER),new SqlOutParameter("p_conductor", OracleTypes
+				.CURSOR,new ColumnMapRowMapper())
+				);
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_estado",est);
+		return simp.execute(in);
+	}
+
+	@Override
+	public Map<String, Object> code(int code) {
+		simp = new SimpleJdbcCall(jdbc)
+				.withCatalogName("PKG_CV_CONDUCTOR")
+				.withProcedureName("pa_mat_conductor_code")
+				.declareParameters(new SqlParameter("p_codigo",Types.INTEGER),new SqlOutParameter("p_conductor", OracleTypes
+				.CURSOR,new ColumnMapRowMapper())
+				);
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_codigo",code);
+		return simp.execute(in);
 	}
 
 }

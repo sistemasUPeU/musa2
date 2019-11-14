@@ -27,7 +27,7 @@ public class RolesDaoImp implements RolesDao{
 	public int create(Roles r) {
 		// TODO Auto-generated method stub
 		return JdbcTemplate.update("call PKG_SEG_CRUD_ROLES.pr_insertar_roles(?)", r.getNombre());
-
+ 
 	}
 
 	@Override
@@ -85,3 +85,4 @@ public class RolesDaoImp implements RolesDao{
 	}
 
 }
+
