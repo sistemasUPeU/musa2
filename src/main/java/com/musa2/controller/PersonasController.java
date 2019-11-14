@@ -47,4 +47,11 @@ public int update(@RequestBody Personas per, @PathVariable int id ) {
 public Map<String, Object> search(@PathVariable("docu") int documento) {
 return personasService.findUbigeoByDocumento(documento);
 }
+<<<<<<< HEAD
+=======
+@GetMapping("/id")
+public Map<String, Object> readAllId() {
+	return personasService.readAllId();
+}
+>>>>>>> 543777c207557e7f0333038c3ee2fecdece52641
 }

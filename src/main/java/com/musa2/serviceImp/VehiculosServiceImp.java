@@ -14,13 +14,13 @@ public class VehiculosServiceImp implements VehiculosService{
     @Autowired
     private VehiculosDao vehiculosDao;
 	@Override
-	public int create(Vehiculos ve) {
+	public Map<String, Object> create(Vehiculos ve) {
 		// TODO Auto-generated method stub
 		return vehiculosDao.create(ve);
 	}
 
 	@Override
-	public int update(Vehiculos ve) {
+	public Map<String, Object> update(Vehiculos ve) {
 		// TODO Auto-generated method stub
 		return vehiculosDao.update(ve);
 	}
@@ -41,5 +41,15 @@ public class VehiculosServiceImp implements VehiculosService{
 	public Map<String, Object> readAll() {
 		// TODO Auto-generated method stub
 		return vehiculosDao.readAll();
+	}
+
+	@Override
+	public Map<String, Object> readplaca() {
+		// TODO Auto-generated method stub
+		return vehiculosDao.readplaca();
+	}
+	public Map<String, Object> search(int nropadron) {
+		// TODO Auto-generated method stub
+		return vehiculosDao.search(nropadron);
 	}
 } 

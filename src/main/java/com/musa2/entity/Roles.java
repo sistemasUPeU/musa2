@@ -6,6 +6,7 @@ public class Roles {
 	private int estado;
 	
 	public Roles() {
+		super();
 		
 	}
 
@@ -20,6 +21,11 @@ public class Roles {
 		super();
 		this.nombre = nombre;
 		this.estado = estado;
+	}
+	
+	public Roles(int idrol) {
+		super();
+		this.idrol = idrol;
 	}
 
 	public Roles(String nombre) {

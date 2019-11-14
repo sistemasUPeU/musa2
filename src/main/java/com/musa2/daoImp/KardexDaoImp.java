@@ -1,5 +1,6 @@
 package com.musa2.daoImp;
 
+<<<<<<< HEAD
 import java.util.Date;
 import java.sql.Types;
 import java.text.SimpleDateFormat;
@@ -103,5 +104,8 @@ private SimpleJdbcCall simpleJdbcCall;
 		
 		return simpleJdbcCall.execute(sqlParameterSource);
 	}
+=======
+public class KardexDaoImp {
+>>>>>>> 543777c207557e7f0333038c3ee2fecdece52641
 
 }

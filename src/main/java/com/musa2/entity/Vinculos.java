@@ -135,7 +135,13 @@ public class Vinculos {
 		super();
 	}
 	
-	
+
+	public Vinculos(int idvinculo, int estado) {
+		super();
+		this.idvinculo = idvinculo;
+		this.estado = estado;
+	}
+
 	public Vinculos(int idvinculo, int tipovinculo, int estado, int idconductor, String descripcion, Date fechainicio,
 			Date fechafin, String usercreate, Date datecreate, String usermodify, Date datemodify, int idpropietario,
 			int idempleado, int idvehiculo) {

@@ -16,18 +16,18 @@ public class ConductoresServiceImp implements ConductoresService {
 	private ConductoresDao conductoresDao;
 
 	@Override
-	public int create(Conductores c) {
+	public Map<String, Object> create(Conductores c) {
 		return conductoresDao.create(c);
 	}
 
 	@Override
-	public int update(Conductores c) {
+	public Map<String, Object> update(Conductores c) {
 		return conductoresDao.update(c);
 	}
 
 	@Override
-	public int delete(int id) {
-		return conductoresDao.delete(id);
+	public Map<String, Object> delete(Conductores c) {
+		return conductoresDao.delete(c);
 	}
 
 	@Override
@@ -38,5 +38,23 @@ public class ConductoresServiceImp implements ConductoresService {
 	@Override
 	public Map<String, Object> readAll() {
 		return conductoresDao.readAll();
+	}
+
+	@Override
+	public Map<String, Object> lis() {
+		// TODO Auto-generated method stub
+		return conductoresDao.lis();
+	}
+
+	@Override
+	public Map<String, Object> est(int est) {
+		// TODO Auto-generated method stub
+		return conductoresDao.est(est);
+	}
+
+	@Override
+	public Map<String, Object> code(int code) {
+		// TODO Auto-generated method stub
+		return conductoresDao.code(code);
 	}
 }

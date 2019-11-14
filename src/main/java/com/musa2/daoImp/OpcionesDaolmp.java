@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import com.musa2.dao.OpcionesDao;
 import com.musa2.entity.Opciones;
+import com.musa2.entity.Tarj_Circulacion;
 
 import oracle.jdbc.OracleTypes;
 
@@ -26,21 +27,65 @@ public class OpcionesDaolmp implements OpcionesDao {
 	private SimpleJdbcCall simpleJdbcCall;
 	
 	@Override
-	public int create(Opciones O) {
+	public Map<String, Object> create(Opciones o) {
 		// TODO Auto-generated method stub
-		return  jdbcTemplate.update("call PKG_SEG_CRUD_OPCIONES.pr_insertar_opciones(?,?,?,?,?,?,?,?);",O.getIdpadre(),O.getNombre(),O.getDescripcion(),O.getEnlace(),O.getIcono(),O.getTipo(),O.getOrden(),O.getEstado());
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_SEG_CRUD_OPCIONES").withProcedureName("pr_insertar_opciones")
+				.declareParameters(new SqlParameter("p_idpadre",Types.INTEGER),
+						new SqlParameter("p_nombre",Types.VARCHAR),
+						new SqlParameter("p_descripcion",Types.VARCHAR),
+						new SqlParameter("p_enlace",Types.VARCHAR),
+						new SqlParameter("p_icono",Types.VARCHAR),
+						new SqlParameter("p_tipo",Types.INTEGER),
+						new SqlParameter("p_orden",Types.INTEGER),
+						new SqlParameter("p_estado",Types.INTEGER),
+						new SqlOutParameter("p_error",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
+						new SqlOutParameter("p_opcion_id",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
+						new SqlOutParameter("p_msgerror",OracleTypes.VARCHAR, new ColumnMapRowMapper()));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idpadre",o.getIdpadre())
+															.addValue("p_nombre", o.getNombre())
+															.addValue("p_descripcion", o.getDescripcion())
+															.addValue("p_enlace", o.getEnlace())
+															.addValue("p_icono", o.getIcono())
+															.addValue("p_tipo", o.getTipo())
+															.addValue("p_orden", o.getOrden())
+															.addValue("p_estado", o.getEstado());
+		return simpleJdbcCall.execute(in);
+	}
+	@Override
+	public Map<String, Object> update(Opciones o) {
+		// TODO Auto-generate d method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_SEG_CRUD_OPCIONES").withProcedureName("pr_modificar_opciones")
+				.declareParameters(new SqlParameter("p_idpadre",Types.INTEGER),
+						new SqlParameter("p_nombre",Types.VARCHAR),
+						new SqlParameter("p_descripcion",Types.VARCHAR),
+						new SqlParameter("p_enlace",Types.VARCHAR),
+						new SqlParameter("p_icono",Types.VARCHAR),
+						new SqlParameter("p_tipo",Types.INTEGER),
+						new SqlParameter("p_orden",Types.INTEGER),
+						new SqlParameter("p_estado",Types.INTEGER),
+						new SqlOutParameter("p_error",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
+						new SqlOutParameter("p_opcion_id",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
+						new SqlOutParameter("p_msgerror",OracleTypes.VARCHAR, new ColumnMapRowMapper()));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idpadre",o.getIdpadre())
+															.addValue("p_nombre", o.getNombre())
+															.addValue("p_descripcion", o.getDescripcion())
+															.addValue("p_enlace", o.getEnlace())
+															.addValue("p_icono", o.getIcono())
+															.addValue("p_tipo", o.getTipo())
+															.addValue("p_orden", o.getOrden())
+															.addValue("p_estado", o.getEstado());
+		return simpleJdbcCall.execute(in);
 	}
 
-	@Override
-	public int update(Opciones O) {
-		// TODO Auto-generated method stub
-		return   jdbcTemplate.update("call PKG_SEG_CRUD_OPCIONES.pr_modificar_opciones(?,?,?,?,?,?,?,?,?);",O.getIdopciones(),O.getIdpadre(),O.getNombre(),O.getDescripcion(),O.getEnlace(),O.getIcono(),O.getTipo(),O.getOrden(),O.getEstado());
-	}
-
-	@Override
-	public int delete(int id) {
-		// TODO Auto-generated method stub
-		return  jdbcTemplate.update("call PKG_SEG_CRUD_OPCIONES.pr_desactivar_opciones(?)",id);
+	public Map<String, Object> delete(Opciones o) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_SEG_CRUD_OPCIONES")
+				.withProcedureName("pr_desactivar_opciones")
+				.declareParameters(new SqlParameter("p_opcion_id",Types.INTEGER)
+						, new SqlParameter("p_estado", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("P_IDTARJETAC", o.getIdopciones())
+		.addValue("p_estado", o.getEstado());
+		return simpleJdbcCall.execute(in);	
 	}
 
 	@Override
@@ -99,5 +144,7 @@ public class OpcionesDaolmp implements OpcionesDao {
 				.declareParameters(new SqlOutParameter("p_cur_opciones", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
+
+	
 
 }
