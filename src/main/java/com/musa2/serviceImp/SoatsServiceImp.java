@@ -26,9 +26,9 @@ public class SoatsServiceImp implements SoatsService{
 	}
 
 	@Override
-	public  Map<String, Object> delete(Soats so) {
+	public  Map<String, Object> delete(int id) {
 		// TODO Auto-generated method stub
-		return soatsDao.delete(so);
+		return soatsDao.delete(id);
 	}
 
 	@Override
@@ -41,6 +41,18 @@ public class SoatsServiceImp implements SoatsService{
 	public Map<String, Object> readAll() {
 		// TODO Auto-generated method stub
 		return soatsDao.readAll();
+	}
+
+	@Override
+	public Map<String, Object> buscar(int id) {
+		// TODO Auto-generated method stub
+		return soatsDao.buscar(id);
+	}
+
+	@Override
+	public Map<String, Object> estado(int id) {
+		// TODO Auto-generated method stub
+		return soatsDao.estado(id);
 	}
     
 }
