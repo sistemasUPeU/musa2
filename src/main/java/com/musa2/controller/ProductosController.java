@@ -42,7 +42,7 @@ public class ProductosController {
 	public Map<String,Object> read2(@PathVariable String nombre) {		
 		return productosService.read(nombre);
 	}
-	@PutMapping("/{id}")
+	@PutMapping("/upd/{id}")
 	public int update1(@RequestBody Productos pro, @PathVariable int id) {
 		pro.setIdproducto(id);
 		return productosService.update(pro);
