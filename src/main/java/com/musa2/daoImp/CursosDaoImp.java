@@ -29,7 +29,7 @@ public class CursosDaoImp implements CursosDao {
 	public int create(Cursos cursos) {
 		// TODO Auto-generated method stub
 		System.out.println(cursos.getNombrecurso()+" "+cursos.getNombreinstitucion()+" "+cursos.getLugar()+" "+cursos.getFechainicio()+" "+cursos.getFechafin());
-		return jdbcTemplate.update("call pkg_cv_crud_cursos.pr_crear_cursos(?,?,?,?,?);",cursos.getNombrecurso(),cursos.getNombreinstitucion(),cursos.getLugar(),cursos.getFechainicio(),cursos.getFechafin());
+		return jdbcTemplate.update("call pkg_cv_crud_cursos.pr_crear_cursos(?,?,?,?,?)",cursos.getNombrecurso(),cursos.getNombreinstitucion(),cursos.getLugar(),cursos.getFechainicio(),cursos.getFechafin());
 	}
 
 	@Override
