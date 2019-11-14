@@ -4,11 +4,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
->>>>>>> 13551fd04dd5048e5e6a574dda893675f8575b84
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,11 +17,9 @@ import com.musa2.entity.Roles;
 import com.musa2.entity.VinculosRequisitos;
 import com.musa2.service.VinculosRequisitosService;
 
-<<<<<<< HEAD
+
 @CrossOrigin (origins= "*")
-=======
-@CrossOrigin ("*")
->>>>>>> 13551fd04dd5048e5e6a574dda893675f8575b84
+
 @RestController
 @RequestMapping("/vinrequi")
 public class VinculosRequisitosController {

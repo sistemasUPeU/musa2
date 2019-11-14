@@ -83,8 +83,6 @@ public class PropietariosDaoImp implements PropietariosDao{
 				.CURSOR,new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
-<<<<<<< HEAD
-=======
 	public Map<String, Object> search(String nombre) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
@@ -93,7 +91,6 @@ public class PropietariosDaoImp implements PropietariosDao{
 		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NOMBRE", nombre);  
 		return  simpleJdbcCall.execute(in);
 	}
->>>>>>> 13551fd04dd5048e5e6a574dda893675f8575b84
 	
 	
 }
