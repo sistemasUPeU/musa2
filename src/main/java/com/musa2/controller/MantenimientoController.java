@@ -16,7 +16,7 @@ import com.musa2.entity.Mantenimiento;
 import com.musa2.service.MantenimientoService;
 import com.musa2.service.VehiculosService;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/mantenimiento")
 public class MantenimientoController {
@@ -28,7 +28,7 @@ public class MantenimientoController {
     private VehiculosService vehiculosService;
     
     
-   @GetMapping("readVehiculos")
+   @GetMapping("/readVehiculos")
   	public Map<String,Object> getVehiculos(){
   		return vehiculosService.readAll();
   	}
