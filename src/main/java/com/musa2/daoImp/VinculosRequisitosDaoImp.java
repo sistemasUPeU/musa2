@@ -32,6 +32,7 @@ public class VinculosRequisitosDaoImp implements VinculosRequisitosDao{
 	@Override
 	public int update(int idvinculo,int idrequisito) {
 		// TODO Auto-generated method stub
+		System.out.println(idvinculo+" asd "+idrequisito);
 		return jdbcTemplate.update("call PKG_CV_CRUD_VINCULO_REQUISITO.pa_mat_vinculosrequisitos_upt(?,?)", idvinculo,idrequisito);
 	}
 
