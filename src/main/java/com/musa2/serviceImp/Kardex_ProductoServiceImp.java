@@ -5,49 +5,51 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.musa2.dao.PersonasDao;
-import com.musa2.entity.Personas;
-import com.musa2.service.PersonasService;
+import com.musa2.dao.Kardex_ProductoDao;
+import com.musa2.entity.Kardex_Producto;
+import com.musa2.service.Kardex_ProductoService;
 
 @Service
-public class PersonasServiceImp implements PersonasService{
-@Autowired
-private PersonasDao personasDao;
+public class Kardex_ProductoServiceImp implements Kardex_ProductoService {
+	
+	@Autowired
+	private Kardex_ProductoDao kpdao; 
+
 	@Override
-	public int create(Personas per) {
+	public int create(Kardex_Producto kar) {
 		// TODO Auto-generated method stub
-		return personasDao.create(per);
+		return kpdao.create(kar);
 	}
 
 	@Override
-	public int update(Personas per) {
+	public int update(Kardex_Producto kar) {
 		// TODO Auto-generated method stub
-		return personasDao.update(per);
+		return kpdao.update(kar);
 	}
 
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return personasDao.delete(id);
+		return kpdao.delete(id);
 	}
 
 	@Override
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub
-		return personasDao.read(id);
+		return null;
 	}
 
 	@Override
 	public Map<String, Object> readAll() {
 		// TODO Auto-generated method stub
-		return personasDao.readAll();
+		return kpdao.readAll();
 	}
 
 	@Override
-	public Map<String, Object> findUbigeoByDocumento(int nrodoc) {
+	public Map<String, Object> findKardexByComprobante(int nrocomprobante) {
 		// TODO Auto-generated method stub
-		return personasDao.findUbigeoByDocumento(nrodoc);
+		return null;
 	}
-
 	
+
 }

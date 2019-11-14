@@ -86,6 +86,7 @@
 			<artifactId>ojdbc7</artifactId>
 			<version>12.1.0</version>
 		</dependency>
+		
 	</dependencies>
 
 	<build>
