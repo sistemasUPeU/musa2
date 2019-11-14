@@ -30,8 +30,8 @@ public class OpcionesController {
 		return opcionesService.create(opcion);		
 	}
 	@DeleteMapping("/{id}")
-	public int delete1(@PathVariable int id) {		
-		return opcionesService.delete(id);
+	public Map<String,Object> delete1(@PathVariable Opciones o) {		
+		return opcionesService.delete(o);
 	}
 	@GetMapping("/{id}")
 	public Map<String,Object> read1(@PathVariable int id) {		
