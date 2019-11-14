@@ -21,20 +21,7 @@ public class Musa2ApplicationTests {
 	private SoatsDao soatsD;
 	@Test
 	public void contextLoads() {
-		Soats so = new Soats();
-		so.setIdsoat(2);
-		so.setNrodocumento(1123);
-		so.setNropoliza(1231);
-		so.setVigenciadesde("2019-11-12");
-		so.setVigenciahasta("2019-11-11");
-		so.setCertificadodesde("2019-10-11");
-		so.setCertificadohasta("2019-10-12");
-		so.setMontoprima(20.2);
-		so.setAseguradora("Lopez");
-		so.setIdvehiculo(1);
-		so.setEstado(2);
 		
-		assertTrue(soatsD.delete(so)!=null);
 		
 		
 	}
