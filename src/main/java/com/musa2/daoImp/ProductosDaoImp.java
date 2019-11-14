@@ -19,13 +19,14 @@ import oracle.jdbc.OracleTypes;
 
 @Repository
 public class ProductosDaoImp implements ProductosDao{
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	private SimpleJdbcCall simpleJdbcCall;
 	@Override
 	public int create(Productos P) {
 		// TODO Auto-generated method stub
-		return  jdbcTemplate.update("call PKG_ALM_CRUD_PRODUCTOS.pa_mat_productos_ins(?,?,?,?,?,?,?,?,?,?,?)",P.getNombre(),P.getDescripcion(),P.getStockactual(),P.getEstado(),P.getPrecioref(),
+		return  jdbcTemplate.update("call PKG_ALM_CRUD_PRODUCTOS.pa_mat_productos_ins(?,?,?,?,?,?,?,?,?,?)",P.getNombre(),P.getDescripcion(),P.getStockactual(),P.getPrecioref(),
 				P.getStockmin(),P.getStockmaximo(),P.getUsercreate(),P.getIdprodcategoria(),P.getIdprodmarca(),P.getIdprodunidadmed());
 	}
 

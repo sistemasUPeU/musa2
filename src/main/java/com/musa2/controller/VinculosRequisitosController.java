@@ -17,7 +17,9 @@ import com.musa2.entity.Roles;
 import com.musa2.entity.VinculosRequisitos;
 import com.musa2.service.VinculosRequisitosService;
 
-@CrossOrigin ("*")
+
+@CrossOrigin (origins= "*")
+
 @RestController
 @RequestMapping("/vinrequi")
 public class VinculosRequisitosController {
