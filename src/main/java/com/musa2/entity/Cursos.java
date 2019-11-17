@@ -1,19 +1,21 @@
 package com.musa2.entity;
 
+import java.sql.Date;
+
 public class Cursos {
 	private int idcursos;
 	private String nombrecurso;
 	private String nombreinstitucion;
 	private String lugar;
-	private String fechainicio;
-	private String fechafin;
+	private Date fechainicio;
+	private Date fechafin;
 	private int estado;
 	
 	public Cursos() {
 		super();
 	}
-	public Cursos(int idcursos, String nombrecurso, String nombreinstitucion, String lugar, String fechainicio,
-			String fechafin, int estado) {
+	public Cursos(int idcursos, String nombrecurso, String nombreinstitucion, String lugar, Date fechainicio,
+			Date fechafin, int estado) {
 		super();
 		this.idcursos = idcursos;
 		this.nombrecurso = nombrecurso;
@@ -47,16 +49,16 @@ public class Cursos {
 	public void setLugar(String lugar) {
 		this.lugar = lugar;
 	}
-	public String getFechainicio() {
+	public Date getFechainicio() {
 		return fechainicio;
 	}
-	public void setFechainicio(String fechainicio) {
+	public void setFechainicio(Date fechainicio) {
 		this.fechainicio = fechainicio;
 	}
-	public String getFechafin() {
+	public Date getFechafin() {
 		return fechafin;
 	}
-	public void setFechafin(String fechafin) {
+	public void setFechafin(Date fechafin) {
 		this.fechafin = fechafin;
 	}
 	public int getEstado() {

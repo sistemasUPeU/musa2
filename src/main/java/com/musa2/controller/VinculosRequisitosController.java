@@ -29,9 +29,10 @@ public class VinculosRequisitosController {
 	public int create(@PathVariable int tiporequisito,@RequestBody  VinculosRequisitos vincurequi) {		
 		return vincu.insertar(tiporequisito,vincurequi);		
 	}
-	@PutMapping("/{idvinculo}/{idrequisitos}")
-	public int update(@PathVariable int idvinculo, @PathVariable int idrequisitos) {
-		return vincu.update(idvinculo,idrequisitos);
+	@PutMapping("/upt/{requi}")
+	public int update(@PathVariable int requi,@RequestBody VinculosRequisitos vincurequi) {
+		System.out.println(vincurequi.getIdvinculo()+" asd "+vincurequi.getIdrequisitos());
+		return vincu.update(vincurequi.getIdvinculo(),requi);
 	}
 	@GetMapping("/{id}")
 	public Map<String, Object> read( @PathVariable int id) {

@@ -28,13 +28,14 @@ public class CursosController {
 	}
 
 	@PostMapping("/add")
-	public int save(@RequestBody Cursos cursos) {		
+	public int save(@RequestBody Cursos cursos) {	
+		System.out.println(cursos.getNombrecurso()+" si entro hasta controller");
 		return cursosService.create(cursos);
 		
 	}
-	@DeleteMapping("/{id}")
-	public int delete(@PathVariable int id) {		
-	 return cursosService.delete(id);
+	@PutMapping("/upt/")
+	public int delete(@RequestBody Cursos cursos) {		
+	 return cursosService.delete(cursos.getIdcursos());
 	}
 	@GetMapping("/{id}")
 	public Map<String,Object> read(@PathVariable int id) {		

@@ -25,8 +25,8 @@ public class OpcionesServicelmp implements OpcionesService{
 	}
 
 	@Override
-	public int delete(int id) {
-		return opcionesDao.delete(id);
+	public Map<String,Object> delete(Opciones o) {
+		return opcionesDao.delete(o);
 	}
 
 	@Override
