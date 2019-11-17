@@ -12,4 +12,10 @@ public interface VehiculosDao {
 	public Map<String, Object> readAll();
 	Map<String, Object> readplaca();
 	public Map<String, Object> search(int nropadron);
+	   
+	/*listado de tablas extras*/
+	public Map<String, Object> readmodelId();
+	public Map<String, Object> readmarcaId();
+	public Map<String , Object> readcatId();
+	
 }

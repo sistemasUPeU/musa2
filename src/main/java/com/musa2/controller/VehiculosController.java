@@ -29,6 +29,7 @@ public class VehiculosController {
        	}
        	@PostMapping("/add")
        	public Map<String, Object> saveVehiculos(@RequestBody Vehiculos vehiculos) {		
+       		System.out.println("hola quezada");
        		return vehiculosService.create(vehiculos);			
        	}
        	@DeleteMapping("/{id}")
@@ -51,5 +52,17 @@ public class VehiculosController {
        	@GetMapping("/nropadron/{nropadron}")
        	public Map<String,Object> searchVehiculos(@PathVariable int nropadron) {		
        		return vehiculosService.search(nropadron);
+       	}
+       	@GetMapping("/modelo/")
+       	public Map<String,Object> getVehmodelo(){
+       		return vehiculosService.readmodelId();
+       	}
+       	@GetMapping("/marca/")
+       	public Map<String,Object> getVehmarca(){
+       		return vehiculosService.readmarcaId();
+       	}
+       	@GetMapping("/categoria/")
+       	public Map<String,Object> getVehcatgoria(){
+       		return vehiculosService.readmarcaId();
        	}
 }

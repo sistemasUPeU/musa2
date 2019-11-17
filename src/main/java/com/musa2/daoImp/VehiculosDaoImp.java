@@ -27,41 +27,42 @@ public class VehiculosDaoImp implements VehiculosDao{
 	@Override
 	public Map<String, Object> create(Vehiculos ve){
 		// TODO Auto-generated method stub
+		System.out.println("enviado");
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withCatalogName("PKG_CV_CRUD_VEHICULOS").withProcedureName("PR_CREAR_VEHICULOS")
-				.declareParameters(new SqlParameter("P_NROPADRON", Types.INTEGER ),
-						           new SqlParameter("P_ESTADO", Types.INTEGER),
-						           new SqlParameter("P_PLACA", Types.VARCHAR),
-						           new SqlParameter("P_MOTOR", Types.VARCHAR),
-						           new SqlParameter("P_SERIE", Types.INTEGER),
-						           new SqlParameter("P_ANHOFABRICACION", Types.DATE),
-						           new SqlParameter("P_PASAJEROSSENTADOS", Types.INTEGER),
-						           new SqlParameter("P_PASAJEROSPIE", Types.INTEGER),
-						           new SqlParameter("P_IDVEHMODELO", Types.INTEGER),
-						           new SqlParameter("P_IDVEHMARCA", Types.INTEGER),
-						           new SqlParameter("P_IDVEHCATEGORIA", Types.INTEGER),
-						           new SqlParameter("P_USO", Types.VARCHAR),
-						           new SqlParameter("P_USERCREATE", Types.VARCHAR),
-						           new SqlParameter("P_DATECREATE", Types.DATE),
-						           new SqlParameter("P_USERMODIFY", Types.VARCHAR),
-						           new SqlParameter("P_DATEMODIFY", Types.DATE));
+				.withCatalogName("PKG_CV_CRUD_VEHICULOS").withProcedureName("pr_crear_vehiculos")
+				.declareParameters(new SqlParameter("p_nropadron", Types.INTEGER ),
+						           new SqlParameter("p_estado", Types.INTEGER),
+						           new SqlParameter("p_placa", Types.VARCHAR),
+						           new SqlParameter("p_motor", Types.VARCHAR),
+						           new SqlParameter("p_serie", Types.INTEGER),
+						           new SqlParameter("p_anhofrabricacion", Types.DATE),
+						           new SqlParameter("p_pasajerossentados", Types.INTEGER),
+						           new SqlParameter("p_pasajerospie", Types.INTEGER),
+						           new SqlParameter("p_idvehmodelo", Types.INTEGER),
+						           new SqlParameter("p_idvehmarca", Types.INTEGER),
+						           new SqlParameter("p_idvehcategoria", Types.INTEGER),
+						           new SqlParameter("p_uso", Types.VARCHAR),
+						           new SqlParameter("p_usercreate", Types.VARCHAR),
+						           new SqlParameter("p_datecreate", Types.DATE),
+						           new SqlParameter("p_usermodify", Types.VARCHAR),
+						           new SqlParameter("p_datemodify", Types.DATE));
 		
-		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NROPADRON", ve.getNropadron())
-				                                           .addValue("P_ESTADO", ve.getEstado())
-				                                           .addValue("P_PLACA", ve.getPlaca())
-				                                           .addValue("P_MOTOR", ve.getMotor())
-				                                           .addValue("P_SERIE", ve.getSerie())
-				                                           .addValue("P_ANHOFABRICACION", ve.getAnhofabricacion())
-				                                           .addValue("P_PASAJEROSENTADOS", ve.getPasajerossentados())
-				                                           .addValue("P_PASAJEROSPIE", ve.getPasajerospie())
-				                                           .addValue("P_IDVEHMODELO", ve.getIdvehiculo())
-				                                           .addValue("P_IDVEHMARCA", ve.getIdvehmarca())
-				                                           .addValue("P_IDVEHCATEGORIA", ve.getIdvehcategoria())
-				                                           .addValue("P_USO", ve.getUso())
-				                                           .addValue("P_USERCREATE", ve.getUsercreate())
-				                                           .addValue("P_DATECREATE", ve.getDatecreate())
-				                                           .addValue("P_USERMODIFY", ve.getUsermodify())
-				                                           .addValue("P_DATEMODIFY", ve.getDatemodify());
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_nropadron", ve.getNropadron())
+				                                           .addValue("p_estado", ve.getEstado())
+				                                           .addValue("p_placa", ve.getPlaca())
+				                                           .addValue("p_motor", ve.getMotor())
+				                                           .addValue("p_serie", ve.getSerie())
+				                                           .addValue("p_anhofrabricacion", ve.getAnhofabricacion())
+				                                           .addValue("p_pasajerossentados", ve.getPasajerossentados())
+				                                           .addValue("p_pasajerospie", ve.getPasajerospie())
+				                                           .addValue("p_idvehmodelo", ve.getIdvehmodelo())
+				                                           .addValue("p_idvehmarca", ve.getIdvehmarca())
+				                                           .addValue("p_idvehcategoria", ve.getIdvehcategoria())
+				                                           .addValue("p_uso", ve.getUso())
+				                                           .addValue("p_usercreate", ve.getUsercreate())
+				                                           .addValue("p_datecreate", ve.getDatecreate())
+				                                           .addValue("p_usermodify", ve.getUsermodify())
+				                                           .addValue("p_datemodify", ve.getDatemodify());
 				
 	   return simpleJdbcCall.execute(in);
 	}
@@ -144,6 +145,33 @@ public class VehiculosDaoImp implements VehiculosDao{
 				.declareParameters(new SqlOutParameter("P_CURSOR",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_NROPADRON", Types.VARCHAR));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NROPADRON", nropadron);
 		return simpleJdbcCall.execute(in);
+	}
+	@Override
+	public Map<String, Object> readmodelId() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_LISTAR_MODELO_ID")
+				.withCatalogName("PKG_CV_CRUD_VEHICULOS")
+				.declareParameters(new SqlOutParameter("P_CUR_MODELO", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
+	}
+	@Override
+	public Map<String, Object> readmarcaId() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_LISTAR_MARCA_ID")
+				.withCatalogName("PKG_CV_CRUD_VEHICULOS")
+				.declareParameters(new SqlOutParameter("P_CUR_MARCA_ID", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
+	}
+	@Override
+	public Map<String, Object> readcatId() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_LISTAR_MODELO_ID")
+				.withCatalogName("PKG_CV_CRUD_VEHICULOS")
+				.declareParameters(new SqlOutParameter("P_CUR_CATEGORIA", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
 	}
   	
   	

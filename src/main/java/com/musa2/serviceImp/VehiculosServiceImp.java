@@ -16,6 +16,7 @@ public class VehiculosServiceImp implements VehiculosService{
 	@Override
 	public Map<String, Object> create(Vehiculos ve) {
 		// TODO Auto-generated method stub
+		System.out.println("hola ñavez");
 		return vehiculosDao.create(ve);
 	}
 
@@ -51,5 +52,23 @@ public class VehiculosServiceImp implements VehiculosService{
 	public Map<String, Object> search(int nropadron) {
 		// TODO Auto-generated method stub
 		return vehiculosDao.search(nropadron);
+	}
+
+	@Override
+	public Map<String, Object> readmodelId() {
+		// TODO Auto-generated method stub
+		return vehiculosDao.readmodelId();
+	}
+
+	@Override
+	public Map<String, Object> readmarcaId() {
+		// TODO Auto-generated method stub
+		return vehiculosDao.readmarcaId();
+	}
+
+	@Override
+	public Map<String, Object> readcatId() {
+		// TODO Auto-generated method stub
+		return vehiculosDao.readcatId();
 	}
 } 
