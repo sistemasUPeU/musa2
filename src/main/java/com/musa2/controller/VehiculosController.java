@@ -63,6 +63,6 @@ public class VehiculosController {
        	}
        	@GetMapping("/categoria/")
        	public Map<String,Object> getVehcatgoria(){
-       		return vehiculosService.readmarcaId();
+       		return vehiculosService.readcatId();
        	}
 }

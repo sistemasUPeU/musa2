@@ -168,7 +168,7 @@ public class VehiculosDaoImp implements VehiculosDao{
 	public Map<String, Object> readcatId() {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("PR_LISTAR_MODELO_ID")
+				.withProcedureName("PR_LISTAR_CATEGORIA_ID")
 				.withCatalogName("PKG_CV_CRUD_VEHICULOS")
 				.declareParameters(new SqlOutParameter("P_CUR_CATEGORIA", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
