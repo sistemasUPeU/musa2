@@ -77,9 +77,9 @@ public class VehiculosDaoImp implements VehiculosDao{
 						           new SqlParameter("P_PLACA", Types.VARCHAR),
 						           new SqlParameter("P_MOTOR", Types.VARCHAR),
 						           new SqlParameter("P_SERIE", Types.INTEGER),
-						           new SqlParameter("P_ANHOFABRICACION", Types.DATE),
-						           new SqlParameter("P_PASAJEROSSENTADOS", Types.DATE),
-						           new SqlParameter("P_PASAJEROSPIE", Types.DATE),
+						           new SqlParameter("P_ANHOFABRICACION", Types.INTEGER),
+						           new SqlParameter("P_PASAJEROSSENTADOS", Types.INTEGER),
+						           new SqlParameter("P_PASAJEROSPIE", Types.INTEGER),
 						           new SqlParameter("P_IDVEHMODELO", Types.INTEGER),
 						           new SqlParameter("P_IDVEHMARCA", Types.INTEGER),
 						           new SqlParameter("P_IDVEHCATEGORIA", Types.INTEGER),
@@ -109,6 +109,7 @@ public class VehiculosDaoImp implements VehiculosDao{
 	}
 	@Override
 	public int delete(int id) {
+		System.out.println("asdasdasdasda");
 		return jdbcTemplate.update("call PKG_CV_CRUD_VEHICULOS.PR_ELIMINAR_VEHICULOS(?)", id);
 	}
 	@Override

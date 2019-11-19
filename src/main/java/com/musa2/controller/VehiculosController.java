@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.musa2.entity.Propietarios;
 import com.musa2.entity.Vehiculos;
 import com.musa2.service.VehiculosService;
 @CrossOrigin(origins = "*")
@@ -32,17 +33,17 @@ public class VehiculosController {
        		System.out.println("hola quezada");
        		return vehiculosService.create(vehiculos);			
        	}
-       	@DeleteMapping("/{id}")
-       	public int deleteVehiculo(@PathVariable int id) {		
-       		return vehiculosService.delete(id);
+       	@PutMapping("/delete/")
+       	public int deleteVehiculo(@RequestBody Vehiculos ve) {		
+       		System.out.println("el id"+ve.getIdvehiculo());
+       		return vehiculosService.delete(ve.getIdvehiculo());
        	}
        	@GetMapping("/{id}")
        	public Map<String,Object> readVehiculos(@PathVariable int id) {		
        		return vehiculosService.read(id);
        	}
-       	@PutMapping("/{id}")
-       	public Map<String, Object> updatePropietarios(@RequestBody Vehiculos ve, @PathVariable int id) {
-       		ve.setIdvehiculo(id);
+       	@PutMapping("/")
+       	public Map<String, Object> updatePropietarios(@RequestBody Vehiculos ve){
        		return vehiculosService.update(ve);
        	} 
        	@GetMapping("/lis/")

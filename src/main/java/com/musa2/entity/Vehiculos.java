@@ -19,7 +19,7 @@ public class Vehiculos {
     private String usercreate;
     private String datecreate;
     private String usermodify;
-    private Date datemodify;
+    private String datemodify;
 	public Vehiculos() {
 		super();
 	}
@@ -119,10 +119,10 @@ public class Vehiculos {
 	public void setUsermodify(String usermodify) {
 		this.usermodify = usermodify;
 	}
-	public Date getDatemodify() {
+	public String getDatemodify() {
 		return datemodify;
 	}
-	public void setDatemodify(Date datemodify) {
+	public void setDatemodify(String datemodify) {
 		this.datemodify = datemodify;
 	}
     
