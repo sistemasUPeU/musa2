@@ -1,6 +1,5 @@
 package com.musa2.serviceImp;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +15,21 @@ public class VinculosServiceImp implements VinculosService{
 	private VinculosDao vinculosDao;
 
 	@Override
-	public Map<String, Object> create(Vinculos vinculo) {
+	public int create(Vinculos vinculo) {
 		// TODO Auto-generated method stub
 		return vinculosDao.create(vinculo);
 	}
 
 	@Override
-	public Map<String, Object> update(Vinculos vinculo) {
+	public int update(Vinculos vinculo) {
 		// TODO Auto-generated method stub
 		return vinculosDao.update(vinculo);
 	}
 
 	@Override
-	public Map<String, Object> updateState(Vinculos vinculo) {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return vinculosDao.updateState(vinculo);
+		return vinculosDao.delete(id);
 	}
 
 	@Override
@@ -40,16 +39,9 @@ public class VinculosServiceImp implements VinculosService{
 	}
 
 	@Override
-	public Map<String, Object> readAll(int tipo,  int estado) {
+	public Map<String, Object> readAll(int id) {
 		// TODO Auto-generated method stub
-		return vinculosDao.readAll(tipo ,  estado);
+		return vinculosDao.readAll(id);
 	}
-
-	@Override
-	public List<Map<String, Object>> contar() {
-		// TODO Auto-generated method stub
-		return vinculosDao.contar();
-	}
-
 	
 }

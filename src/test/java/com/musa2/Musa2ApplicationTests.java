@@ -1,30 +1,58 @@
 package com.musa2;
 
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-import com.musa2.dao.ConductoresDao;
-import com.musa2.dao.SoatsDao;
-import com.musa2.entity.Conductores;
-import com.musa2.entity.Soats;
+import com.musa2.dao.RolesDao;
+import com.musa2.dao.UsuariosDao;
+import com.musa2.entity.Usuarios;
+import com.musa2.serviceImp.UserLogin;
 
-@RunWith(SpringRunner.class)
+
+
+
+
+
 @SpringBootTest
 public class Musa2ApplicationTests {
 	@Autowired
-	private SoatsDao soatsD;
-	@Test
-	public void contextLoads() {
-		
-		
+	UsuariosDao usuariosDao;
+    @Autowired
+    UserLogin userLogin;
+    @Autowired
+    RolesDao rolesDao;
+
+	/*@Test
+   	void userDatosl() {
+   		assertTrue(usuariosDao.readAll()!=null);
+   	}*/
+    /*@Test
+	void autentificarUser() {
+
+		assertTrue(usuariosDao.validarUsuario("login")!=null);
+	}*/
+	/*@Test
+	void Roles() {
+		assertTrue(rolesDao.readAllid(19)!=null);
+	}*/
+   /* @Test
+    void datosUsuario() {
+
+		assertTrue(usuariosDao.datosUsuario("login")!=null);
+	}*/
+    @Test
+	void createUser() {
+		Usuarios user = new Usuarios("diana", "123", 4, "keny");
+		assertTrue(usuariosDao.create(user)>0);
 		
 	}
-	
-
 }

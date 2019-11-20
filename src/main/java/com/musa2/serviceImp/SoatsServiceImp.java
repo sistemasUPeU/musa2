@@ -14,19 +14,19 @@ public class SoatsServiceImp implements SoatsService{
      @Autowired
      private SoatsDao soatsDao;
 	@Override
-	public Map<String, Object> create(Soats so) {
+	public int create(Soats so) {
 		// TODO Auto-generated method stub
 		return soatsDao.create(so);
 	}
 
 	@Override
-	public Map<String, Object> update(Soats so) {
+	public int update(Soats so) {
 		// TODO Auto-generated method stub
 		return soatsDao.update(so);
 	}
 
 	@Override
-	public  Map<String, Object> delete(int id) {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
 		return soatsDao.delete(id);
 	}
@@ -41,18 +41,6 @@ public class SoatsServiceImp implements SoatsService{
 	public Map<String, Object> readAll() {
 		// TODO Auto-generated method stub
 		return soatsDao.readAll();
-	}
-
-	@Override
-	public Map<String, Object> buscar(int id) {
-		// TODO Auto-generated method stub
-		return soatsDao.buscar(id);
-	}
-
-	@Override
-	public Map<String, Object> estado(int id) {
-		// TODO Auto-generated method stub
-		return soatsDao.estado(id);
 	}
     
 }

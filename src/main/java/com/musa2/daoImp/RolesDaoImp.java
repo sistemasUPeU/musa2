@@ -1,9 +1,12 @@
 package com.musa2.daoImp;
 
 import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.ColumnMapRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlOutParameter;
@@ -11,7 +14,10 @@ import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Repository;
+
 
 import com.musa2.dao.RolesDao;
 import com.musa2.entity.Roles;
@@ -27,7 +33,7 @@ public class RolesDaoImp implements RolesDao{
 	public int create(Roles r) {
 		// TODO Auto-generated method stub
 		return JdbcTemplate.update("call PKG_SEG_CRUD_ROLES.pr_insertar_roles(?)", r.getNombre());
- 
+
 	}
 
 	@Override
@@ -84,5 +90,15 @@ public class RolesDaoImp implements RolesDao{
 		return SimpleJdbcCall.execute();
 	}
 
-}
+	@Override
+	public List<GrantedAuthority> readAllid(int idusuario) {
+		List<GrantedAuthority> autores = new ArrayList<>();
+		String SQL = "select u.idusuario, r.idrol, r.nombre from roles r, usuarios u, rol_usuarios ru where r.idrol=ru.idrol and ru.idusuario= u.idusuario and u.idusuario=?";
+		List<Roles> roles = JdbcTemplate.query(SQL, new Object[]{idusuario}, new BeanPropertyRowMapper<Roles>(Roles.class));		
+		for(int i=0;i<roles.size();i++) {
+			autores.add(new SimpleGrantedAuthority(roles.get(i).getNombre()));
+		}
+		return autores;
+	} 	
 
+}

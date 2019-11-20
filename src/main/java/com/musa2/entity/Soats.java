@@ -8,7 +8,7 @@ public class Soats {
   private String vigenciahasta;
   private String certificadodesde;
   private String certificadohasta;
-  private double montoprima;
+  private int montoprima;
   private String aseguradora;
   private int idvehiculo;
   private int estado;
@@ -16,7 +16,7 @@ public Soats() {
 	super();
 }
 public Soats(int idsoat, int nrodocumento, int nropoliza, String vigenciadesde, String vigenciahasta,
-		String certificadodesde, String certificadohasta, double montoprima, String aseguradora, int idvehiculo,
+		String certificadodesde, String certificadohasta, int montoprima, String aseguradora, int idvehiculo,
 		int estado) {
 	super();
 	this.idsoat = idsoat;
@@ -73,10 +73,10 @@ public String getCertificadohasta() {
 public void setCertificadohasta(String certificadohasta) {
 	this.certificadohasta = certificadohasta;
 }
-public double getMontoprima() {
+public int getMontoprima() {
 	return montoprima;
 }
-public void setMontoprima(double montoprima) {
+public void setMontoprima(int montoprima) {
 	this.montoprima = montoprima;
 }
 public String getAseguradora() {

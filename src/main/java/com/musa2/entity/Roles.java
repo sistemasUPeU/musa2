@@ -22,11 +22,6 @@ public class Roles {
 		this.nombre = nombre;
 		this.estado = estado;
 	}
-	
-	public Roles(int idrol) {
-		super();
-		this.idrol = idrol;
-	}
 
 	public Roles(String nombre) {
 		super();

@@ -1,7 +1,5 @@
 package com.musa2.entity;
 
-import java.sql.Date;
-
 public class Vehiculos {
     private int idvehiculo;
     private int nropadron;
@@ -22,6 +20,29 @@ public class Vehiculos {
     private String datemodify;
 	public Vehiculos() {
 		super();
+	}
+	public Vehiculos(int idvehiculo, int nropadron, int estado, String placa, String motor, int serie,
+			String anhofabricacion, int pasajerossentados, int pasajerospie, int idvehmodelo, int idvehmarca,
+			int idvehcategoria, String uso, String usercreate, String datecreate, String usermodify,
+			String datemodify) {
+		super();
+		this.idvehiculo = idvehiculo;
+		this.nropadron = nropadron;
+		this.estado = estado;
+		this.placa = placa;
+		this.motor = motor;
+		this.serie = serie;
+		this.anhofabricacion = anhofabricacion;
+		this.pasajerossentados = pasajerossentados;
+		this.pasajerospie = pasajerospie;
+		this.idvehmodelo = idvehmodelo;
+		this.idvehmarca = idvehmarca;
+		this.idvehcategoria = idvehcategoria;
+		this.uso = uso;
+		this.usercreate = usercreate;
+		this.datecreate = datecreate;
+		this.usermodify = usermodify;
+		this.datemodify = datemodify;
 	}
 	public int getIdvehiculo() {
 		return idvehiculo;
@@ -125,6 +146,7 @@ public class Vehiculos {
 	public void setDatemodify(String datemodify) {
 		this.datemodify = datemodify;
 	}
+    
     
     
 }
