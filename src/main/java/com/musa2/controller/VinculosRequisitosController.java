@@ -1,6 +1,11 @@
 package com.musa2.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,12 +21,30 @@ import com.musa2.service.VinculosRequisitosService;
 public class VinculosRequisitosController {
 	@Autowired
 	private VinculosRequisitosService vincu;
-	@PostMapping("/add")
-	public int create(@RequestBody int idvinculo,@RequestBody int tiporequisitos) {		
-		return vincu.insertar(idvinculo,tiporequisitos);		
+	
+	
+	@Secured("ROLE_ADMIN")
+	@PostMapping("/add/{tiporequisito}")
+	public int create(@PathVariable int tiporequisito,@RequestBody  VinculosRequisitos vincurequi) {		
+		return vincu.insertar(tiporequisito,vincurequi);		
 	}
-	@PutMapping("/{idvinculo}/{idrequisitos}")
-	public int update(@PathVariable int idvinculo, @PathVariable int idrequisitos) {
-		return vincu.update(idvinculo,idrequisitos);
+	
+	@Secured("ROLE_ADMIN")
+	@PutMapping("/upt/{requi}")
+	public int update(@PathVariable int requi,@RequestBody VinculosRequisitos vincurequi) {
+		System.out.println(vincurequi.getIdvinculo()+" asd "+vincurequi.getIdrequisitos());
+		return vincu.update(vincurequi.getIdvinculo(),requi);
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/{id}")
+	public Map<String, Object> read( @PathVariable int id) {
+		return vincu.read(id);
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@DeleteMapping("/{id}")
+	public int delete( @PathVariable int id) {
+		return vincu.delete(id);
 	}
 }

@@ -1,8 +1,10 @@
 package com.musa2.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,25 +24,66 @@ import com.musa2.service.VinculosService;
 public class VinculosController {
 	@Autowired
 	private VinculosService vinculoService;
-	@GetMapping("/lis/{id}")
-	public Map<String,Object> readAll(@PathVariable int id){
-		return vinculoService.readAll(id);
+	
+	
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/lis/{tipo}/{estado}")
+	public Map<String,Object> listarportipo(@PathVariable int tipo , @PathVariable int estado){
+		return vinculoService.readAll(tipo , estado);
 	}
+	
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/conta/")
+	public List<Map<String,Object>> contar(){
+		return vinculoService.contar();
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/{id}")
+	public Map<String,Object> listarid(@PathVariable int id) {
+		return vinculoService.read(id); 
+	}
+	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/add")
-	public int create(@RequestBody Vinculos vinculo) {		
+	public Map<String, Object> create(@RequestBody Vinculos vinculo) {		
 		return vinculoService.create(vinculo);		
 	}
-	@DeleteMapping("/{id}")
-	public int delete(@PathVariable int id) {		
-		return vinculoService.delete(id);
+	
+	@Secured("ROLE_ADMIN")
+	@PutMapping("/stado/")
+	public Map<String,Object> updestado(@RequestBody Vinculos vinculo) {
+		return vinculoService.updateState(vinculo);
 	}
-	@GetMapping("/{id}")
-	public Map<String,Object> read(@PathVariable int id) {		
-		return vinculoService.read(id);
+	
+	@Secured("ROLE_ADMIN")
+	@PutMapping("/upd")
+	public Map<String, Object> update(@RequestBody Vinculos vinculo){
+		return vinculoService.update(vinculo);
 	}
-	@PutMapping("/{id}")
-	public int update(@RequestBody Vinculos vin, @PathVariable int id) {
-		vin.setIdvinculo(id);
-		return vinculoService.update(vin);
+	
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/lisc/")
+	public Map<String,Object> lisconductor(){
+		return vinculoService.lisconductores();
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/lisv/")
+	public Map<String,Object> lispropietaio(){
+		return vinculoService.lispropietarios();
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/lisp/")
+	public Map<String,Object> lisvehiculo(){
+		return vinculoService.lisvehiculos();
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/lis/{tipo}")
+	public Map<String,Object> lis(@PathVariable int tipo) {
+		System.out.println("tipo : " + tipo);
+		return vinculoService.list(tipo);
 	}
 }

@@ -23,7 +23,7 @@ public class PropietariosController {
       @Autowired
       private PropietariosService propietariosService;
       
-      @Secured("ROLE_ADMIN")
+    @Secured("ROLE_ADMIN")
     @GetMapping
   	public Map<String,Object> getPropietarios(){
   		return propietariosService.readAll();
