@@ -41,8 +41,8 @@ public class UsuariosDaoImp implements UsuariosDao {
 	@Override
 	public int update(Usuarios U) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CRUD_USUARIOS.PR_ACTUALIZAR_USUARIOS(?,?,?,?,?)", U.getIdusuario(),
-				U.getLogin(), new BCryptPasswordEncoder().encode((U.getPassword())), U.getIdpersona(), U.getUser_modify());
+		return jdbcTemplate.update("call PKG_SEG_CRUD_USUARIOS.PR_MODIFICAR_USUARIOS(?,?,?,?)", U.getIdusuario(),
+				U.getLogin(), U.getEstado(), U.getUser_modify());
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class UsuariosDaoImp implements UsuariosDao {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("PR_LISTAR_USUARIOS_ID")
 				.withCatalogName("PKG_CRUD_USUARIOS")
-				.declareParameters(new SqlOutParameter("usu", OracleTypes.CURSOR, new ColumnMapRowMapper()),
+				.declareParameters(new SqlOutParameter("P_CURSOR_USUARIO", OracleTypes.CURSOR, new ColumnMapRowMapper()),
 						new SqlParameter("P_IDUSUARIO", Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("P_IDUSUARIO", id);
 		return simpleJdbcCall.execute(in);
@@ -66,7 +66,7 @@ public class UsuariosDaoImp implements UsuariosDao {
 	public Map<String, Object> readAll() {
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("PR_LISTAR_USUARIOS")
 				.withCatalogName("PKG_CRUD_USUARIOS")
-				.declareParameters(new SqlOutParameter("P_CURSOR_USUARIO", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+				.declareParameters(new SqlOutParameter("P_CUR_USUARIOS", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
 
