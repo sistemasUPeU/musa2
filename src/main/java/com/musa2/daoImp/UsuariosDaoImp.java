@@ -84,6 +84,96 @@ public class UsuariosDaoImp implements UsuariosDao {
 		return hola.get(0);
 	}*/
 
+	@Override
+	public Map<String, Object> readN(String nombre) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_LISTAR_USUARIOS_APELLIDOS").withCatalogName("PKG_SEG_CRUD_USUARIOS")
+				.declareParameters(new SqlOutParameter("P_CURSOR_USUARIO",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_APELLIDO", Types.VARCHAR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_APELLIDO", nombre);
+		return simpleJdbcCall.execute(in);
+	}
+
+	@Override
+	public Map<String, Object> readR(String rol) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_LISTAR_USUARIOS_ROLES").withCatalogName("PKG_SEG_CRUD_USUARIOS")
+				.declareParameters(new SqlOutParameter("P_CURSOR_USUARIO",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_ROLES", Types.VARCHAR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_ROLES", rol);
+		return simpleJdbcCall.execute(in);
+	}
+
+	@Override
+	public Map<String, Object> readE(int estado) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_LISTAR_USUARIOS_ESTADO").withCatalogName("PKG_SEG_CRUD_USUARIOS")
+				.declareParameters(new SqlOutParameter("P_CURSOR_USUARIO",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_ESTADO", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_ESTADO", estado);
+		return simpleJdbcCall.execute(in);
+	}
+
+	@Override
+	public Map<String, Object> readPer() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_LISTAR_PER")
+				.withCatalogName("PKG_SEG_CRUD_USUARIOS")
+				.declareParameters(new SqlOutParameter("P_CURSOR_USUARIO", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
+	}
+
+	@Override
+	public Map<String, Object> readPerN(String nombre) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_LISTAR_PER_NAME").withCatalogName("PKG_SEG_CRUD_USUARIOS")
+				.declareParameters(new SqlOutParameter("P_CURSOR_USUARIO",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_NAME", Types.VARCHAR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NAME", nombre);
+		return simpleJdbcCall.execute(in);
+	}
+
+	@Override
+	public Map<String, Object> readUser() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_LISTAR_USU")
+				.withCatalogName("PKG_SEG_CRUD_USUARIOS")
+				.declareParameters(new SqlOutParameter("P_CURSOR_USUARIO", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
+	}
+
+	@Override
+	public Map<String, Object> readRolus() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_LISTAR_ROLUSU")
+				.withCatalogName("PKG_SEG_CRUD_USUARIOS")
+				.declareParameters(new SqlOutParameter("P_CURSOR_USUARIO", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
+	}
+
+	@Override
+	public Map<String, Object> readUse() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_LISTAR_USUL")
+				.withCatalogName("PKG_SEG_CRUD_USUARIOS")
+				.declareParameters(new SqlOutParameter("P_CURSOR_USUARIO", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
+	}
+
+	@Override
+	public Map<String, Object> readUseN(String login) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_LISTAR_USUL_NAME").withCatalogName("PKG_SEG_CRUD_USUARIOS")
+				.declareParameters(new SqlOutParameter("P_CURSOR_USUARIO",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_NAME", Types.VARCHAR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NAME", login);
+		return simpleJdbcCall.execute(in);
+	}
+
 	/*@Override
 	public Map<String, Object> validar_nom_user(String login) {
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("PR_VALIDAR_NOM_USER")

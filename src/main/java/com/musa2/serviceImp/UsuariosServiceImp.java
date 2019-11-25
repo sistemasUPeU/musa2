@@ -52,6 +52,60 @@ public class UsuariosServiceImp implements UsuariosService {
 	}
 
 	@Override
+	public Map<String, Object> readN(String nombre) {
+		// TODO Auto-generated method stub
+		return usuariosDao.readN(nombre);
+	}
+
+	@Override
+	public Map<String, Object> readR(String rol) {
+		// TODO Auto-generated method stub
+		return usuariosDao.readR(rol);
+	}
+
+	@Override
+	public Map<String, Object> readE(int estado) {
+		// TODO Auto-generated method stub
+		return usuariosDao.readE(estado);
+	}
+
+	@Override
+	public Map<String, Object> readPer() {
+		// TODO Auto-generated method stub
+		return usuariosDao.readPer();
+	}
+
+	@Override
+	public Map<String, Object> readPerN(String nombre) {
+		// TODO Auto-generated method stub
+		return usuariosDao.readPerN(nombre);
+	}
+
+	@Override
+	public Map<String, Object> readUser() {
+		// TODO Auto-generated method stub
+		return usuariosDao.readUser();
+	}
+
+	@Override
+	public Map<String, Object> readRolus() {
+		// TODO Auto-generated method stub
+		return usuariosDao.readRolus();
+	}
+
+	@Override
+	public Map<String, Object> readUse() {
+		// TODO Auto-generated method stub
+		return usuariosDao.readUse();
+	}
+
+	@Override
+	public Map<String, Object> readUseN(String login) {
+		// TODO Auto-generated method stub
+		return usuariosDao.readUseN(login);
+	}
+
+	@Override
 	public Map<String, Object> datosUsuario(String login) {
 		// TODO Auto-generated method stub
 		return usuariosDao.datosUsuario(login);

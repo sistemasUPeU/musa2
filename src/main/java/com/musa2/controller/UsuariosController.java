@@ -31,11 +31,59 @@ public class UsuariosController {
 	public Map<String, Object> readAll() {
 		return usuariosService.readAll();
 	}
+ 	
+ 	@GetMapping("/per/")
+ 	public Map<String, Object> readPer() {
+ 		return usuariosService.readPer();
+ 	}
+ 	
+ 	@GetMapping("/per/{nombre}")
+ 	public Map<String,Object> readPerN(@PathVariable String nombre) {		
+ 		return usuariosService.readPerN(nombre);
+ 	}
+ 	
+
+ 	@GetMapping("/use/")
+ 	public Map<String, Object> readUse() {
+ 		return usuariosService.readUse();
+ 	}
+ 	
+ 	@GetMapping("/use/{login}")
+ 	public Map<String,Object> readUseN(@PathVariable String login) {		
+ 		return usuariosService.readUseN(login);
+ 	}
     @Secured("ROLE_ADMIN")
 	@GetMapping("/{id}")
 	public Map<String,Object> read1(@PathVariable int id) {		
 		return usuariosService.read(id);
 	}
+	
+	@GetMapping("/nombre/{nombre}")
+	public Map<String,Object> readN(@PathVariable String nombre) {		
+		return usuariosService.readN(nombre);
+	}
+	
+	@GetMapping("/estado/{estado}")
+	public Map<String,Object> readE(@PathVariable int estado) {		
+		return usuariosService.readE(estado);
+	}
+	
+	@GetMapping("/rol/{rol}")
+	public Map<String,Object> readR(@PathVariable String rol) {		
+		return usuariosService.readR(rol);
+	}
+	
+
+	@GetMapping("/user/")
+	public Map<String,Object> readUser() {		
+		return usuariosService.readUser();
+	}
+	
+	@GetMapping("/rolus/")
+	public Map<String,Object> readRolus() {		
+		return usuariosService.readRolus();
+	}
+	
     @Secured("ROLE_ADMIN")
 	@PostMapping("/add")
 	public int create(@RequestBody Usuarios U) {
