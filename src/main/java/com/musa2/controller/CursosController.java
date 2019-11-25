@@ -33,9 +33,9 @@ public class CursosController {
 		return cursosService.create(cursos);
 		
 	}
-	@PutMapping("/upt/")
-	public int delete(@RequestBody Cursos cursos) {		
-	 return cursosService.delete(cursos.getIdcursos());
+	@PutMapping("/upt/{id}")
+	public int delete(@PathVariable int id) {		
+	 return cursosService.delete(id);
 	}
 	@GetMapping("/{id}")
 	public Map<String,Object> read(@PathVariable int id) {		

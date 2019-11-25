@@ -65,7 +65,7 @@ public class CursosDaoImp implements CursosDao {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("pr_listar_cursos")
-				.withCatalogName("pkg_cv_crud_cursos")
+				.withCatalogName("PKG_CV_CRUD_CURSOS")
 				.declareParameters(new SqlOutParameter("cur", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
