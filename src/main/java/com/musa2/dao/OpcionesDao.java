@@ -13,6 +13,6 @@ public interface OpcionesDao {
 	public Map<String,Object> readt(int tipo);
 	public Map<String,Object> readp(int idpadre);
 	public Map<String, Object> readAll();
-	
+	public Map<String, Object> obtenerOpciones(int idusuario);
 	
 }

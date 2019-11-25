@@ -99,5 +99,16 @@ public class OpcionesDaolmp implements OpcionesDao {
 				.declareParameters(new SqlOutParameter("p_cur_opciones", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
+	
+	@Override
+	public Map<String, Object> obtenerOpciones(int idusuario) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_SEG_CRUD_OPCIONES")
+				.withProcedureName("pr_obtenerOpciones")
+				.declareParameters(new SqlOutParameter("p_cur_opcion",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_idusuario ",Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idusuario", idusuario);
+		return simpleJdbcCall.execute(in);
+		
+	}
 
 }

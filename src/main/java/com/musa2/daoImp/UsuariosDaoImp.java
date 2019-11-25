@@ -198,7 +198,7 @@ public class UsuariosDaoImp implements UsuariosDao {
 	@Override
 	public Map<String, Object> datosUsuario(String username) {
 		// TODO Auto-generated method stub
-		String SQL = "select p.idpersona as idpersona, p.nombre as nombres, p.apellido as apellidos ,r.detalle as rol, r.nombre as nom_rol from personas p, usuarios u ,roles r , rol_usuarios ru where p.idpersona = u.idpersona and r.idrol=ru.idrol and u.IDUSUARIO=ru.IDUSUARIO and u.login=?";
+		String SQL = "select p.idpersona as idpersona,u.idusuario ,p.nombre as nombres, p.apellido as apellidos ,r.detalle as rol, r.nombre as nom_rol from personas p, usuarios u ,roles r , rol_usuarios ru where p.idpersona = u.idpersona and r.idrol=ru.idrol and u.IDUSUARIO=ru.IDUSUARIO and u.login=?";
 		Map<String, Object> map= jdbcTemplate.queryForMap(SQL, username);
 		return map;
 	}

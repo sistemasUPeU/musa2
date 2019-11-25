@@ -38,4 +38,10 @@ public class OpcionesServicelmp implements OpcionesService{
 	public Map<String, Object> readAll() {
 		return OpcionesDao.readAll();
 	}
+	
+	@Override
+	public Map<String, Object> obtenerOpciones(int idusuario) {
+		// TODO Auto-generated method stub
+		return OpcionesDao.obtenerOpciones(idusuario);
+	}
 }
