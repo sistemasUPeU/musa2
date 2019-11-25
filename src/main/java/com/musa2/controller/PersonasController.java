@@ -49,4 +49,8 @@ public class PersonasController {
 	public Map<String, Object> search(@PathVariable("docu") int nrodoc) {
 return personasService.findPersonasByDocumento(nrodoc);
 	}
+	@GetMapping("/id")
+	public Map<String,Object> getPersonasId() {		
+		return personasService.getPersonaId();
+	}
 }

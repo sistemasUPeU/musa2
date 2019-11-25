@@ -19,7 +19,7 @@ public class PropietariosServiceImp implements PropietariosService{
 		// TODO Auto-generated method stub
 		return propietariosDao.delete(id);
 	}
-
+	
 	@Override
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub

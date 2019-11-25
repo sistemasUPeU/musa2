@@ -34,7 +34,7 @@ public class PropietariosController {
   		return propietariosService.create(propietarios);		
   	}
     @Secured("ROLE_ADMIN")
-  	@DeleteMapping("/{id}")
+  	@PutMapping("/modif/{id}")
   	public int deletePropietarios(@PathVariable int id) {		
   		return propietariosService.delete(id);
   	}
@@ -44,9 +44,13 @@ public class PropietariosController {
   		return propietariosService.read(id);
   	}
     @Secured("ROLE_ADMIN")
-  	@PutMapping("/{id}")
-  	public Map<String, Object> updatePropietarios(@RequestBody Propietarios pro, @PathVariable int id) {
-  		pro.setIdpropietario(id);
+  	@PutMapping("/")
+  	public Map<String, Object> updatePropietarios(@RequestBody Propietarios pro) {
   		return propietariosService.update(pro);
+  	}
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/nombre/{nombre}")
+  	public Map<String,Object> searchNombre(@PathVariable String nombre){
+  		return propietariosService.search(nombre);
   	}
 }

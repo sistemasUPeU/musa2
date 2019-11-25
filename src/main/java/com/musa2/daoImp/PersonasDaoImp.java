@@ -71,4 +71,14 @@ public class PersonasDaoImp implements PersonasDao {
 		return simpleJdbcCall.execute(in);
 	}
 
+	@Override
+	public Map<String, Object> getPersonaId() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PR_LIS_PER_X_ID")
+				.withCatalogName("PKG_CRUD_PERSONAS")
+				.declareParameters(new SqlOutParameter("P_CUR_IDPERSONA", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
+	}
+
 }
