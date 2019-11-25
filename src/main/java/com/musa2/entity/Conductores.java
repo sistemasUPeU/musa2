@@ -14,7 +14,7 @@ public class Conductores {
 	private String datemodify;
 	private String linc_fechainicio;
 	private String linc_fechafin;
-	private String clase;
+	private char clase;
 	private int categoria;
 
 	public Conductores() {
@@ -22,7 +22,7 @@ public class Conductores {
 	}
 	public Conductores(int idconductor, int tipooperador, int codigo, int estado, int idpersona, int nrolicencia,
 			int cursovial, String usercreate, String datecreate, String usermodify, String datemodify,
-			String linc_fechainicio, String linc_fechafin, String clase, int categoria) {
+			String linc_fechainicio, String linc_fechafin, char clase, int categoria) {
 		super();
 		this.idconductor = idconductor;
 		this.tipooperador = tipooperador;
@@ -118,10 +118,10 @@ public class Conductores {
 	public void setLinc_fechafin(String linc_fechafin) {
 		this.linc_fechafin = linc_fechafin;
 	}
-	public String getClase() {
+	public char getClase() {
 		return clase;
 	}
-	public void setClase(String clase) {
+	public void setClase(char clase) {
 		this.clase = clase;
 	}
 	public int getCategoria() {

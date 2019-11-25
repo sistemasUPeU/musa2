@@ -26,7 +26,7 @@ public class VinculosDaoImp implements VinculosDao{
 	private SimpleJdbcCall simpleJdbcCall;
 	@Override
 	public Map<String, Object> create(Vinculos vinculo) {
-
+		
 		// TODO Auto-generated method stub
 				simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 						.withCatalogName("pkg_cv_crud_vinculos")
@@ -53,6 +53,13 @@ public class VinculosDaoImp implements VinculosDao{
 														.addValue("p_idempleado", vinculo.getIdempleado())
 														.addValue("p_idvehiculo", vinculo.getIdvehiculo());
 				return simpleJdbcCall.execute(in);
+
+				
+				/*return jdbcTemplate.update("call pkg_cv_crud_vincunlos.pa_mat_vinculos_ins(?,?,?,?,?,?,?,?,?)", 
+				vinculo.getTipovinculo(), vinculo.getIdconductor(), vinculo.getDescripcion(), vinculo.getFechainicio(), 
+				vinculo.getFechafin(), vinculo.getUsercreate(), vinculo.getIdpropietario(), vinculo.getIdempleado(), 
+				vinculo.getIdvehiculo());*/
+
 	}
 	@Override
 	public Map<String, Object> update(Vinculos vinculo) {
@@ -132,5 +139,56 @@ public class VinculosDaoImp implements VinculosDao{
 	@Override
 	public List<Map<String, Object>> contar() {
 		return jdbcTemplate.queryForList("SELECT MAX(idvinculo) contador FROM vinculos");
+	
+    }
+
+	@Override
+	public Map<String, Object> lisconductores() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_CV_CONDUCTOR")
+				.withProcedureName("pa_mat_conductor_listnombre")
+				.declareParameters(new SqlOutParameter("p_conductor", OracleTypes
+				.CURSOR,new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
 	}
+
+	@Override
+	public Map<String, Object> lispropietarios() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_CV_CRUD_VEHICULOS")
+				.withProcedureName("PR_LISTAR_NOMBRE")
+				.declareParameters(new SqlOutParameter("con", OracleTypes
+				.CURSOR,new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
+	}
+
+	@Override
+	public Map<String, Object> lisvehiculos() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS")
+				.withProcedureName("PR_LISTAR_NOMBRE")
+				.declareParameters(new SqlOutParameter("con", OracleTypes
+				.CURSOR,new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
+	}
+	
+	@Override
+	public Map<String, Object> list(int tipo) {
+		System.out.println("tipo: " + tipo);
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("pkg_cv_crud_requisitos")
+				.withProcedureName("pa_mat_requisitos_lis_por_tipo")
+				.declareParameters(new SqlOutParameter("req", OracleTypes
+				.CURSOR, new ColumnMapRowMapper()), 
+						new SqlParameter("p_tiporequisito", Types.INTEGER),
+						new SqlOutParameter("p_error",OracleTypes.INTEGER,new ColumnMapRowMapper()),
+						new SqlOutParameter("msgerror",OracleTypes.VARCHAR,new ColumnMapRowMapper()));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tiporequisito", tipo);
+		return simpleJdbcCall.execute(in);
+	}
+	
+
 }

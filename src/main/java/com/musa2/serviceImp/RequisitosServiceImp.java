@@ -16,15 +16,15 @@ public class RequisitosServiceImp implements RequisitosService{
 	@Autowired
 	private RequisitosDao requisitosDao;
 	@Override
-	public Map<String, Object> create(Requisitos requisito) {
+	public int create(Requisitos requisito) {
 		// TODO Auto-generated method stub
 		return requisitosDao.create(requisito);
 	}
 
 	@Override
-	public  Map<String, Object> update(Requisitos r) {
+	public int edit(Requisitos requisito) {
 		// TODO Auto-generated method stub
-		return requisitosDao.update(r);
+		return requisitosDao.edit(requisito);
 	}
 
 	@Override
@@ -40,16 +40,9 @@ public class RequisitosServiceImp implements RequisitosService{
 	}
 
 	@Override
-	public Map<String, Object> readAll() {
+	public Map<String, Object> lista() {
 		// TODO Auto-generated method stub
-		return requisitosDao.readAll();
-	}
-
-	@Override
-	public Map<String, Object> list(int tipo) {
-		// TODO Auto-generated method stub
-		System.out.println("llego al servicio " + tipo);
-		return requisitosDao.list(tipo);
+		return requisitosDao.lista();
 	}
 
 

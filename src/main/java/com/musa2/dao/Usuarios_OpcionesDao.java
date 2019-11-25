@@ -16,5 +16,4 @@ public interface Usuarios_OpcionesDao {
 	public Map<String, Object> opc2(int idopcion2);
 	public Map<String, Object> op3(int idopcion3);
 	
-	
 }
