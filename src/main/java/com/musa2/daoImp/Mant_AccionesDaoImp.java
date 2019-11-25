@@ -46,7 +46,7 @@ public class Mant_AccionesDaoImp implements Mant_AccionesDao {
 	}
 
 	@Override
-	public Map<String, Object> update(int id, Mant_Acciones m) {
+	public Map<String, Object> update(Mant_Acciones m) {
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withCatalogName("pkg_mant_crud_acciones").withProcedureName("pr_mat_actualizar_accion")
 				.declareParameters(new SqlParameter("p_idmantacciones",OracleTypes.INTEGER),
@@ -58,7 +58,7 @@ public class Mant_AccionesDaoImp implements Mant_AccionesDao {
 								   new SqlParameter("p_orden",OracleTypes.INTEGER),
 								   new SqlOutParameter("p_error",Types.INTEGER,new ColumnMapRowMapper()),
 								   new SqlOutParameter("msgerror",Types.VARCHAR,new ColumnMapRowMapper()));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idmantacciones", id)
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idmantacciones", m.getIdmantacciones())
 														   .addValue("p_idaccionpadre", m.getIdaccionpadre())
 														   .addValue("p_nombre", m.getNombre())
 														   .addValue("p_tipo", m.getTipo())
@@ -69,7 +69,7 @@ public class Mant_AccionesDaoImp implements Mant_AccionesDao {
 	}
 
 	@Override
-	public Map<String, Object> updateState(int id) {
+	public Map<String, Object> updateState(Mant_Acciones m) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("pr_mat_cambiar_estado").withCatalogName("pkg_mant_crud_acciones")
@@ -77,8 +77,8 @@ public class Mant_AccionesDaoImp implements Mant_AccionesDao {
 								   new SqlParameter("p_estado",Types.INTEGER),
 								   new SqlOutParameter("p_error",OracleTypes.INTEGER,new ColumnMapRowMapper()),
 								   new SqlOutParameter("msgerror",OracleTypes.VARCHAR,new ColumnMapRowMapper()));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idmantacciones", id)
-														   .addValue("p_estado", 0);
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idmantacciones", m.getIdmantacciones())
+														   .addValue("p_estado", m.getEstado());
 		return simpleJdbcCall.execute(in);
 	}
 
@@ -90,24 +90,7 @@ public class Mant_AccionesDaoImp implements Mant_AccionesDao {
 				.declareParameters(new SqlOutParameter("p_cursor",OracleTypes.CURSOR,new ColumnMapRowMapper()),
 								   new SqlParameter("p_tipo",Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipo", type);
-		System.out.println(type);
 		return simpleJdbcCall.execute(in);
-	}
-	
-	public Map<String, Object> readById(int id){
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-						 .withProcedureName("pr_mat_listar_por_id").withCatalogName("pkg_mant_crud_acciones")
-						 .declareParameters(new SqlParameter("p_idmantacciones", Types.INTEGER),
-								 			new SqlOutParameter("p_cursor", OracleTypes.CURSOR, new ColumnMapRowMapper()));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idmantacciones", id);
-		return simpleJdbcCall.execute(in);
-	}
-	
-	public Map<String, Object> readByCat(){
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-						 .withProcedureName("pr_mat_listar_categorias").withCatalogName("pkg_mant_crud_acciones")
-						 .declareParameters(new SqlOutParameter("p_cursor", OracleTypes.CURSOR, new ColumnMapRowMapper()));
-		return simpleJdbcCall.execute();
 	}
 
 }

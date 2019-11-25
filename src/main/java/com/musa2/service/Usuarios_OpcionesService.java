@@ -15,5 +15,5 @@ public interface Usuarios_OpcionesService {
 	public Map<String, Object> opcion1();
 	public Map<String, Object> opc2(int idopcion2);
 	public Map<String, Object> op3(int idopcion3);
-	
+
 }

@@ -6,8 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.musa2.entity.Rol_Usuarios;
-import com.musa2.entity.Roles;
 import com.musa2.entity.Usuarios;
 import com.musa2.dao.UsuariosDao;
 import com.musa2.service.UsuariosService;
@@ -46,10 +44,11 @@ public class UsuariosServiceImp implements UsuariosService {
 		return usuariosDao.readAll();
 	}
 
+
 	@Override
-	public int validar_login(Usuarios U) {
+	public Usuarios validarUsuario(String login) {
 		// TODO Auto-generated method stub
-		return usuariosDao.validar_login(U);
+		return null;
 	}
 
 	@Override
@@ -106,6 +105,17 @@ public class UsuariosServiceImp implements UsuariosService {
 		return usuariosDao.readUseN(login);
 	}
 
+	@Override
+	public Map<String, Object> datosUsuario(String login) {
+		// TODO Auto-generated method stub
+		return usuariosDao.datosUsuario(login);
+	}
+
+	/*@Override
+	public Map<String, Object> validar_login(Usuarios U) {
+		// TODO Auto-generated method stub
+		return usuariosDao.validar_login(U);
+	}*/
+
 
 }
-

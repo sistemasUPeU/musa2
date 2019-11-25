@@ -12,4 +12,8 @@ public interface VinculosService {
 	public Map<String, Object> read(int id);
 	public Map<String, Object> readAll(int tipo, int estado);
 	public List<Map<String, Object>> contar();
+	public Map<String, Object> lisconductores();
+	public Map<String, Object> lispropietarios();
+	public Map<String, Object> lisvehiculos();
+	public Map<String,Object> list(int tipo);
 }

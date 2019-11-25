@@ -14,8 +14,6 @@ public class VinculosRequisitosServiceImp implements VinculosRequisitosService{
 	@Autowired
 	private VinculosRequisitosDao vinculosrequisitos;
 
-	
-
 	@Override
 	public int update(int idvinculo,int idrequisito) {
 		// TODO Auto-generated method stub

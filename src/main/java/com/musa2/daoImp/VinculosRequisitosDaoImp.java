@@ -56,4 +56,5 @@ public class VinculosRequisitosDaoImp implements VinculosRequisitosDao{
 		return jdbcTemplate.update("call PKG_CV_CRUD_VINCULO_REQUISITO.pa_mat_vinculosrequisitos_del(?)", id);
 	}
 
+
 }

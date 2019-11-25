@@ -51,5 +51,31 @@ public class VinculosServiceImp implements VinculosService{
 		return vinculosDao.contar();
 	}
 
+
+	@Override
+	public Map<String, Object> lisconductores() {
+		// TODO Auto-generated method stub
+		return vinculosDao.lisconductores();
+	}
+
+	@Override
+	public Map<String, Object> lispropietarios() {
+		// TODO Auto-generated method stub
+		return vinculosDao.lispropietarios();
+	}
+
+	@Override
+	public Map<String, Object> lisvehiculos() {
+		// TODO Auto-generated method stub
+		return vinculosDao.lisvehiculos();
+	}
+
+	@Override
+	public Map<String, Object> list(int tipo) {
+		// TODO Auto-generated method stub
+		return vinculosDao.list(tipo);
+	}
+	
+	
 	
 }

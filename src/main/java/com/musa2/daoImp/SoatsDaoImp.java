@@ -24,84 +24,31 @@ public class SoatsDaoImp implements SoatsDao{
 	private JdbcTemplate jdbcTemplate;
   	private SimpleJdbcCall simpleJdbcCall;
 	@Override
-	public Map<String, Object> create(Soats so) {
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_CRUD_SOAT")
-				.withProcedureName("PR_CREAR_SOATS")
-				.declareParameters(
-						new SqlParameter("p_nrodocumento",Types.INTEGER), 
-						new SqlParameter("p_nropoliza", Types.INTEGER),
-						new SqlParameter("p_vigenciadesde", Types.DATE),
-						new SqlParameter("p_vigenciahasta", Types.DATE),
-						new SqlParameter("p_certificadodesde", Types.DATE),
-						new SqlParameter("P_certificadohasta", Types.DATE),
-						new SqlParameter("p_montoprima", Types.INTEGER),
-						new SqlParameter("p_aseguradora", Types.VARCHAR),
-						new SqlParameter("p_idvehiculo", Types.INTEGER),
-						new SqlParameter("p_estado", Types.INTEGER)
-						);
-		SqlParameterSource in = new MapSqlParameterSource()
-				.addValue("p_nrodocumento", so.getNrodocumento())
-				.addValue("p_nropoliza", so.getNropoliza())
-				.addValue("p_vigenciadesde", so.getVigenciadesde())
-				.addValue("p_vigenciahasta", so.getVigenciahasta())
-				.addValue("p_certificadodesde", so.getCertificadodesde())
-				.addValue("P_certificadohasta", so.getCertificadohasta())
-				.addValue("p_montoprima", so.getMontoprima())
-				.addValue("p_aseguradora", so.getAseguradora())
-				.addValue("p_idvehiculo", so.getIdvehiculo())
-				.addValue("p_estado", so.getEstado())
-				;
-		return simpleJdbcCall.execute(in);
-	}
-	@Override
-	public Map<String, Object> update(Soats so) {
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_CRUD_SOAT")
-				.withProcedureName("PR_ACTUALIZAR_SOATS")
-				.declareParameters(
-						new SqlParameter("p_idsoat",Types.INTEGER),
-						new SqlParameter("p_nrodocumento",Types.INTEGER), 
-						new SqlParameter("p_nropoliza", Types.INTEGER),
-						new SqlParameter("p_vigenciadesde", Types.DATE),
-						new SqlParameter("p_vigenciahasta", Types.DATE),
-						new SqlParameter("p_certificadodesde", Types.DATE),
-						new SqlParameter("P_certificadohasta", Types.DATE),
-						new SqlParameter("p_montoprima", Types.INTEGER),
-						new SqlParameter("p_aseguradora", Types.VARCHAR),
-						new SqlParameter("p_idvehiculo", Types.INTEGER),
-						new SqlParameter("p_estado", Types.INTEGER)
-						);
-		SqlParameterSource in = new MapSqlParameterSource()
-				.addValue("p_idsoat", so.getIdsoat())
-				.addValue("p_nrodocumento", so.getNrodocumento())
-				.addValue("p_nropoliza", so.getNropoliza())
-				.addValue("p_vigenciadesde", so.getVigenciadesde())
-				.addValue("p_vigenciahasta", so.getVigenciahasta())
-				.addValue("p_certificadodesde", so.getCertificadodesde())
-				.addValue("P_certificadohasta", so.getCertificadohasta())
-				.addValue("p_montoprima", so.getMontoprima())
-				.addValue("p_aseguradora", so.getAseguradora())
-				.addValue("p_idvehiculo", so.getIdvehiculo())
-				.addValue("p_estado", so.getEstado())
-				;
-		return simpleJdbcCall.execute(in);
-	}
-	@Override
-	public Map<String, Object> delete(int id) {
+	public int create(Soats so) {
 		// TODO Auto-generated method stub
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_CRUD_SOAT")
-				.withProcedureName("PR_ELIMINAR_SOAT")
-				.declareParameters(new SqlParameter("p_idsoat",Types.INTEGER));
-						       
-		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idsoat", id);
-		return simpleJdbcCall.execute(in);
+		return jdbcTemplate.update("call PKG_CV_CRUD_SOAT.PR_CREAR_SOATS(?,?,?,?,?,?,?,?,?,?);", so.getNrodocumento(), so.getNropoliza(),
+				so.getVigenciadesde(), so.getVigenciahasta(),so.getCertificadodesde(), so.getCertificadohasta(),
+				so.getMontoprima(), so.getAseguradora(), so.getIdvehiculo(),
+				so.getEstado());
+	}
+	@Override
+	public int update(Soats so) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.update("call PKG_CV_CRUD_SOAT.PR_ACTUALIZAR_SOATS(?,?,?,?,?,?,?,?,?,?,?);", so.getIdsoat(), so.getNrodocumento(), so.getNropoliza(),
+				so.getVigenciadesde(), so.getVigenciahasta(),so.getCertificadodesde(), so.getCertificadohasta(), so.getMontoprima(), 
+				so.getAseguradora(), so.getIdvehiculo(), so.getEstado());
+	}
+	@Override
+	public int delete(int id) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.update("call PKG_CV_CRUD_SOAT.PR_ELMINAR_SOATS(?);", id);
 	}
 	@Override
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("PR_LISTAR_SOATS_ID").withCatalogName("PKG_CV_CRUD_SOAT")
-				.declareParameters(
-						new SqlOutParameter("soat",OracleTypes.CURSOR,new ColumnMapRowMapper()), 
+				.declareParameters(new SqlOutParameter("soat",OracleTypes.CURSOR,new ColumnMapRowMapper()), 
 						new SqlParameter("P_IDSOAT", Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("P_IDSOAT", id);
 		return simpleJdbcCall.execute(in);
@@ -114,26 +61,6 @@ public class SoatsDaoImp implements SoatsDao{
 				.withCatalogName("PKG_CV_CRUD_SOAT")
 				.declareParameters(new SqlOutParameter("soat", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
-	}
-	@Override
-	public Map<String, Object> buscar(int id) {
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("PR_BUSCAR_SOATS").withCatalogName("PKG_CV_CRUD_SOAT")
-				.declareParameters(
-						new SqlOutParameter("P_CURSOR",OracleTypes.CURSOR,new ColumnMapRowMapper()), 
-						new SqlParameter("P_NRODOCUMENTO", Types.INTEGER));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NRODOCUMENTO", id);
-		return simpleJdbcCall.execute(in);
-	}
-	@Override
-	public Map<String, Object> estado(int id) {
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("PR_BUSCAR_ESTADO").withCatalogName("PKG_CV_CRUD_SOAT")
-				.declareParameters(
-						new SqlOutParameter("P_CURSOR",OracleTypes.CURSOR,new ColumnMapRowMapper()), 
-						new SqlParameter("P_ESTADO", Types.INTEGER));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("P_ESTADO", id);
-		return simpleJdbcCall.execute(in);
 	}
     
 }
