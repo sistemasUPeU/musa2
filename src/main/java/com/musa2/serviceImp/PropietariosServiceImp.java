@@ -1,4 +1,5 @@
 package com.musa2.serviceImp;
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,26 +11,15 @@ import com.musa2.entity.Propietarios;
 import com.musa2.service.PropietariosService;
 @Service
 public class PropietariosServiceImp implements PropietariosService{
-     @Autowired
+	 @Autowired
      private PropietariosDao propietariosDao;
-	@Override
-	public int create(Propietarios p) {
-		// TODO Auto-generated method stub
-		return propietariosDao.create(p);
-	}
-
-	@Override
-	public int update(Propietarios p) {
-		// TODO Auto-generated method stub
-		return propietariosDao.update(p);
-	}
 
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
 		return propietariosDao.delete(id);
 	}
-
+	
 	@Override
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub
@@ -41,5 +31,30 @@ public class PropietariosServiceImp implements PropietariosService{
 		// TODO Auto-generated method stub
 		return propietariosDao.readAll();
 	}
+
+	@Override
+	public Map<String, Object> create(Propietarios p) {
+		// TODO Auto-generated method stub
+		return  propietariosDao.create(p);
+	}
+
+	@Override
+	public Map<String, Object> update(Propietarios p) {
+		// TODO Auto-generated method stub
+		return propietariosDao.update(p);
+	}
+
+	@Override
+	public Map<String, Object> search(String nombre) {
+		// TODO Auto-generated method stub
+		return propietariosDao.search(nombre);
+	}
+
+	@Override
+	public Map<String, Object> readnom() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

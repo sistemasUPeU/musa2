@@ -1,59 +1,63 @@
 package com.musa2.serviceImp;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.musa2.dao.PersonasDao;
-import com.musa2.entity.Personas;
-import com.musa2.service.PersonasService;
+
+import com.musa2.dao.CursosDao;
+import com.musa2.entity.Cursos;
+import com.musa2.service.CursosService;
+
 @Service
-public class PersonasServiceImp implements PersonasService {
+public class CursosServiceImp implements CursosService {
 	@Autowired
-	private PersonasDao personasDao;
-	
+	private CursosDao cursosDao;
+
 	@Override
-	public int create(Personas P) {
+	public int create(Cursos cursos) {
 		// TODO Auto-generated method stub
-		return personasDao.create(P);
+		return cursosDao.create(cursos);
 	}
 
 	@Override
-	public int update(Personas P) {
+	public int update(Cursos cursos) {
 		// TODO Auto-generated method stub
-		return personasDao.update(P);
+		return cursosDao.update(cursos);
 	}
 
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return personasDao.delete(id);
+		return cursosDao.delete(id);
 	}
 
 	@Override
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub
-		return personasDao.read(id);
+		return cursosDao.read(id);
 	}
+
+
 
 	@Override
 	public Map<String, Object> readAll() {
 		// TODO Auto-generated method stub
-		return personasDao.readAll();
+		return cursosDao.readAll();
+	}
+	@Override
+	public Map<String, Object> read(String nombrecurso) {
+		// TODO Auto-generated method stub
+		return cursosDao.read(nombrecurso);
 	}
 
 	@Override
-	public Map<String, Object> findPersonasByDocumento(int nrodoc) {
+	public Map<String, Object> findCursosByNombre(int nombrecurso) {
 		// TODO Auto-generated method stub
-		return personasDao.findPersonasByDocumento(nrodoc);
+		return cursosDao.findCursosByNombre(nombrecurso);
 	}
 
-	@Override
-	public Map<String, Object> getPersonaId() {
-		// TODO Auto-generated method stub
-		return personasDao.getPersonaId();
-	}
+
 
 }
