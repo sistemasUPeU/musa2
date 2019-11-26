@@ -14,19 +14,19 @@ public class Tarj_CirculacionServiceImp implements Tarj_CirculacionService{
     @Autowired 
     private Tarj_CirculacionDao tarj_circulacionDao;
 	@Override
-	public int create(Tarj_Circulacion tar) {
+	public Map<String, Object> create(Tarj_Circulacion tar) {
 		// TODO Auto-generated method stub
 		return tarj_circulacionDao.create(tar);
 	}
 
 	@Override
-	public int update(Tarj_Circulacion tar) {
+	public Map<String, Object> update(Tarj_Circulacion tar) {
 		// TODO Auto-generated method stub
 		return tarj_circulacionDao.update(tar);
 	}
 
 	@Override
-	public int delete(int id) {
+	public Map<String, Object> delete(int id) {
 		// TODO Auto-generated method stub
 		return tarj_circulacionDao.delete(id);
 	}
@@ -41,6 +41,18 @@ public class Tarj_CirculacionServiceImp implements Tarj_CirculacionService{
 	public Map<String, Object> readAll() {
 		// TODO Auto-generated method stub
 		return tarj_circulacionDao.readAll();
+	}
+
+	@Override
+	public Map<String, Object> buscar(int nrodocumento) {
+		
+		return tarj_circulacionDao.buscar(nrodocumento);
+	}
+
+	@Override
+	public Map<String, Object> listest(int estado) {
+		// TODO Auto-generated method stub
+		return tarj_circulacionDao.listest(estado);
 	}
  
 }
