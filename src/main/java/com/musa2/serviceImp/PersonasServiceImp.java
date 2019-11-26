@@ -49,11 +49,18 @@ public class PersonasServiceImp implements PersonasService {
 		// TODO Auto-generated method stub
 		return personasDao.findPersonasByDocumento(nrodoc);
 	}
+<<<<<<< HEAD
+=======
 
+>>>>>>> b3cd2dfb6e61616a97c94b77376a4e6697f3664a
 	@Override
 	public Map<String, Object> getPersonaId() {
 		// TODO Auto-generated method stub
 		return personasDao.getPersonaId();
 	}
+<<<<<<< HEAD
+	
+=======
 
+>>>>>>> b3cd2dfb6e61616a97c94b77376a4e6697f3664a
 }
