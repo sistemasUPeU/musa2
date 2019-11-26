@@ -32,9 +32,9 @@ public class Mant_AccionesController {
 	}
 	
 	@Secured("ROLE_ADMIN")
-	@PutMapping("/")
-	public Map<String, Object> update(@RequestBody Mant_Acciones m){
-		return mant_accionesService.update(m);
+	@PutMapping("/{id}")
+	public Map<String, Object> update(@PathVariable int id, @RequestBody Mant_Acciones m){
+		return mant_accionesService.update(id, m);
 	}
 	
 	@Secured("ROLE_ADMIN")
@@ -44,9 +44,21 @@ public class Mant_AccionesController {
 	}
 	
 	@Secured("ROLE_ADMIN")
-	@GetMapping("/state")
-	public Map<String, Object> updateState(@RequestBody Mant_Acciones m){
-		return mant_accionesService.updateState(m);
+	@GetMapping("/state/{id}")
+	public Map<String, Object> updateState(@PathVariable int id){
+		return mant_accionesService.updateState(id);
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/edit/{id}")
+	public Map<String, Object> readById(@PathVariable int id){
+		return mant_accionesService.readById(id);
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/cat")
+	public Map<String, Object> readByCat(){
+		return mant_accionesService.readByCat();
 	}
 	
 }
