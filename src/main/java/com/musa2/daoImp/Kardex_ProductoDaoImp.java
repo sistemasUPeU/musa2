@@ -24,8 +24,8 @@ public class Kardex_ProductoDaoImp implements Kardex_ProductoDao{
 private JdbcTemplate jdbcTemplate;
 private SimpleJdbcCall simpleJdbcCall;
 	@Override
-	public int create(Kardex_Producto kar) {
-		// TODO Auto-generated method stub
+	public int create(Kardex_Producto kar) { 
+		// TODO Auto-generated method stude
 		return jdbcTemplate.update("call PKG_KARDEX_PRODUCTO.PR_CREAR_KARDEX_PRODUCTO(?,?,?,?,?)", kar.getPreciounitario(),kar.getPreciototal(),kar.getCantidad(),kar.getIdproducto(),kar.getIdkardex());
 	}
 
@@ -58,6 +58,27 @@ private SimpleJdbcCall simpleJdbcCall;
 				.withProcedureName("PR_LISTAR_KARDEX_PRODUCTO")		
 				.withCatalogName("PKG_KARDEX_PRODUCTO")
 				.declareParameters(new SqlOutParameter("kardpro",OracleTypes.CURSOR, new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
+	}
+
+	@Override
+	public Map<String, Object> getProductoByKardexId(long idKarProd) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall  = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PD_LIST_PROD_NCOMPRO")
+				.withCatalogName("PKG_KARDEX_PRODUCTO")
+				.declareParameters(new SqlOutParameter("kardpro", OracleTypes.CURSOR, new ColumnMapRowMapper()), new SqlParameter("P_IDKARDEX", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_IDKARDEX", idKarProd);
+		return simpleJdbcCall.execute(in);
+	}
+
+	@Override
+	public Map<String, Object> getAllProductos() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall  = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("PD_LIST_ALL_PROD")
+				.withCatalogName("PKG_KARDEX_PRODUCTO")
+				.declareParameters(new SqlOutParameter("kardpro", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
 	

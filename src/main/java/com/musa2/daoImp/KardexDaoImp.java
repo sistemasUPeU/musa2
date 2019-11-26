@@ -1,6 +1,5 @@
 package com.musa2.daoImp;
 
-<<<<<<< HEAD
 import java.util.Date;
 import java.sql.Types;
 import java.text.SimpleDateFormat;
@@ -43,7 +42,8 @@ private SimpleJdbcCall simpleJdbcCall;
 		
 				                                                                           
 		
-		 return jdbcTemplate.update("call PKG_CRUD_KARDEX.PR_CREAR_KARDEX(?,?,?,?,?,?,?,?,?,?,?,?)",String.valueOf(kar.getTipomovimiento()),kar.getConcepto(),kar.getEstado(),kar.getFecha(),kar.getNrocomprobante(),kar.getNroserie(),kar.getUsercreate(),
+		 return jdbcTemplate.update("call PKG_CRUD_KARDEX.PR_CREAR_KARDEX(?,?,?,?,?,?,?,?,?,?,?,?)",
+				 String.valueOf(kar.getTipomovimiento()),kar.getConcepto(),kar.getEstado(),kar.getFecha(),kar.getNrocomprobante(),kar.getNroserie(),kar.getUsercreate(),
 				                                                                            kar.getDatecreate(),kar.getIdtipocomprobante(),kar.getIdempleado(),kar.getIdpedido(),kar.getError());
 		 
 	}
@@ -104,8 +104,4 @@ private SimpleJdbcCall simpleJdbcCall;
 		
 		return simpleJdbcCall.execute(sqlParameterSource);
 	}
-=======
-public class KardexDaoImp {
->>>>>>> 543777c207557e7f0333038c3ee2fecdece52641
-
 }

@@ -50,6 +50,18 @@ public class Kardex_ProductoServiceImp implements Kardex_ProductoService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Map<String, Object> getProductoByKardexId(long idKarProd) {
+		// TODO Auto-generated method stub
+		return kpdao.getProductoByKardexId(idKarProd);
+	}
+
+	@Override
+	public Map<String, Object> getAllProductos() {
+		// TODO Auto-generated method stub
+		return kpdao.getAllProductos();
+	}
 	
 
 }

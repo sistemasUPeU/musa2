@@ -13,4 +13,6 @@ public interface Kardex_ProductoService {
 	public Map<String,Object> read(int id);
 	public Map<String, Object> readAll();
 	public Map<String, Object> findKardexByComprobante(int nrocomprobante);
+	public Map<String, Object> getProductoByKardexId(long idKarProd);
+	public Map<String, Object> getAllProductos();
 }

@@ -48,15 +48,10 @@ private PersonasDao personasDao;
 		// TODO Auto-generated method stub
 		return personasDao.findUbigeoByDocumento(nrodoc);
 	}
-
-<<<<<<< HEAD
-=======
 	@Override
 	public Map<String, Object> readAllId() {
 		// TODO Auto-generated method stub
 		return personasDao.readAllId();
 	}
-
->>>>>>> 543777c207557e7f0333038c3ee2fecdece52641
 	
 }

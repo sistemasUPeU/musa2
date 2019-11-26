@@ -2,11 +2,11 @@ package com.musa2.entity;
 
 public class Kardex_Producto {
  private int idkardex_producto;
- private Productos idproducto;
+ private int idproducto;
  private int preciounitario;
  private int preciototal;
  private int cantidad;
- private Kardex idkardex;
+ private int idkardex;
  
  
 public Kardex_Producto() {
@@ -14,10 +14,22 @@ public Kardex_Producto() {
 }
 
 
-public Kardex_Producto(int idkardex_producto, Productos idproducto, int preciounitario, int preciototal, int cantidad,
-		Kardex idkardex) {
+public Kardex_Producto(int idkardex_producto, int idproducto, int preciounitario, int preciototal, int cantidad,
+		int idkardex) {
 	super();
 	this.idkardex_producto = idkardex_producto;
+	this.idproducto = idproducto;
+	this.preciounitario = preciounitario;
+	this.preciototal = preciototal;
+	this.cantidad = cantidad;
+	this.idkardex = idkardex;
+}
+
+
+
+
+public Kardex_Producto(int idproducto, int preciounitario, int preciototal, int cantidad, int idkardex) {
+	super();
 	this.idproducto = idproducto;
 	this.preciounitario = preciounitario;
 	this.preciototal = preciototal;
@@ -36,12 +48,12 @@ public void setIdkardex_producto(int idkardex_producto) {
 }
 
 
-public Productos getIdproducto() {
+public int getIdproducto() {
 	return idproducto;
 }
 
 
-public void setIdproducto(Productos idproducto) {
+public void setIdproducto(int idproducto) {
 	this.idproducto = idproducto;
 }
 
@@ -76,12 +88,12 @@ public void setCantidad(int cantidad) {
 }
 
 
-public Kardex getIdkardex() {
+public int getIdkardex() {
 	return idkardex;
 }
 
 
-public void setIdkardex(Kardex idkardex) {
+public void setIdkardex(int idkardex) {
 	this.idkardex = idkardex;
 }
 

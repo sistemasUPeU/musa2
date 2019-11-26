@@ -97,7 +97,6 @@
     <artifactId>spring-security-config</artifactId>
     <version>5.2.0.RELEASE</version>
   </dependency>
-  
 
 	</dependencies>
 
