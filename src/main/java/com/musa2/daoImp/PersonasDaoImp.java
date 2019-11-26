@@ -17,62 +17,65 @@ import com.musa2.dao.PersonasDao;
 import com.musa2.entity.Personas;
 
 import oracle.jdbc.OracleTypes;
+
 @Repository
 public class PersonasDaoImp implements PersonasDao {
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	private SimpleJdbcCall simpleJdbcCall;
+@Autowired
+private JdbcTemplate jdbcTemplate;
+private SimpleJdbcCall simpleJdbcCall;
 	@Override
-	public int create(Personas P) {
-		
-		return  jdbcTemplate.update("call PKG_CRUD_personas.PR_CREAR_PERSONAS(?,?,?,?,?,?,?,?,?,?,?,?);",P.getNombre(),P.getApellido(),P.getTipodoc(),P.getNrodoc(),P.getSexo(),P.getFechanac(),
-				P.getDireccion(),P.getEstado(),P.getTelefono(),P.getUsercreate(),P.getDatecreate(),P.getIdubigeo());
+	public int create(Personas per) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.update("call PKG_CRUD_PERSONAS.PR_CREAR_PERSONAS(?,?,?,?,?,?,?,?,?,?,?,?,?)",per.getNombre(),per.getApellido(),
+				per.getTipodoc(),per.getNrodoc(),per.getSexo(),per.getFechanac(),per.getDireccion(),per.getEstado(),per.getTelefono(),per.getUsercreate(),per.getDatecreate(),per.getIdubigeo(),per.getError());
 	}
 
 	@Override
-	public int update(Personas P) {
-		
-		return jdbcTemplate.update("call PKG_CRUD_personas.PR_ACTUALIZAR_PERSONAS(?,?,?,?,?,?,?,?,?,?,?,?,?)",P.getIdpersona(),P.getNombre(),P.getApellido(),P.getTipodoc(),P.getNrodoc(),P.getSexo(),P.getFechanac(),
-				P.getDireccion(),P.getEstado(),P.getTelefono(),P.getUsermodify(),P.getDatemodify(),P.getIdubigeo());
+	public int update(Personas per) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.update("call PKG_CRUD_PERSONAS.PR_ACTUALIZAR_PERSONAS(?,?,?,?,?,?,?,?,?,?,?,?,?)",per.getIdpersonas(),per.getNombre(),per.getApellido(),per.getTipodoc(),per.getNrodoc(),
+				per.getSexo(),per.getFechanac(),per.getDireccion(),per.getEstado(),per.getTelefono(),per.getUsermodify(),per.getDatemodify(),per.getIdubigeo());
 	}
 
 	@Override
 	public int delete(int id) {
-		
-		return jdbcTemplate.update("call PKG_CRUD_personas.PR_ELIMINAR_PERSONAS(?)",id);
+		// TODO Auto-generated method stub
+		return jdbcTemplate.update("call PKG_CRUD_PERSONAS.PR_ELIMINAR_PERSONAS(?)",id);
 	}
 
 	@Override
-	public Map<String,Object> read(int id) {
+	public Map<String, Object> read(int id) {
+		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("PR_LISTAR_PERSONAS_ID").withCatalogName("PKG_CRUD_personas")
-				.declareParameters(new SqlOutParameter("pers",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_IDPERSONA", Types.INTEGER));
+				.withProcedureName("PR_LISTAR_PERSONAS_ID").withCatalogName("PKG_CRUD_PERSONAS")
+				.declareParameters(new SqlOutParameter("pers",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_IDPERSONA", Types.INTEGER)); 
 		SqlParameterSource in = new MapSqlParameterSource().addValue("P_IDPERSONA", id);
-		return simpleJdbcCall.execute(in);
+		return  simpleJdbcCall.execute(in);
 	}
 
 	@Override
 	public Map<String, Object> readAll() {
+		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("PR_LISTAR_PERSONAS")
-				.withCatalogName("PKG_CRUD_personas")
+				.withCatalogName("PKG_CRUD_PERSONAS")
 				.declareParameters(new SqlOutParameter("pers", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
 
 	@Override
-	public Map<String, Object> findPersonasByDocumento(int nrodoc) {
+	public Map<String, Object> findUbigeoByDocumento(int nrodoc) {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("PR_BUSCAR_PERSONAS")
-				.withCatalogName("PKG_CRUD_personas")
+				.withCatalogName("PKG_CRUD_PERSONAS")
 				.declareParameters(new SqlOutParameter("pers", OracleTypes.CURSOR, new ColumnMapRowMapper()));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NRODOC",nrodoc );		
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NRODOC",nrodoc);
 		return simpleJdbcCall.execute(in);
 	}
 
 	@Override
-	public Map<String, Object> getPersonaId() {
+	public Map<String, Object> readAllId() {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("PR_LIS_PER_X_ID")

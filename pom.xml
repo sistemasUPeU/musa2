@@ -82,9 +82,6 @@
 			<artifactId>guava</artifactId>
 			<version>27.1-jre</version>
 		</dependency>
-<<<<<<< HEAD
-=======
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -121,13 +118,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
 		</dependency>
->>>>>>> b3cd2dfb6e61616a97c94b77376a4e6697f3664a
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc7</artifactId>
 			<version>12.1.0</version>
 		</dependency>
-<<<<<<< HEAD
 		<dependency>	
     		<groupId>com.oracle</groupId>
     		<artifactId>ojdbc7</artifactId>
@@ -138,7 +133,6 @@
     <artifactId>spring-security-web</artifactId>
     <version>5.2.0.RELEASE</version>
   </dependency>
-=======
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
@@ -149,7 +143,6 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>5.2.0.RELEASE</version>
 		</dependency>
->>>>>>> b3cd2dfb6e61616a97c94b77376a4e6697f3664a
 	</dependencies>
 
 	<build>

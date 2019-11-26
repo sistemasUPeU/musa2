@@ -13,5 +13,6 @@ public interface MantenimientoService {
     public Map<String, Object> read(int id); 
     public List<Map<String, Object>> readAll(); 
     public Map<String, Object> readAllByMantId(int id);
+    public Map<String, Object> updateDetaState(int idm, int ida, int sta);
 	
 }
