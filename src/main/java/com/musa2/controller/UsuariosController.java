@@ -26,28 +26,28 @@ public class UsuariosController {
 @Autowired
 	private UsuariosService usuariosService;
 	
-     @Secured("ROLE_ADMIN")
+    @Secured("ROLE_ADMIN")
 	@GetMapping("/")
 	public Map<String, Object> readAll() {
 		return usuariosService.readAll();
 	}
- 	
+     @Secured("ROLE_ADMIN")
  	@GetMapping("/per/")
  	public Map<String, Object> readPer() {
  		return usuariosService.readPer();
  	}
- 	
+ 	@Secured("ROLE_ADMIN")
  	@GetMapping("/per/{nombre}")
  	public Map<String,Object> readPerN(@PathVariable String nombre) {		
  		return usuariosService.readPerN(nombre);
  	}
  	
-
+ 	@Secured("ROLE_ADMIN")
  	@GetMapping("/use/")
  	public Map<String, Object> readUse() {
  		return usuariosService.readUse();
  	}
- 	
+ 	@Secured("ROLE_ADMIN")
  	@GetMapping("/use/{login}")
  	public Map<String,Object> readUseN(@PathVariable String login) {		
  		return usuariosService.readUseN(login);
@@ -57,28 +57,28 @@ public class UsuariosController {
 	public Map<String,Object> read1(@PathVariable int id) {		
 		return usuariosService.read(id);
 	}
-	
+    @Secured("ROLE_ADMIN")
 	@GetMapping("/nombre/{nombre}")
 	public Map<String,Object> readN(@PathVariable String nombre) {		
 		return usuariosService.readN(nombre);
 	}
-	
+    @Secured("ROLE_ADMIN")
 	@GetMapping("/estado/{estado}")
 	public Map<String,Object> readE(@PathVariable int estado) {		
 		return usuariosService.readE(estado);
 	}
-	
+    @Secured("ROLE_ADMIN")
 	@GetMapping("/rol/{rol}")
 	public Map<String,Object> readR(@PathVariable String rol) {		
 		return usuariosService.readR(rol);
 	}
 	
-
+    @Secured("ROLE_ADMIN")
 	@GetMapping("/user/")
 	public Map<String,Object> readUser() {		
 		return usuariosService.readUser();
 	}
-	
+    @Secured("ROLE_ADMIN")
 	@GetMapping("/rolus/")
 	public Map<String,Object> readRolus() {		
 		return usuariosService.readRolus();
