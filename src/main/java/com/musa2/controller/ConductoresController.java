@@ -24,39 +24,33 @@ import com.musa2.service.ConductoresService;
 public class ConductoresController {
 	@Autowired
     private ConductoresService conductoresService;
-	
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/")
 	public Map<String,Object> get(){
 		return conductoresService.readAll();
 	}
-	
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/lis/")
 	public Map<String,Object> lis(){
 		return conductoresService.lis();
 	}
-	
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/add")
 	public Map<String, Object> save(@RequestBody Conductores c) {		
 		return conductoresService.create(c);
 		
 	}
-	
 	@Secured("ROLE_ADMIN")
 	@PutMapping("/D")
 	public Map<String, Object> delete(@RequestBody Conductores c) {		
 	 return conductoresService.delete(c);
 	}
-	
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/{id}")
 	public Map<String,Object> read(@PathVariable int id) {		
 		return conductoresService.read(id);
 		
 	}
-	
 	@Secured("ROLE_ADMIN")
 	@PutMapping("/{id}")
 	public Map<String, Object> update(@RequestBody Conductores c, @PathVariable int id) {
@@ -65,14 +59,12 @@ public class ConductoresController {
 		
 		
 	}
-	
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/P/{code}")
 	public Map<String,Object> code(@PathVariable int code) {		
 		return conductoresService.code(code);
 		
 	}
-	
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/Po/{est}")
 	public Map<String,Object> est(@PathVariable int est) {		
