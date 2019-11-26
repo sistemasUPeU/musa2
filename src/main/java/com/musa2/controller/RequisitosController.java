@@ -23,12 +23,12 @@ public class RequisitosController {
 	private RequisitosService requisitosService;
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/")
-	public Map<String,Object> get(){
-		return requisitosService.lista();
+	public Map<String,Object> get(int tipo){
+		return requisitosService.list(tipo);
 	}
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/add")
-	public int save(@RequestBody Requisitos requisito) {		
+	public Map<String ,Object> create(@RequestBody Requisitos requisito) {		
 		return requisitosService.create(requisito);		
 	}
 	@Secured("ROLE_ADMIN")
@@ -43,8 +43,8 @@ public class RequisitosController {
 	}
 	@Secured("ROLE_ADMIN")
 	@PutMapping("/{id}")
-	public int update1(@RequestBody Requisitos req, @PathVariable int id) {
+	public Map<String, Object> update1(@RequestBody Requisitos req, @PathVariable int id) {
 		req.setIdrequisito(id);;
-		return requisitosService.edit(req);
+		return requisitosService.update(req);
 	}
 }
