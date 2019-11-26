@@ -51,4 +51,10 @@ public class RequisitosServiceImp implements RequisitosService{
 		System.out.println("llego al servicio " + tipo);
 		return requisitosDao.list(tipo);
 	}
+
+	@Override
+	public Map<String, Object> buscar_tipo(String tiporequisito) {
+		// TODO Auto-generated method stub
+		return requisitosDao.buscar_tipo(tiporequisito);
+	}
 }

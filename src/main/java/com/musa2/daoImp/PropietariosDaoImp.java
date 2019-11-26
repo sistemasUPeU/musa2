@@ -71,7 +71,7 @@ public class PropietariosDaoImp implements PropietariosDao{
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("PR_LISTAR_PROPIETARIOS")
 				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS")
-				.declareParameters(new SqlOutParameter("pro", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+				.declareParameters(new SqlOutParameter("P_CURSOR", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
 	}
 	@Override

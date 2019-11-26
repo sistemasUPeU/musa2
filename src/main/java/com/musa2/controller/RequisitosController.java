@@ -23,8 +23,8 @@ public class RequisitosController {
 	private RequisitosService requisitosService;
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/")
-	public Map<String,Object> get(int tipo){
-		return requisitosService.list(tipo);
+	public Map<String,Object> get(){
+		return requisitosService.readAll();
 	}
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/add")
@@ -32,8 +32,8 @@ public class RequisitosController {
 		return requisitosService.create(requisito);		
 	}
 	@Secured("ROLE_ADMIN")
-	@DeleteMapping("/{id}")
-	public int delete1(@PathVariable int id) {		
+	@PutMapping("/modif/{id}")
+	public int deleteRequisitos(@PathVariable int id) {		
 		return requisitosService.delete(id);
 	}
 	@Secured("ROLE_ADMIN")
@@ -42,9 +42,19 @@ public class RequisitosController {
 		return requisitosService.read(id);
 	}
 	@Secured("ROLE_ADMIN")
-	@PutMapping("/{id}")
-	public Map<String, Object> update1(@RequestBody Requisitos req, @PathVariable int id) {
-		req.setIdrequisito(id);;
-		return requisitosService.update(req);
+	@PutMapping("/")
+	public Map<String, Object> updateRequisitos(@RequestBody Requisitos r) {
+		return requisitosService.update(r);
+	}
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/lis/{tipo}")
+	public Map<String,Object> lis(@PathVariable int tipo) {
+		System.out.println("tipo : " + tipo);
+		return requisitosService.list(tipo);
+	}
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/tiporeq/{tiporequisito}")
+	public Map<String,Object> searchTipoRequisito(@PathVariable String tiporequisito) {
+		return requisitosService.buscar_tipo(tiporequisito);
 	}
 }
