@@ -3,6 +3,7 @@ package com.musa2.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,22 +21,27 @@ import com.musa2.service.RequisitosService;
 public class RequisitosController {
 	@Autowired
 	private RequisitosService requisitosService;
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/")
 	public Map<String,Object> get(){
 		return requisitosService.lista();
 	}
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/add")
 	public int save(@RequestBody Requisitos requisito) {		
 		return requisitosService.create(requisito);		
 	}
+	@Secured("ROLE_ADMIN")
 	@DeleteMapping("/{id}")
 	public int delete1(@PathVariable int id) {		
 		return requisitosService.delete(id);
 	}
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/{id}")
 	public Map<String,Object> read1(@PathVariable int id) {		
 		return requisitosService.read(id);
 	}
+	@Secured("ROLE_ADMIN")
 	@PutMapping("/{id}")
 	public int update1(@RequestBody Requisitos req, @PathVariable int id) {
 		req.setIdrequisito(id);;

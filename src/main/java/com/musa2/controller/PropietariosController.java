@@ -28,21 +28,29 @@ public class PropietariosController {
   	public Map<String,Object> getPropietarios(){
   		return propietariosService.readAll();
   	}
+    @Secured("ROLE_ADMIN")
   	@PostMapping("/add")
-  	public int save(@RequestBody Propietarios propietarios) {		
+  	public Map<String, Object> save(@RequestBody Propietarios propietarios) {		
   		return propietariosService.create(propietarios);		
   	}
-  	@DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
+  	@PutMapping("/modif/{id}")
   	public int deletePropietarios(@PathVariable int id) {		
   		return propietariosService.delete(id);
   	}
+    @Secured("ROLE_ADMIN")
   	@GetMapping("/{id}")
   	public Map<String,Object> readPropietarios(@PathVariable int id) {		
   		return propietariosService.read(id);
   	}
-  	@PutMapping("/{id}")
-  	public int updatePropietarios(@RequestBody Propietarios pro, @PathVariable int id) {
-  		pro.setIdpropietario(id);
+    @Secured("ROLE_ADMIN")
+  	@PutMapping("/")
+  	public Map<String, Object> updatePropietarios(@RequestBody Propietarios pro) {
   		return propietariosService.update(pro);
+  	}
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/nombre/{nombre}")
+  	public Map<String,Object> searchNombre(@PathVariable String nombre){
+  		return propietariosService.search(nombre);
   	}
 }
