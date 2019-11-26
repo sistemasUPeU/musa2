@@ -95,4 +95,11 @@ public class MantenimientoController {
 		return mantenimientoService.updateDetaState(idm, ida, 0);
 	}
 	
+	@GetMapping("/update/detalle/man={idm}/acc={ida}/sta={sta}")
+	public Map<String, Object> updateDetalle(@PathVariable int idm,
+											@PathVariable int ida,
+											@PathVariable int sta){
+		return mantenimientoService.updateDetaState(idm, ida, sta);
+	}
+	
 }
