@@ -108,7 +108,7 @@ public class RequisitosDaoImp implements RequisitosDao{
 				.withProcedureName("pa_mat_buscar_tiporequisito")
 				.declareParameters(new SqlOutParameter("p_cur_tiporequisito", OracleTypes
 				.CURSOR, new ColumnMapRowMapper()), 
-						new SqlParameter("p_tiporequisito", Types.INTEGER));
+						new SqlParameter("p_tiporequisito", Types.VARCHAR));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tiporequisito", tiporequisito);
 		return simpleJdbcCall.execute(in);
 	}
