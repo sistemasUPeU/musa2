@@ -3,6 +3,7 @@ package com.musa2.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,26 +25,27 @@ public class Kardex_ProductoController {
 	@Autowired
 	private Kardex_ProductoService kps;
 	
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/listar")
 	public Map<String, Object> readAll() {
 		return kps.readAll();
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/add-kardex-producto")
 	public int save(@RequestBody Kardex_Producto kar) {
 		return kps.create(kar);
 	}
+	@Secured("ROLE_ADMIN")
 	@DeleteMapping("/kard/{id}")
 	public int delete1(@PathVariable int id) {
 	return kps.delete(id);
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/listar-prod-kardex/{id}")
 	public Map<String, Object> listarProductoByKardexId(@PathVariable("id") int idkardex) {
 		return kps.getProductoByKardexId(idkardex);
 	}
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/listar-todos-productos")
 	public Map<String, Object> getAllProductos() {
 		return kps.getAllProductos();
