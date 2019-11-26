@@ -51,6 +51,4 @@ public class RequisitosServiceImp implements RequisitosService{
 		System.out.println("llego al servicio " + tipo);
 		return requisitosDao.list(tipo);
 	}
-
-
 }

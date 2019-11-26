@@ -18,7 +18,6 @@ import com.musa2.dao.RequisitosDao;
 import com.musa2.entity.Requisitos;
 
 import oracle.jdbc.OracleTypes;
-import oracle.net.aso.e;
 
 @Repository
 public class RequisitosDaoImp implements RequisitosDao{
@@ -100,6 +99,5 @@ public class RequisitosDaoImp implements RequisitosDao{
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tiporequisito", tipo);
 		return simpleJdbcCall.execute(in);
 	}
-
 
 }

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,34 +25,28 @@ public class Mant_AccionesController {
 	@Autowired
 	private Mant_AccionesService mant_accionesService;
 	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/")
 	public Map<String, Object> create(@RequestBody Mant_Acciones m){
 		return mant_accionesService.create(m);
 	}
 	
-	@PutMapping("/{id}")
-	public Map<String, Object> update(@PathVariable int id, @RequestBody Mant_Acciones m){
-		return mant_accionesService.update(id, m);
+	@Secured("ROLE_ADMIN")
+	@PutMapping("/")
+	public Map<String, Object> update(@RequestBody Mant_Acciones m){
+		return mant_accionesService.update(m);
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/{type}")
 	public Map<String, Object> read(@PathVariable int type){
 		return mant_accionesService.readAllByType(type);
 	}
 	
-	@GetMapping("/state/{id}")
-	public Map<String, Object> updateState(@PathVariable int id){
-		return mant_accionesService.updateState(id);
-	}
-	
-	@GetMapping("/edit/{id}")
-	public Map<String, Object> readById(@PathVariable int id){
-		return mant_accionesService.readById(id);
-	}
-	
-	@GetMapping("/cat")
-	public Map<String, Object> readByCat(){
-		return mant_accionesService.readByCat();
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/state")
+	public Map<String, Object> updateState(@RequestBody Mant_Acciones m){
+		return mant_accionesService.updateState(m);
 	}
 	
 }

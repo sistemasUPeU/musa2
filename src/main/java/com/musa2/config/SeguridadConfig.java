@@ -1,0 +1,79 @@
+<<<<<<< HEAD
+=======
+package com.musa2.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.musa2.serviceImp.UserLogin;
+
+
+
+@Configuration
+@EnableWebSecurity
+public class SeguridadConfig extends WebSecurityConfigurerAdapter{
+	@Autowired
+	private UserLogin userLogin;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		return bCryptPasswordEncoder;
+	}
+	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		// TODO Auto-generated method stub
+		auth.userDetailsService(userLogin).passwordEncoder(passwordEncoder);
+	}
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		// TODO Auto-generated method stub
+		http
+		.csrf().disable()
+		.authorizeRequests()
+		.antMatchers("/usuarios/**").permitAll()
+		.antMatchers("/requisitos/**").permitAll()
+		.antMatchers("/vehiculos/**").permitAll()
+		.antMatchers("/productos/**").permitAll()	
+		.antMatchers("/prodcategorias/**").permitAll()
+		.antMatchers("/prodmarcas/**").permitAll()
+		.antMatchers("/produnidadmed/**").permitAll()
+		.antMatchers("/rolesopciones/**").permitAll()
+		.antMatchers("/propietarios/**").permitAll()
+		.antMatchers("/conductores/**").permitAll()
+		.antMatchers("/roles/**").permitAll()
+		.antMatchers("/ru/**").permitAll()
+		.antMatchers("/usop/**").permitAll()
+		.antMatchers("/vinculos/**").permitAll()
+		.antMatchers("/vinrequi/**").permitAll()
+		.antMatchers("/acciones/**").permitAll()
+		.antMatchers("/propietarios/**").permitAll()
+		.antMatchers("/soats/**").permitAll()
+		.antMatchers("/tarjetac/**").permitAll()
+		.antMatchers("/vehiculos/**").permitAll()
+		.antMatchers("/requisitos/**"). permitAll()
+		.antMatchers("/personas/**").permitAll()
+		.antMatchers("/cursos/**").permitAll()
+		.antMatchers("/empleado/**").permitAll()
+		.antMatchers("/vinculocurso/**").permitAll()
+		
+		.anyRequest()
+		.authenticated()
+		.and()
+        .formLogin().loginPage("http://localhost:4200/login").permitAll()
+        .and()
+        .logout().permitAll()
+		.and()
+		.httpBasic();		
+	}
+}
+>>>>>>> b3cd2dfb6e61616a97c94b77376a4e6697f3664a

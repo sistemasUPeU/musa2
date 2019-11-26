@@ -15,5 +15,4 @@ public interface RequisitosDao {
 	
 	// Esto es para vinculo no borrar //
 	public Map<String,Object> list(int tipo);
-	
 }

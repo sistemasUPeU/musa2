@@ -12,54 +12,36 @@ import com.musa2.service.OpcionesService;
 @Service
 public class OpcionesServicelmp implements OpcionesService{
 	@Autowired
-	private OpcionesDao opcionesDao;
+	private OpcionesDao OpcionesDao;
 
 	@Override
-	public Map<String, Object> create(Opciones o) {
-		return opcionesDao.create(o);
+	public int create(Opciones c) {
+		return OpcionesDao.create(c);
 	}
 
 	@Override
-	public Map<String, Object> update(Opciones o) {
-		return opcionesDao.update(o);
+	public int update(Opciones c) {
+		return OpcionesDao.update(c);
 	}
 
 	@Override
-	public Map<String,Object> delete(Opciones o) {
-		return opcionesDao.delete(o);
+	public int delete(int id) {
+		return OpcionesDao.delete(id);
 	}
 
 	@Override
 	public Map<String, Object> read(int id) {
-		return opcionesDao.read(id);
+		return OpcionesDao.read(id);
 	}
 
 	@Override
 	public Map<String, Object> readAll() {
-		return opcionesDao.readAll();
+		return OpcionesDao.readAll();
 	}
-
+	
 	@Override
-	public Map<String, Object> readn(int nombre) {
+	public Map<String, Object> obtenerOpciones(int idusuario) {
 		// TODO Auto-generated method stub
-		return opcionesDao.readn(nombre);
-	}
-
-	@Override
-	public Map<String, Object> reade(int estado) {
-		// TODO Auto-generated method stub
-		return opcionesDao.reade(estado);
-	}
-
-	@Override
-	public Map<String, Object> readt(int tipo) {
-		// TODO Auto-generated method stub
-		return opcionesDao.readt(tipo);
-	}
-
-	@Override
-	public Map<String, Object> readp(int idpadre) {
-		// TODO Auto-generated method stub
-		return opcionesDao.readp(idpadre);
+		return OpcionesDao.obtenerOpciones(idusuario);
 	}
 }

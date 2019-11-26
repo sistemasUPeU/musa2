@@ -3,6 +3,7 @@ package com.musa2.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,39 +16,41 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.musa2.entity.Propietarios;
 import com.musa2.service.PropietariosService;
-@CrossOrigin("*")
+@CrossOrigin(origins = {"http:localhost:4200"})
 @RestController
 @RequestMapping("/propietarios")
 public class PropietariosController {
       @Autowired
       private PropietariosService propietariosService;
       
+    @Secured("ROLE_ADMIN")
     @GetMapping
   	public Map<String,Object> getPropietarios(){
   		return propietariosService.readAll();
   	}
+    @Secured("ROLE_ADMIN")
   	@PostMapping("/add")
-  	public Map<String, Object> save(@RequestBody Propietarios pro) {		
-  		return propietariosService.create(pro);		
+  	public Map<String, Object> save(@RequestBody Propietarios propietarios) {		
+  		return propietariosService.create(propietarios);		
   	}
-  	@PutMapping("/modif/")
-  	public int deletePropietarios(@RequestBody Propietarios p) {		
-  		return propietariosService.delete(p.getIdpropietario());
+    @Secured("ROLE_ADMIN")
+  	@PutMapping("/modif/{id}")
+  	public int deletePropietarios(@PathVariable int id) {		
+  		return propietariosService.delete(id);
   	}
+    @Secured("ROLE_ADMIN")
   	@GetMapping("/{id}")
   	public Map<String,Object> readPropietarios(@PathVariable int id) {		
   		return propietariosService.read(id);
   	}
+    @Secured("ROLE_ADMIN")
   	@PutMapping("/")
   	public Map<String, Object> updatePropietarios(@RequestBody Propietarios pro) {
   		return propietariosService.update(pro);
   	}
-  	@GetMapping("/lis/")
-	public Map<String,Object> getn(){
-		return propietariosService.readnom();
-	}
-  	@GetMapping("/nombre/{nombre}")
-  	public Map<String,Object> search(@PathVariable String nombre) {		
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/nombre/{nombre}")
+  	public Map<String,Object> searchNombre(@PathVariable String nombre){
   		return propietariosService.search(nombre);
   	}
 }

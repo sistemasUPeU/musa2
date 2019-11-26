@@ -3,8 +3,6 @@ package com.musa2.service;
 
 import java.util.Map;
 
-import com.musa2.entity.Rol_Usuarios;
-import com.musa2.entity.Roles;
 import com.musa2.entity.Usuarios;
 
 public interface UsuariosService {
@@ -22,5 +20,8 @@ public interface UsuariosService {
 	public Map<String, Object> readRolus();
 	public Map<String, Object> readUse();
 	public Map<String, Object> readUseN(String login);
-    public int validar_login(Usuarios U);
+  /*  public Map<String, Object> validar_login(Usuarios U);
+    public Map<String, Object> validar_nom_user(String login);*/
+    Usuarios validarUsuario(String login);
+    Map<String, Object> datosUsuario(String login);
 }
