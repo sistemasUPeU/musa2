@@ -100,4 +100,17 @@ public class RequisitosDaoImp implements RequisitosDao{
 		return simpleJdbcCall.execute(in);
 	}
 
+	@Override
+	public Map<String, Object> buscar_tipo(String tiporequisito) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("pkg_cv_crud_requisitos")
+				.withProcedureName("pa_mat_buscar_tiporequisito")
+				.declareParameters(new SqlOutParameter("p_cur_tiporequisito", OracleTypes
+				.CURSOR, new ColumnMapRowMapper()), 
+						new SqlParameter("p_tiporequisito", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tiporequisito", tiporequisito);
+		return simpleJdbcCall.execute(in);
+	}
+
 }
