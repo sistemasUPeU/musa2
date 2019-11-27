@@ -15,7 +15,7 @@ public class MantenimientoServiceImp implements MantenimientoService{
 
 	@Autowired
 	private MantenimientoDao mantenimientoDao;
-	
+
 	@Override
 	public Map<String, Object> create(Mantenimiento m) {
 		// TODO Auto-generated method stub
@@ -29,9 +29,9 @@ public class MantenimientoServiceImp implements MantenimientoService{
 	}
 
 	@Override
-	public Map<String, Object> updateState(int state, int id) {
+	public Map<String, Object> updateState(int state, int id, int idempleado) {
 		// TODO Auto-generated method stub
-		return mantenimientoDao.updateState(state, id);
+		return mantenimientoDao.updateState(state, id, idempleado);
 	}
 
 	@Override
@@ -41,15 +41,29 @@ public class MantenimientoServiceImp implements MantenimientoService{
 	}
 
 	@Override
-	public List<Map<String, Object>> readAll() {
+	public Map<String, Object> readAllByType(int type) {
 		// TODO Auto-generated method stub
-		return mantenimientoDao.readAll();
+		return mantenimientoDao.readAllByType(type);
 	}
 
 	@Override
-	public Map<String, Object> readAllByMantId(int id) {
+	public Map<String, Object> readAllDetaByMantId(int id) {
 		// TODO Auto-generated method stub
-		return mantenimientoDao.readAllByMantId(id);
+		return mantenimientoDao.readAllDetaByMantId(id);
 	}
+
+	@Override
+	public Map<String, Object> addDetalle(int idm, int ida) {
+		// TODO Auto-generated method stub
+		return mantenimientoDao.addDetalle(idm, ida);
+	}
+
+	@Override
+	public Map<String, Object> updateDetaState(int idm, int ida, int state) {
+		// TODO Auto-generated method stub
+		return mantenimientoDao.updateDetaState(idm, ida, state);
+	}
+	
+	
 
 }

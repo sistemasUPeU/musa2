@@ -24,21 +24,37 @@ public class PropietariosDaoImp implements PropietariosDao{
 	private JdbcTemplate jdbcTemplate;
 	private SimpleJdbcCall simpleJdbcCall;
 	@Override
-	public int create(Propietarios p) {
+	public Map<String, Object> create(Propietarios pro) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CV_CRUD_P.PR_CREAR_PROPIETARIOS(?,?,?);", p.getTipopropietario(),
-				p.getEstado(), p.getIdpersona());	
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS").withProcedureName("pr_crear_propietario")
+				.declareParameters(new SqlParameter("p_tipopropietario",Types.INTEGER),
+						           new SqlParameter("p_estado", Types.INTEGER),
+						           new SqlParameter("p_idpersona", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_tipopropietario", pro.getTipopropietario())
+				                                           .addValue("p_estado", pro.getEstado())
+				                                           .addValue("p_idpersona", pro.getIdpersona());
+		return simpleJdbcCall.execute(in);
 	}
 	@Override
-	public int update(Propietarios p) {
-		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CV_CRUD_PROPIETAIROS.PR_ACTUALIZAR_PROPIETARIOS(?,?,?,?);", p.getIdpropietario(),
-				p.getTipopropietario(), p.getEstado(), p.getIdpersona());
+	public  Map<String, Object> update(Propietarios pro) {
+		// TODO Auto-generated method stub	
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS").withProcedureName("PR_ACTUALIZAR_PROPIETARIOS")
+				.declareParameters(new SqlParameter("P_IDPROPIETARIO", Types.INTEGER),
+						           new SqlParameter("P_TIPOPROPIETARIO", Types.INTEGER),
+						           new SqlParameter("P_ESTADO", Types.INTEGER),
+						           new SqlParameter("P_IDPERSONA", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_IDPROPIETARIO", pro.getIdpropietario())
+				                                           .addValue("P_TIPOPROPIETARIO", pro.getTipopropietario())
+				                                           .addValue("P_ESTADO", pro.getEstado())
+				                                           .addValue("P_IDPERSONA", pro.getIdpersona());
+		return simpleJdbcCall.execute(in);
 	}
 	@Override
 	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CV_CRUD_PROPIETARIOS.PR_ELIMINAR_PROPIETARIOS(?);", id);
+		return jdbcTemplate.update("call PKG_CV_CRUD_PROPIETARIOS.PR_ELIMINAR_PROPIETARIOS(?)", id);
 	}
 	@Override
 	public Map<String, Object> read(int id) {
@@ -55,8 +71,25 @@ public class PropietariosDaoImp implements PropietariosDao{
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("PR_LISTAR_PROPIETARIOS")
 				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS")
-				.declareParameters(new SqlOutParameter("pro", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+				.declareParameters(new SqlOutParameter("P_CURSOR", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
+	}
+	@Override
+	public Map<String, Object> readnom() {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS")
+				.withProcedureName("PR_LISTAR_NOMBRE")
+				.declareParameters(new SqlOutParameter("con", OracleTypes
+				.CURSOR,new ColumnMapRowMapper()));
+		return simpleJdbcCall.execute();
+	}
+	public Map<String, Object> search(String nombre) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName("PKG_CV_CRUD_PROPIETARIOS").withProcedureName("PR_LISTAR_BUSCAR_PROPIETARIOS")
+				.declareParameters(new SqlOutParameter("P_CURSOR",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_NOMBRE", Types.VARCHAR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NOMBRE", nombre);  
+		return  simpleJdbcCall.execute(in);
 	}
 	
 	
