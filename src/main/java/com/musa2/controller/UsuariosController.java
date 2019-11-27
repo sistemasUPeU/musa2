@@ -26,75 +26,75 @@ public class UsuariosController {
 @Autowired
 	private UsuariosService usuariosService;
 	
-    @Secured("ROLE_ADMIN")
+@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/")
 	public Map<String, Object> readAll() {
 		return usuariosService.readAll();
 	}
-     @Secured("ROLE_ADMIN")
+@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
  	@GetMapping("/per/")
  	public Map<String, Object> readPer() {
  		return usuariosService.readPer();
  	}
- 	@Secured("ROLE_ADMIN")
+@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
  	@GetMapping("/per/{nombre}")
  	public Map<String,Object> readPerN(@PathVariable String nombre) {		
  		return usuariosService.readPerN(nombre);
  	}
  	
- 	@Secured("ROLE_ADMIN")
+ 	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
  	@GetMapping("/use/")
  	public Map<String, Object> readUse() {
  		return usuariosService.readUse();
  	}
- 	@Secured("ROLE_ADMIN")
+ 	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
  	@GetMapping("/use/{login}")
  	public Map<String,Object> readUseN(@PathVariable String login) {		
  		return usuariosService.readUseN(login);
  	}
-    @Secured("ROLE_ADMIN")
+ 	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/{id}")
 	public Map<String,Object> read1(@PathVariable int id) {		
 		return usuariosService.read(id);
 	}
-    @Secured("ROLE_ADMIN")
+ 	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/nombre/{nombre}")
 	public Map<String,Object> readN(@PathVariable String nombre) {		
 		return usuariosService.readN(nombre);
 	}
-    @Secured("ROLE_ADMIN")
+ 	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/estado/{estado}")
 	public Map<String,Object> readE(@PathVariable int estado) {		
 		return usuariosService.readE(estado);
 	}
-    @Secured("ROLE_ADMIN")
+ 	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/rol/{rol}")
 	public Map<String,Object> readR(@PathVariable String rol) {		
 		return usuariosService.readR(rol);
 	}
 	
-    @Secured("ROLE_ADMIN")
+ 	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/user/")
 	public Map<String,Object> readUser() {		
 		return usuariosService.readUser();
 	}
-    @Secured("ROLE_ADMIN")
+ 	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/rolus/")
 	public Map<String,Object> readRolus() {		
 		return usuariosService.readRolus();
 	}
 	
-    @Secured("ROLE_ADMIN")
+ 	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@PostMapping("/add")
 	public int create(@RequestBody Usuarios U) {
 		return usuariosService.create(U);
 	}
-    @Secured("ROLE_ADMIN")
+ 	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@DeleteMapping("/{id}")
 	public int delete(@PathVariable int id) {
 		return usuariosService.delete(id);
 	}
-    @Secured("ROLE_ADMIN")
+ 	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@PutMapping("/{id}")
 	public int update(@RequestBody Usuarios usuario, @PathVariable int id) {
 		usuario.setIdusuario(id);
