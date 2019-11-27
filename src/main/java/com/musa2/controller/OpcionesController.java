@@ -25,33 +25,33 @@ import com.musa2.service.OpcionesService;
 public class OpcionesController {
 	@Autowired
     private OpcionesService opcionesService;
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/")
 	public Map<String,Object> get(){
 		return opcionesService.readAll();
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@PostMapping("/add")
 	public int save(@RequestBody Opciones opcion) {		
 		return opcionesService.create(opcion);		
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@DeleteMapping("/{id}")
 	public int delete1(@PathVariable int id) {		
 		return opcionesService.delete(id);
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/{id}")
 	public Map<String,Object> read1(@PathVariable int id) {		
 		return opcionesService.read(id);
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@PutMapping("/{id}")
 	public int update1(@RequestBody Opciones pro, @PathVariable int id) {
 		pro.setIdopciones(id);
 		return opcionesService.update(pro);
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD","ROLE_SECRETARIA","ROLE_MECANICO"})
 	@GetMapping("/getOPC/{idusuario}")
 	public Map<String,Object> obtenerOpciones(@PathVariable int idusuario) {		
 		return opcionesService.obtenerOpciones(idusuario);		

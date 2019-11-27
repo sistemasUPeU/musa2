@@ -27,47 +27,47 @@ import com.musa2.service.Usuarios_OpcionesService;
 public class Usuarios_OpcionesController {
 	@Autowired
 	private Usuarios_OpcionesService usuarios_OpcionesService;
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/")
 	public Map<String,Object> readAll(){
 		return usuarios_OpcionesService.readAll();
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@PostMapping("/add")
 	public int  create(@RequestBody Usuarios_Opciones up) {		
 		return usuarios_OpcionesService.create(up);		
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/nombre/{nombre}")
 	public Map<String,Object> readN(@PathVariable String nombre) {		
 		return usuarios_OpcionesService.readN(nombre);
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/estado/{estado}")
 	public Map<String,Object> readE(@PathVariable int estado) {		
 		return usuarios_OpcionesService.readE(estado);
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/opcion1/")
 	public Map<String,Object> opcion1() {		
 		return usuarios_OpcionesService.opcion1();
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/opc2/{idopcion2}")
 	public Map<String,Object> opc2(@PathVariable int idopcion2) {		
 		return usuarios_OpcionesService.opc2(idopcion2);
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/op3/{idopcion3}")
 	public Map<String,Object> op3(@PathVariable int idopcion3) {		
 		return usuarios_OpcionesService.op3(idopcion3);
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@PutMapping("/des/{idusuario}/{idopcion}")
 	public int delete(@PathVariable int idusuario,@PathVariable int idopcion, @RequestBody String user_modify) {
 		return usuarios_OpcionesService.delete(idusuario, idopcion, user_modify);
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@PutMapping("/{idusuario}/{idopcion}")
 	public int activar(@PathVariable int idusuario,@PathVariable int idopcion, @RequestBody String user_modify) {
 		return usuarios_OpcionesService.activar(idusuario, idopcion, user_modify);
