@@ -14,6 +14,7 @@ public class VinculosRequisitosServiceImp implements VinculosRequisitosService{
 	@Autowired
 	private VinculosRequisitosDao vinculosrequisitos;
 
+	/*
 	@Override
 	public int update(int idvinculo,int idrequisito) {
 		// TODO Auto-generated method stub
@@ -27,6 +28,7 @@ public class VinculosRequisitosServiceImp implements VinculosRequisitosService{
 		// TODO Auto-generated method stub
 		return vinculosrequisitos.insertar(tiporequisitos,vincurequi);
 	}
+	*/
 
 
 
@@ -42,6 +44,30 @@ public class VinculosRequisitosServiceImp implements VinculosRequisitosService{
 	public int delete(int id) {
 		// TODO Auto-generated method stub
 		return vinculosrequisitos.delete(id);
+	}
+
+
+
+	@Override
+	public int insertar(int tiporequisito, int vincurequi) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	@Override
+	public int update(int idvinculo, int idrequisito, String enlace) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	@Override
+	public VinculosRequisitos listarid(int idv, int idr) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
