@@ -1,7 +1,7 @@
 package com.musa2.entity;
 
 public class Opciones {
-	private int idopciones;
+	private int idopcion;
 	private String nombre;
 	private String Descripcion;
 	private	String enlace;
@@ -14,10 +14,10 @@ public class Opciones {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Opciones(int idopciones, String nombre, String descripcion, String enlace, String icono, int tipo, int orden,
+	public Opciones(int idopcion, String nombre, String descripcion, String enlace, String icono, int tipo, int orden,
 			int estado, int idpadre) {
 		super();
-		this.idopciones = idopciones;
+		this.idopcion = idopcion;
 		this.nombre = nombre;
 		Descripcion = descripcion;
 		this.enlace = enlace;
@@ -27,11 +27,11 @@ public class Opciones {
 		this.estado = estado;
 		this.idpadre = idpadre;
 	}
-	public int getIdopciones() {
-		return idopciones;
+	public int getIdopcion() {
+		return idopcion;
 	}
-	public void setIdopciones(int idopciones) {
-		this.idopciones = idopciones;
+	public void setIdopcion(int idopcion) {
+		this.idopcion = idopcion;
 	}
 	public String getNombre() {
 		return nombre;

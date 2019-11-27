@@ -63,7 +63,7 @@ public class OpcionesDaolmp implements OpcionesDao {
 						new SqlParameter("p_orden",Types.INTEGER),
 						new SqlParameter("p_estado",Types.INTEGER),
 						new SqlOutParameter("p_error",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
-						new SqlOutParameter("p_opcion_id",OracleTypes.INTEGER, new ColumnMapRowMapper()), 
+						new SqlParameter("p_opcion_id",Types.INTEGER), 
 						new SqlOutParameter("p_msgerror",OracleTypes.VARCHAR, new ColumnMapRowMapper()));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idpadre",o.getIdpadre())
 															.addValue("p_nombre", o.getNombre())
@@ -72,7 +72,8 @@ public class OpcionesDaolmp implements OpcionesDao {
 															.addValue("p_icono", o.getIcono())
 															.addValue("p_tipo", o.getTipo())
 															.addValue("p_orden", o.getOrden())
-															.addValue("p_estado", o.getEstado());
+															.addValue("p_estado", o.getEstado())
+		.addValue("p_opcion_id",o.getIdopcion());
 		return simpleJdbcCall.execute(in);
 	}
 
@@ -82,7 +83,7 @@ public class OpcionesDaolmp implements OpcionesDao {
 				.declareParameters(new SqlParameter("p_opcion_id",Types.INTEGER)
 						, new SqlParameter("p_estado", Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource()
-				.addValue("P_IDTARJETAC", o.getIdopciones())
+				.addValue("p_opcion_id", o.getIdopcion())
 		.addValue("p_estado", o.getEstado());
 		return simpleJdbcCall.execute(in);	
 	}
@@ -111,8 +112,8 @@ public class OpcionesDaolmp implements OpcionesDao {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("pr_listar_opciones_estado").withCatalogName("PKG_SEG_CRUD_OPCIONES")
-				.declareParameters(new SqlOutParameter("hola3",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("p_estado ",Types.INTEGER));
-		SqlParameterSource in = new MapSqlParameterSource().addValue("p_estado ", estado);
+				.declareParameters(new SqlOutParameter("hola3",OracleTypes.CURSOR,new ColumnMapRowMapper()), new SqlParameter("P_ESTADO",Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_ESTADO", estado);
 		return simpleJdbcCall.execute(in);
 	}
 	
