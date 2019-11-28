@@ -26,7 +26,7 @@ public class Usuarios_OpcionesDaoImp implements Usuarios_OpcionesDao{
 	@Override
 	public int create(Usuarios_Opciones up) {
 		// TODO Auto-generated method stub
-		 return JdbcTemplate.update("call PKG_SEG_ASIGNAR_OPCIONES_USU.PR_ASIGNAR_OPCIONES_USUARIO(?,?,?,?,?)", up.getIdopcion(), up.getIdopcion2(),up.getIdopcion3(),up.getIdusuario(),
+		 return JdbcTemplate.update("call PKG_SEG_ASIGNAR_OPCIONES_USU.PR_ASIGNAR_OPCIONES_USUARIO(?,?,?,?)", up.getIdopcion(), up.getIdopcion2(),up.getIdusuario(),
 				up.getUser_create());
 		
 		
