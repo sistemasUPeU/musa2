@@ -45,10 +45,20 @@ public class OpcionesController {
 	public Map<String,Object> read1(@PathVariable int id) {		
 		return opcionesService.read(id);
 	}
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/est/{estado}")
+	public Map<String,Object> reade(@PathVariable int estado) {		
+		return opcionesService.reade(estado);
+	}
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/tipo/{tipo}")
+	public Map<String,Object> readt(@PathVariable int tipo) {		
+		return opcionesService.readt(tipo);
+	}
 	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@PutMapping("/{id}")
 	public Map<String, Object> update1(@RequestBody Opciones pro, @PathVariable int id) {
-		pro.setIdopciones(id);
+		pro.setIdopcion(id);
 		return opcionesService.update(pro);
 	}
 
