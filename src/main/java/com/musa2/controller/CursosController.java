@@ -3,6 +3,7 @@ package com.musa2.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,39 +23,47 @@ import com.musa2.service.CursosService;
 public class CursosController {
 	@Autowired
     private CursosService cursosService;
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/")
 	public Map<String,Object> get(){
 		return cursosService.readAll();
 	}
-
+	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/add")
 	public int save(@RequestBody Cursos cursos) {	
 		System.out.println(cursos.getNombrecurso()+" si entro hasta controller");
 		return cursosService.create(cursos);
 		
 	}
-	@PutMapping("/upt/{id}")
+	@Secured("ROLE_ADMIN")
+	@DeleteMapping("/upt/{id}")
 	public int delete(@PathVariable int id) {		
 	 return cursosService.delete(id);
 	}
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/{id}")
 	public Map<String,Object> read(@PathVariable int id) {		
 		return cursosService.read(id);
 		
 	}
+	@Secured("ROLE_ADMIN")
 	@PutMapping("/{id}")
 	public int update(@RequestBody Cursos cursos, @PathVariable int id) {
 		return cursosService.update(cursos);
 
 	
 }
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/nom/")
 	public Map<String,Object> get2(@PathVariable String nombrecurso){
 		return cursosService.read(nombrecurso);
 		
 	}
-	@GetMapping("/cur/{curs}")	
-	public Map<String, Object> search(@PathVariable("curs") int nombrecurso) {
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/cur/{nombrecurso}")	
+	public Map<String, Object> search(@PathVariable String nombrecurso) {
 	return cursosService.findCursosByNombre(nombrecurso);
 	}
+	
 }

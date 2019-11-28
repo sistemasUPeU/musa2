@@ -82,13 +82,13 @@ public class CursosDaoImp implements CursosDao {
 	}
 
 	@Override
-	public Map<String, Object> findCursosByNombre(int nombrecurso) {
+	public Map<String, Object> findCursosByNombre(String nombrecurso) {
 			// TODO Auto-generated method stub
 			simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 					.withProcedureName("pr_buscar_nombrecurso")
 					.withCatalogName("PKG_CV_CRUD_CURSOS")
-					.declareParameters(new SqlOutParameter("pers", OracleTypes.CURSOR, new ColumnMapRowMapper()));
-			SqlParameterSource in = new MapSqlParameterSource().addValue("p_nombrecurso",nombrecurso);
+					.declareParameters(new SqlOutParameter("P_CURSOR", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+			SqlParameterSource in = new MapSqlParameterSource().addValue("P_NOMBRECURSO",nombrecurso);
 			return simpleJdbcCall.execute(in);
 		}
 

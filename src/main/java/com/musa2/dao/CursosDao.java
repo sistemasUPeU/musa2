@@ -11,5 +11,5 @@ public interface CursosDao {
 	   public Map<String,Object> read(int id);
 		public Map<String, Object> readAll();
 		  public Map<String,Object> read(String nombrecurso);
-			 public Map<String, Object> findCursosByNombre(int nombrecurso);
+			 public Map<String, Object> findCursosByNombre(String nombrecurso);
 }

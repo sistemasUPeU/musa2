@@ -49,6 +49,24 @@ public class Vinculo_CursoServiceImp implements Vinculo_CursoService{
 		return vinculocurso.readNombre(nombrecurso);
 	}
 
+	@Override
+	public Map<String, Object> readSelectcur() {
+		// TODO Auto-generated method stub
+		return vinculocurso.readSelectcur();
+	}
+
+	@Override
+	public Map<String, Object> readSelectcon() {
+		// TODO Auto-generated method stub
+		return vinculocurso.readSelectcon();
+	}
+
+	@Override
+	public Map<String, Object> name(String nombrecurso) {
+		// TODO Auto-generated method stub
+		return vinculocurso.name(nombrecurso);
+	}
+
 	
 
 

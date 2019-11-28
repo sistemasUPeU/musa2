@@ -53,7 +53,7 @@ public class CursosServiceImp implements CursosService {
 	}
 
 	@Override
-	public Map<String, Object> findCursosByNombre(int nombrecurso) {
+	public Map<String, Object> findCursosByNombre(String nombrecurso) {
 		// TODO Auto-generated method stub
 		return cursosDao.findCursosByNombre(nombrecurso);
 	}
