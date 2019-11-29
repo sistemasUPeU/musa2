@@ -42,10 +42,12 @@ public class VinculosRequisitosController {
 	}
 	
 	@Secured("ROLE_ADMIN")
-	@PutMapping("/upt/{requi}/")
-	public int update(@PathVariable int requi,@RequestBody VinculosRequisitos vincurequi, String enlace) {
-		System.out.println(vincurequi.getIdvinculo()+" asd "+enlace);
-		return vincu.update(vincurequi.getIdvinculo(),requi, enlace	);
+	@PutMapping("/actua/{idvincu}/{idrequi}")
+	public int update(@PathVariable int idvincu,@PathVariable  int idrequi) {
+		VinculosRequisitos vincurequi = new VinculosRequisitos();
+		vincurequi.setIdrequisitos(idrequi);
+		vincurequi.setIdvinculo(idvincu);
+		return vincu.update(vincurequi);
 	}
 	
 	@Secured("ROLE_ADMIN")

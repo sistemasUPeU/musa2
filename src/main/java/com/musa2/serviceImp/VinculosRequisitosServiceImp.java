@@ -53,6 +53,14 @@ public class VinculosRequisitosServiceImp implements VinculosRequisitosService{
 		// TODO Auto-generated method stub
 		return vinculosrequisitos.listarid(idv, idr);
 	}
+
+
+
+	@Override
+	public int update(VinculosRequisitos vincurequi) {
+		// TODO Auto-generated method stub
+		return vinculosrequisitos.update(vincurequi);
+	}
 	
 	
 }
