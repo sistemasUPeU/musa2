@@ -4,9 +4,9 @@ import java.util.Map;
 import com.musa2.entity.Opciones;
 
 public interface OpcionesDao {
-	public int create(Opciones O);
-	public int update(Opciones O);
-	public int delete(int id);
+	public Map<String,Object> create(Opciones o);
+	public Map<String,Object> update(Opciones o);
+	public Map<String,Object> delete(Opciones o);
 	public Map<String,Object> read(int id);
 	public Map<String,Object> readn(int nombre);
 	public Map<String,Object> reade(int estado);

@@ -13,5 +13,7 @@ public interface Vinculo_CursoDao {
 	   public Map<String,Object> read(int idcurso,int idconductor);
 		public Map<String, Object> readAll();
 		public Map<String, Object> readNombre(String nombrecurso);
-
+		public Map<String, Object> name(String nombrecurso);
+        public Map<String, Object> readSelectcur();
+        public Map<String, Object> readSelectcon();
 }

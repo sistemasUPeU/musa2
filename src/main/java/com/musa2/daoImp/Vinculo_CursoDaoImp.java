@@ -69,6 +69,36 @@ public class Vinculo_CursoDaoImp implements Vinculo_CursoDao{
 		SqlParameterSource in = new MapSqlParameterSource().addValue("p_idcurso", nombrecurso);
 		return simpleJdbcCall.execute(in);
 	}
+	@Override
+	public Map<String, Object> readSelectcur() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("pr_listar_select_cursos")
+				.withCatalogName("PKG_CV_CRUD_CURSOS_CONDUCTORES")
+				.declareParameters(new SqlOutParameter("p_cursor", OracleTypes.CURSOR, new ColumnMapRowMapper())
+									);
+		return simpleJdbcCall.execute();
+	}
+	@Override
+	public Map<String, Object> readSelectcon() {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("pr_listar_select_conductores")
+				.withCatalogName("PKG_CV_CRUD_CURSOS_CONDUCTORES")
+				.declareParameters(new SqlOutParameter("p_cursor", OracleTypes.CURSOR, new ColumnMapRowMapper())
+									);
+		return simpleJdbcCall.execute();
+	}
+	@Override
+	public Map<String, Object> name(String nombrecurso) {
+		// TODO Auto-generated method stub
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("pr_buscar_nom_cur")
+				.withCatalogName("PKG_CV_CRUD_CURSOS_CONDUCTORES")
+				.declareParameters(new SqlOutParameter("P_CURSOR", OracleTypes.CURSOR, new ColumnMapRowMapper()),new SqlParameter("P_NOMBRECURSO",Types.VARCHAR));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("P_NOMBRECURSO", nombrecurso);
+		return simpleJdbcCall.execute(in);
+	}
 	
 
 }

@@ -24,28 +24,65 @@ public class Tarj_CirculacionDaoImp implements Tarj_CirculacionDao{
 	private JdbcTemplate jdbcTemplate;
   	private SimpleJdbcCall simpleJdbcCall;
 	@Override
-	public int create(Tarj_Circulacion tar) {
-		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CV_CRUD_TARJ_CIRCULACION.PR_CREAR_TARJ_CIRCULACION(?,?,?,?,?);", tar.getNrodocumento(),
-				tar.getFechaemision(), tar.getFechavencimiento(), tar.getEstado(), tar.getIdvehiculo());
-	}
+	public Map<String, Object> create(Tarj_Circulacion tar) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_TARJETAC")
+				.withProcedureName("pa_mat_tarjetac_ins")
+				.declareParameters(new SqlParameter("p_nrodocumento",Types.INTEGER), 
+						new SqlParameter("p_fechaemision", Types.DATE),
+						new SqlParameter("p_fechavencimiento", Types.DATE),
+						new SqlParameter("p_estado", Types.INTEGER),
+						new SqlParameter("p_idvehiculo", Types.INTEGER)
+						
+						);
+		
+		SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("p_nrodocumento", tar.getNrodocumento())
+				.addValue("p_fechaemision", tar.getFechaemision())
+				.addValue("p_fechavencimiento", tar.getFechavencimiento())
+				.addValue("p_estado", tar.getEstado())
+				.addValue("p_idvehiculo", tar.getIdvehiculo())
+				;
+		return simpleJdbcCall.execute(in);
+		}
 	@Override
-	public int update(Tarj_Circulacion tar) {
-		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CV_TARJ_CIRCULACION.PR_ACTUALIZAR_TARJ_CIRCULACION(?,?,?,?,?,?)", tar.getIdtarjetac(),
-				tar.getNrodocumento(), tar.getFechaemision(), tar.getFechavencimiento(), tar.getEstado(), tar.getIdvehiculo());
-	}
+	public Map<String, Object> update(Tarj_Circulacion tar) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_TARJETAC")
+				.withProcedureName("pa_mat_tarjetac_upd")
+				.declareParameters(
+						new SqlParameter("p_idtarjetac",Types.INTEGER), 
+						new SqlParameter("p_nrodocumento",Types.INTEGER), 
+						new SqlParameter("p_fechaemision", Types.DATE),
+						new SqlParameter("p_fechavencimiento", Types.DATE),
+						new SqlParameter("p_estado", Types.INTEGER),
+						new SqlParameter("p_idvehiculo", Types.INTEGER)
+						
+						);
+		
+		SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("p_idtarjetac", tar.getIdtarjetac())
+				.addValue("p_nrodocumento", tar.getNrodocumento())
+				.addValue("p_fechaemision", tar.getFechaemision())
+				.addValue("p_fechavencimiento", tar.getFechavencimiento())
+				.addValue("p_estado", tar.getEstado())
+				.addValue("p_idvehiculo", tar.getIdvehiculo())
+				;
+		return simpleJdbcCall.execute(in);
+		}
 	@Override
-	public int delete(int id) {
-		// TODO Auto-generated method stub
-		return jdbcTemplate.update("call PKG_CV_TARJ_CIRCULACION.PR_ELIMINAR_TARJ_CIRCULACION(?)", id);
+	public Map<String, Object> delete(int id) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_TARJETAc")
+				.withProcedureName("pa_mat_tarjetac_del")
+				.declareParameters(new SqlParameter("p_idtarjetac",Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("p_idtarjetac",id);
+		return simpleJdbcCall.execute(in);	
 	}
 	@Override
 	public Map<String, Object> read(int id) {
 		// TODO Auto-generated method stub
-		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("PR_LISTAR_TARJ_CIRCULACION_ID").withCatalogName("PKG_CV_CRUD_TARJ_CIRCULACION")
-				.declareParameters(new SqlOutParameter("tarj",OracleTypes.CURSOR,new ColumnMapRowMapper
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_TARJETAC")
+				.withProcedureName("pa_mat_tarjetac_get")
+				.declareParameters(new SqlOutParameter("p_tarjetac",OracleTypes.CURSOR,new ColumnMapRowMapper
 						()), new SqlParameter("P_IDTARJETAC", Types.INTEGER));
 		SqlParameterSource in = new MapSqlParameterSource().addValue("P_IDTARJETAC", id);
 		return simpleJdbcCall.execute(in);
@@ -54,10 +91,28 @@ public class Tarj_CirculacionDaoImp implements Tarj_CirculacionDao{
 	public Map<String, Object> readAll() {
 		// TODO Auto-generated method stub
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-				.withProcedureName("PR_LISTAR_TARJ_CIRCULACION")
-				.withCatalogName("PKG_CV_CRUD_TARJ_CIRCULACION")
-				.declareParameters(new SqlOutParameter("tarj", OracleTypes.CURSOR, new ColumnMapRowMapper()));
+				.withCatalogName("PKG_CV_TARJETAC")
+				.withProcedureName("pa_mat_tarjetac_list")
+				.declareParameters(new SqlOutParameter("p_tarjetac", OracleTypes.CURSOR, new ColumnMapRowMapper()));
 		return simpleJdbcCall.execute();
+	}
+	@Override
+	public Map<String, Object> buscar(int nro) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_TARJETAC")
+				.withProcedureName("pa_mat_tarjetac_nro")
+				.declareParameters(new SqlOutParameter("p_tarj",OracleTypes.CURSOR,new ColumnMapRowMapper
+						()), new SqlParameter("p_nrodocumento", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_nrodocumento", nro);
+		return simpleJdbcCall.execute(in);
+	}
+	@Override
+	public Map<String, Object> listest(int estado) {
+		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withCatalogName("PKG_CV_TARJETAC")
+				.withProcedureName("pa_mat_tarjetac_est")
+				.declareParameters(new SqlOutParameter("p_tarjetac",OracleTypes.CURSOR,new ColumnMapRowMapper
+						()), new SqlParameter("p_estado", Types.INTEGER));
+		SqlParameterSource in = new MapSqlParameterSource().addValue("p_estado", estado);
+		return simpleJdbcCall.execute(in);
 	}
   	
   	

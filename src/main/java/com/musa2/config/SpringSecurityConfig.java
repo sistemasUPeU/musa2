@@ -1,4 +1,4 @@
-package com.musa2.config;
+ package com.musa2.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

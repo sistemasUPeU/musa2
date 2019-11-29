@@ -25,27 +25,27 @@ import com.musa2.service.Rol_UsuariosService;
 public class Rol_UsuariosController {
 	@Autowired
 	private Rol_UsuariosService rol_usuariosservice;
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@PostMapping("/ru/add")
 	public int createru(@RequestBody Rol_Usuarios ru) {
 		return rol_usuariosservice.createru(ru);
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/rol1/{login}")
 	public Map<String,Object> readL(@PathVariable String login) {		
 		return rol_usuariosservice.readL(login);
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@GetMapping("/rol/{estado}")
 	public Map<String,Object> readE(@PathVariable int estado) {		
 		return rol_usuariosservice.readE(estado);
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@PutMapping("des/{idrol}/{idusuario}")
 	public int delete(@PathVariable int idrol,@PathVariable int idusuario, @RequestBody String user_modify) {
 		return rol_usuariosservice.delete(idrol, idusuario, user_modify);
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_SEGURIDAD"})
 	@PutMapping("/{idrol}/{idusuario}")
 	public int activar(@PathVariable int idrol,@PathVariable int idusuario, @RequestBody String user_modify) {
 		return rol_usuariosservice.activar(idrol, idusuario, user_modify);
