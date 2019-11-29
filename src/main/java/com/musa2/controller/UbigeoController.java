@@ -3,6 +3,7 @@ package com.musa2.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,29 +23,34 @@ import com.musa2.service.UbigeoService;
 public class UbigeoController {
 @Autowired
 private UbigeoService ubigeoService;
+@Secured("ROLE_ADMIN")
 @GetMapping("/")
 public Map<String, Object> readAll() {
 	return ubigeoService.readAll();
 }
+@Secured("ROLE_ADMIN")
 @PostMapping("/add")
 public int save(@RequestBody Ubigeo ubi) {
 	return ubigeoService.create(ubi);
 }
+@Secured("ROLE_ADMIN")
 @DeleteMapping("/ubi/{id}")
 public int delete1(@PathVariable int id) {
 	return ubigeoService.delete(id); 
 }
-
+@Secured("ROLE_ADMIN")
 @GetMapping("/{id}")
 public Map<String,Object> read1(@PathVariable int id) {
 	return ubigeoService.read(id);
 }
+@Secured("ROLE_ADMIN")
 @PutMapping("/{id}")
 public int update(@RequestBody Ubigeo ub, @PathVariable int id ) {
 	ub.setIdubigeo(id);
 	return ubigeoService.update(ub);
 	
 }
+@Secured("ROLE_ADMIN")
 @GetMapping("/ubi/{cod}")
 public Map<String, Object> search(@PathVariable("cod") int codigo) {
 	
