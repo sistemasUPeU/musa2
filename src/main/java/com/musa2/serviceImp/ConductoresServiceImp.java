@@ -57,4 +57,10 @@ public class ConductoresServiceImp implements ConductoresService {
 		// TODO Auto-generated method stub
 		return conductoresDao.code(code);
 	}
+
+	@Override
+	public Map<String, Object> lispers() {
+		// TODO Auto-generated method stub
+		return conductoresDao.lispers();
+	}
 }

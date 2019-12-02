@@ -71,4 +71,9 @@ public class ConductoresController {
 		return conductoresService.est(est);
 		
 	}
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/Pers")
+	public Map<String,Object> pers(){
+		return conductoresService.lispers();
+	}
 }

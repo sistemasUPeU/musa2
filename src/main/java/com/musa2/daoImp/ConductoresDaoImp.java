@@ -157,4 +157,14 @@ public class ConductoresDaoImp implements ConductoresDao{
 		return simp.execute(in);
 	}
 
+	@Override
+	public Map<String, Object> lispers() {
+		simp = new SimpleJdbcCall(jdbc)
+				.withCatalogName("PKG_CV_CONDUCTOR")
+				.withProcedureName("pa_mat_persona_list")
+				.declareParameters(new SqlOutParameter("p_persona", OracleTypes
+				.CURSOR,new ColumnMapRowMapper()));
+		return simp.execute();
+	}
+
 }
